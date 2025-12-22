@@ -1,6 +1,6 @@
 [gd_scene load_steps=47 format=3 uid="uid://dv2xxt6wf52qt"]
 
-[ext_resource type="Script" uid="uid://b6gee5b777qc1" path="res://Scripts/Actors/Enemies/skeleton_warrior.gd" id="1_it2us"]
+[ext_resource type="Script" uid="uid://dp5dfa80sup7b" path="res://Scripts/Actors/Enemies/skeleton_archer.gd" id="1_83bcu"]
 [ext_resource type="Texture2D" uid="uid://t0285g3s7w5c" path="res://Assets/Sprites/Enemys/Skeleton_Warrior/Attack_1.png" id="2_j5kak"]
 [ext_resource type="Texture2D" uid="uid://bcr6j8y6wnj70" path="res://Assets/Sprites/Enemys/Skeleton_Warrior/Attack_2.png" id="3_fh53j"]
 [ext_resource type="Texture2D" uid="uid://c8x0oylicu1mw" path="res://Assets/Sprites/Enemys/Skeleton_Warrior/Dead.png" id="4_3kn7p"]
@@ -274,7 +274,7 @@ size = Vector2(388, 100.0625)
 self_modulate = Color(0.8045722, 0, 0.13338664, 1)
 collision_layer = 4
 collision_mask = 3
-script = ExtResource("1_it2us")
+script = ExtResource("1_83bcu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
