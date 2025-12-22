@@ -1,6 +1,6 @@
 [gd_scene load_steps=47 format=3 uid="uid://dv2xxt6wf52qt"]
 
-[ext_resource type="Script" uid="uid://dp5dfa80sup7b" path="res://Scripts/Actors/Enemies/skeleton_archer.gd" id="1_83bcu"]
+[ext_resource type="Script" uid="uid://b6gee5b777qc1" path="res://Scripts/Actors/Enemies/skeleton_warrior.gd" id="1_it2us"]
 [ext_resource type="Texture2D" uid="uid://t0285g3s7w5c" path="res://Assets/Sprites/Enemys/Skeleton_Warrior/Attack_1.png" id="2_j5kak"]
 [ext_resource type="Texture2D" uid="uid://bcr6j8y6wnj70" path="res://Assets/Sprites/Enemys/Skeleton_Warrior/Attack_2.png" id="3_fh53j"]
 [ext_resource type="Texture2D" uid="uid://c8x0oylicu1mw" path="res://Assets/Sprites/Enemys/Skeleton_Warrior/Dead.png" id="4_3kn7p"]
@@ -257,15 +257,15 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cs1qu"]
-radius = 27.0
-height = 106.0
+radius = 13.0
+height = 84.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bx1fg"]
-radius = 26.0
-height = 96.0
+radius = 17.0
+height = 86.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a3a81"]
-size = Vector2(88.25, 71.5)
+size = Vector2(95.125, 71.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6uvca"]
 size = Vector2(388, 100.0625)
@@ -274,24 +274,21 @@ size = Vector2(388, 100.0625)
 self_modulate = Color(0.8045722, 0, 0.13338664, 1)
 collision_layer = 4
 collision_mask = 3
-script = ExtResource("1_83bcu")
+script = ExtResource("1_it2us")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(-2.7857118, -42.999992)
-scale = Vector2(1.0122768, 1.3593751)
+position = Vector2(12.499995, -40.999996)
+scale = Vector2(1.0390625, 1.328125)
 sprite_frames = SubResource("SpriteFrames_a3a81")
-animation = &"Death"
+animation = &"Attack"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-21, -2)
 shape = SubResource("CapsuleShape2D_cs1qu")
 
 [node name="SaldiriPivotu" type="Marker2D" parent="."]
-position = Vector2(-15, -3)
 
 [node name="UcurumSensoru" type="RayCast2D" parent="SaldiriPivotu"]
-position = Vector2(27, 11)
 target_position = Vector2(85, 50)
 
 [node name="Hitbox" type="Area2D" parent="SaldiriPivotu"]
@@ -299,20 +296,17 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SaldiriPivotu/Hitbox"]
-position = Vector2(-6, 0)
 shape = SubResource("CapsuleShape2D_bx1fg")
 debug_color = Color(0.824295, 0.96332425, 0.99999994, 0.41960785)
 
 [node name="SaldiriSensoru" type="RayCast2D" parent="SaldiriPivotu"]
-position = Vector2(5, -11)
-target_position = Vector2(100, 0)
+target_position = Vector2(106, 0)
 
 [node name="KilicAlani" type="Area2D" parent="SaldiriPivotu"]
 collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SaldiriPivotu/KilicAlani"]
-position = Vector2(52, -6)
 shape = SubResource("RectangleShape2D_a3a81")
 debug_color = Color(0.9504003, 0.21106213, 0.20314124, 0.41960785)
 
@@ -321,7 +315,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SaldiriPivotu/VisionArea"]
-position = Vector2(58, -15.96875)
+position = Vector2(110, -4)
 shape = SubResource("RectangleShape2D_6uvca")
 debug_color = Color(0.7928107, 0.64139813, 0, 0.41960785)
 
@@ -341,6 +335,7 @@ volume_db = -12.0
 max_distance = 600.0
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+position = Vector2(0, -1)
 rect = Rect2(-1149, -488, 2371, 825)
 
 [connection signal="body_entered" from="SaldiriPivotu/Hitbox" to="." method="_on_hitbox_body_entered"]
