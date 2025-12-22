@@ -1,6 +1,6 @@
 [gd_scene load_steps=29 format=4 uid="uid://dwrfvceks7wgu"]
 
-[ext_resource type="Script" uid="uid://dagmwn002lxof" path="res://Scripts/Levels/magara_leveli.gd" id="1_ngjra"]
+[ext_resource type="Script" uid="uid://dagmwn002lxof" path="res://Scripts/Levels/cave_level.gd" id="1_ngjra"]
 [ext_resource type="Texture2D" uid="uid://dm1bfrywkxq8h" path="res://Assets/Sprites/Environments/MagaraAssetiMiniFix.png" id="2_hye5j"]
 [ext_resource type="Texture2D" uid="uid://b3hdh3ijcrxu7" path="res://Assets/Sprites/Environments/MagaraAsama1.png" id="2_p58ga"]
 [ext_resource type="Texture2D" uid="uid://8sf5qto0ex7k" path="res://Assets/Sprites/Environments/MagaraAsset2Mini.png" id="3_hye5j"]
@@ -65549,7 +65549,7 @@ fill_from = Vector2(1, 0)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_86qhk"]
 size = Vector2(114, 443)
 
-[node name="MagaraLeveli" type="Node2D" node_paths=PackedStringArray("diyalog_kutusu", "diyalog_label")]
+[node name="CaveLevel" type="Node2D" node_paths=PackedStringArray("diyalog_kutusu", "diyalog_label")]
 script = ExtResource("1_ngjra")
 diyalog_kutusu = NodePath("DiyalogKatmani")
 diyalog_label = NodePath("DiyalogKatmani/Label")
@@ -65649,32 +65649,6 @@ modulate = Color(0.5211406, 0.5211406, 0.5211405, 1)
 z_index = 0
 position = Vector2(21, 1406.9999)
 
-[node name="SkeletonWarriors" type="Node" parent="."]
-
-[node name="SkeletonWarrior" parent="SkeletonWarriors" instance=ExtResource("12_3hrpf")]
-position = Vector2(1609, 1388)
-
-[node name="SkeletonWarrior4" parent="SkeletonWarriors" instance=ExtResource("12_3hrpf")]
-position = Vector2(1982, 55)
-
-[node name="SkeletonWarrior5" parent="SkeletonWarriors" instance=ExtResource("12_3hrpf")]
-position = Vector2(1492, 1202)
-
-[node name="SkeletonWarrior6" parent="SkeletonWarriors" instance=ExtResource("12_3hrpf")]
-position = Vector2(2417, 38)
-
-[node name="SkeletonWarrior7" parent="SkeletonWarriors" instance=ExtResource("12_3hrpf")]
-position = Vector2(3230, 47)
-
-[node name="SkeletonWarrior8" parent="SkeletonWarriors" instance=ExtResource("12_3hrpf")]
-position = Vector2(3710, 3)
-
-[node name="SkeletonWarrior9" parent="SkeletonWarriors" instance=ExtResource("12_3hrpf")]
-position = Vector2(1818, 1341)
-
-[node name="SkeletonWarrior10" parent="SkeletonWarriors" instance=ExtResource("12_3hrpf")]
-position = Vector2(1479, 1309)
-
 [node name="DiyalogKatmani" parent="." instance=ExtResource("17_bxqvl")]
 
 [node name="CanvasLayer" parent="." instance=ExtResource("14_5wo02")]
@@ -65721,13 +65695,27 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
+[node name="SkeletonWarriors" type="Node" parent="."]
+
+[node name="SkeletonWarrior" parent="SkeletonWarriors" instance=ExtResource("12_3hrpf")]
+position = Vector2(990, 1090)
+
+[node name="SkeletonWarrior2" parent="SkeletonWarriors" instance=ExtResource("12_3hrpf")]
+position = Vector2(1053, 1278)
+
+[node name="SkeletonWarrior3" parent="SkeletonWarriors" instance=ExtResource("12_3hrpf")]
+position = Vector2(2473, -13)
+
+[node name="SkeletonWarrior4" parent="SkeletonWarriors" instance=ExtResource("12_3hrpf")]
+position = Vector2(3196, 29)
+
 [node name="SkeletonArchers" type="Node" parent="."]
 
 [node name="SkeletonArcher2" parent="SkeletonArchers" instance=ExtResource("10_sdgch")]
-position = Vector2(1893, 1402)
+position = Vector2(1701, 1402)
 
 [node name="SkeletonArcher" parent="SkeletonArchers" instance=ExtResource("10_sdgch")]
-position = Vector2(1761, 1149)
+position = Vector2(1389, 1132)
 
 [connection signal="body_entered" from="LevelCıkısTetigi" to="." method="_on_level_cıkıs_tetigi_body_entered"]
 
