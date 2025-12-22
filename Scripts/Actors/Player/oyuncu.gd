@@ -1,124 +1,157 @@
 extends CharacterBody2D
 
-var cutscene_active = false
+# --- SETTINGS AND VARIABLES ---
 
-@export var speed = 250.0
-@export var jump_force = -450.0
-@export var gravity = 980.0
-# --- YENİ EKLENTİ: Çift Zıplama Ayarları ---
-@export var max_jumps = 2 # Kaç kere zıplayabilir? (2 = Çift Zıplama)
-var jump_count = 0        # Şu an kaçıncı zıplamada?
+@export_category("Movement Settings")
+@export var speed: float = 250.0
+@export var jump_force: float = -450.0
+@export var gravity: float = 980.0
+@export var max_jumps: int = 2 # 2 = Double Jump
 
-var game_over_sahnesi = preload("res://Scenes/UI/DeathScreen.tscn")
+@export_category("Combat Settings")
+@export var damage_heavy: int = 20 # First hit damage
+@export var damage_light: int = 10 # Combo hit damage
+@export var knockback_force: float = 1.5
+@export var hitstop_duration: float = 0.1
 
-@export_group("Diyalog Ayarları")
+@export_group("Dialogue Settings")
 var diyalog_kutusu: CanvasLayer 
 var diyalog_label: Label        
-var su_an_konusuyor = false
 
-var can_hasar_alabilir = true 
-signal player_died
+# --- SCENE REFERENCES (Preload) ---
+var game_over_sahnesi = preload("res://Scenes/UI/DeathScreen.tscn")
 
-# --- PIVOT REFERANSI ---
-@onready var pivot = $SaldiriPivotu 
+# --- STATE VARIABLES ---
+var jump_count: int = 0
+var cutscene_active: bool = false
+var su_an_konusuyor: bool = false
+var can_hasar_alabilir: bool = true 
+var is_attacking: bool = false
+var is_dead: bool = false
+var is_hurt: bool = false
 
-# --- KOMBO AYARLARI ---
-var combo_sayaci = 0
-var combo_sifirlama_suresi = 0.8
-var combo_zamanlayicisi = 0.0
+# --- COMBO SYSTEM ---
+var combo_sayaci: int = 0
+var combo_sifirlama_suresi: float = 0.8
+var combo_zamanlayicisi: float = 0.0
 
-# --- DURUM DEĞİŞKENLERİ ---
-var is_attacking = false
-var is_dead = false
-var is_hurt = false
-var yurume_sesi_db = -15.0
+# --- AUDIO SETTINGS ---
+var yurume_sesi_db: float = -15.0
 
+# --- NODE REFERENCES (@onready) ---
 @onready var anim = $AnimatedSprite2D
+@onready var pivot = $SaldiriPivotu 
+@onready var saldiri_alani = $SaldiriPivotu/SaldiriAlani
+@onready var saldiri_collision = $SaldiriPivotu/SaldiriAlani/CollisionShape2D
 
-# --- DÜĞÜMLER ---
+# Audio Nodes (Using get_node_or_null to prevent crashes if nodes are missing)
 @onready var sfx_yurume = get_node_or_null("SfxYurume")
 @onready var sfx_ziplama = get_node_or_null("SfxZiplama")
 @onready var sfx_hasar = get_node_or_null("SfxHasar")
 @onready var sfx_saldiri = get_node_or_null("SfxSaldiri")
 @onready var sfx_flask = get_node_or_null("SfxFlask")
 @onready var sfx_Death = get_node_or_null("SfxDeath")
-@onready var saldiri_alani = $SaldiriPivotu/SaldiriAlani
-@onready var saldiri_collision = $SaldiriPivotu/SaldiriAlani/CollisionShape2D
+
+# --- SIGNALS ---
+signal player_died
 
 func _ready():
-	if sfx_yurume:
-		sfx_yurume.volume_db = yurume_sesi_db
-	if saldiri_collision:
-		saldiri_collision.disabled = true
-	add_to_group("oyuncu")
-	var bulunan_ui = get_tree().current_scene.find_child("DiyalogKatmani", true, false)
+	add_to_group("oyuncu") # "oyuncu" group
 	
+	# Initial setup
+	if sfx_yurume: sfx_yurume.volume_db = yurume_sesi_db
+	if saldiri_collision: saldiri_collision.disabled = true
+	
+	# Connect to UI
+	ui_baglantisini_kur()
+
+func ui_baglantisini_kur():
+	var bulunan_ui = get_tree().current_scene.find_child("DiyalogKatmani", true, false)
 	if bulunan_ui:
 		diyalog_kutusu = bulunan_ui
 		var bulunan_label = diyalog_kutusu.find_child("Label", true, false)
 		if bulunan_label:
 			diyalog_label = bulunan_label
-			print(">> OYUNCU: Diyalog sistemine başarıyla bağlandı! Hazırım komutanım.")
+			print(">> PLAYER: Connected to Dialogue System.")
 		else:
-			print("!!! HATA: DiyalogKatmani bulundu ama içinde 'Label' yok!")
+			push_warning("DialogueLayer found but it has no 'Label' child!")
 	else:
-		print("!!! HATA: Sahnede 'DiyalogKatmani' isimli düğüm bulunamadı!")
+		# Not a critical error, maybe the scene has no dialogue.
+		pass 
 
 func _physics_process(delta):
-	# Cutscene Kontrolü
+	# State Checks (Priority Order)
 	if cutscene_active:
-		velocity.x = 0 
-		if not is_on_floor():
-			velocity.y += gravity * delta
-		move_and_slide()
-		if has_node("AnimatedSprite2D"): $AnimatedSprite2D.play("Idle")
-		if sfx_yurume: sfx_yurume.stop()
+		handle_cutscene(delta)
 		return 
 
 	if is_dead: return
 	
 	if is_hurt:
-		velocity.y += gravity * delta
+		apply_gravity(delta)
 		move_and_slide()
 		return
 
 	if is_attacking:
-		velocity.x = 0
+		velocity.x = 0 # Prevent sliding while attacking
+		apply_gravity(delta) # Continue falling if attacking in air
 		move_and_slide()
 		return
 	
-	# Kombo Zamanlayıcısı
-	if combo_sayaci > 0 and not is_attacking:
+	# Combo Timer Logic
+	if combo_sayaci > 0:
 		combo_zamanlayicisi -= delta
 		if combo_zamanlayicisi <= 0:
 			combo_sayaci = 0
 
-	# --- YERÇEKİMİ VE ZIPLAMA SIFIRLAMA ---
+	# --- MOVEMENT LOGIC ---
+	apply_gravity(delta)
+	handle_jump()
+	handle_movement()
+	
+	move_and_slide()
+	update_animations()
+
+func apply_gravity(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
 	else:
-		# Yere değdiğimiz an zıplama sayacını sıfırla
-		jump_count = 0
+		jump_count = 0 # Reset jumps when on floor
 
-	# --- GÜNCELLENMİŞ ZIPLAMA MANTIĞI (DOUBLE JUMP) ---
+func handle_cutscene(delta):
+	velocity.x = 0 
+	if not is_on_floor():
+		velocity.y += gravity * delta
+	move_and_slide()
+	if anim: anim.play("Idle")
+	if sfx_yurume: sfx_yurume.stop()
+
+func handle_jump():
 	if Input.is_action_just_pressed("ui_accept"):
-		# Sadece yerde olması gerekmiyor, hakkı varsa zıplayabilir
 		if jump_count < max_jumps:
 			velocity.y = jump_force
 			jump_count += 1
-			if sfx_ziplama: 
-				sfx_ziplama.play()
-				# Eğer ikinci zıplamaysa sesin tonunu biraz değiştirebiliriz (Pitch)
-				if jump_count == 2:
-					sfx_ziplama.pitch_scale = 1.2
-				else:
-					sfx_ziplama.pitch_scale = 1.0
+			cal_ziplama_sesi()
 
-	# Saldırı Tuşu
+func cal_ziplama_sesi():
+	if sfx_ziplama:
+		# --- MENTOR TOUCH: Organic Audio ---
+		# Generate a random pitch between 0.9 and 1.1 to avoid robotic repetition
+		var random_pitch = randf_range(0.9, 1.1)
+		if jump_count == 2:
+			# Higher pitch for the double jump
+			sfx_ziplama.pitch_scale = random_pitch + 0.2
+		else:
+			sfx_ziplama.pitch_scale = random_pitch
+		sfx_ziplama.play()
+
+func handle_movement():
+	# Attack Input
 	if Input.is_action_just_pressed("saldiri") and is_on_floor():
 		saldiri_yap()
+		return
 
-	# --- YÜRÜME VE YÖN ---
+	# Movement Input
 	var direction = Input.get_axis("ui_left", "ui_right")
 	if direction:
 		velocity.x = direction * speed
@@ -131,9 +164,6 @@ func _physics_process(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 
-	move_and_slide()
-	update_animations()
-
 func _unhandled_input(event):
 	if event.is_action_pressed("use_flask"): 
 		use_flask()
@@ -141,34 +171,31 @@ func _unhandled_input(event):
 func use_flask():
 	if is_dead or is_attacking: return
 	
+	# Check for Global singleton
+	if not Global: return
+
 	if Global.current_flasks > 0 and Global.can < Global.max_can:
 		Global.current_flasks -= 1
 		Global.can += Global.flask_heal_amount
 		if Global.can > Global.max_can:
 			Global.can = Global.max_can
+		
 		if sfx_flask:
 			sfx_flask.stop()
 			sfx_flask.play()
 	
-		print("İksir kullanıldı. Can: ", Global.can, " Kalan İksir: ", Global.current_flasks)
+		print("Flask used. Remaining: ", Global.current_flasks)
 		get_tree().call_group("hud_group", "update_hud")
-		
 	elif Global.current_flasks == 0:
-		print("İksir bitti!")
+		print("No flasks left!")
 
 func update_animations():
-	if is_dead or is_hurt or is_attacking:
+	# Animation Priority Check
+	if is_dead or is_hurt or is_attacking or cutscene_active:
 		if sfx_yurume: sfx_yurume.stop()
 		return
-	if cutscene_active:
-		anim.play("Idle")     
-		if sfx_yurume: 
-			sfx_yurume.stop() 
-			return             
 			
 	if not is_on_floor():
-		# Havada İkinci Zıplama Animasyonu (Opsiyonel)
-		# Eğer elinde "DoubleJump" animasyonu varsa buraya: if jump_count == 2: anim.play("DoubleJump") ekleyebilirsin.
 		anim.play("Jump")
 		if sfx_yurume: sfx_yurume.stop()
 	elif velocity.x != 0:
@@ -181,36 +208,41 @@ func update_animations():
 
 func saldiri_yap():
 	if is_attacking: return
-	print("!!! KILIÇ SALLANDI !!!")
+	
 	is_attacking = true
 	combo_sayaci += 1
 	combo_zamanlayicisi = combo_sifirlama_suresi
 	
 	if sfx_saldiri: sfx_saldiri.play()
-	GameFeel.vur(1.5, 0.1)
 	
+	# Trigger GameFeel (Screen shake/Hitstop)
+	if GameFeel:
+		GameFeel.vur(knockback_force, hitstop_duration)
+	
+	# Animation Selection based on combo count
 	if combo_sayaci == 1: anim.play("Attack1")
 	elif combo_sayaci == 2: anim.play("Attack2")
 	elif combo_sayaci >= 3:
 		anim.play("Attack3")
-		combo_sayaci = 0
+		combo_sayaci = 0 # Reset combo
 
+	# Damage Logic (Using timers to sync with animation frames)
 	await get_tree().create_timer(0.2).timeout
 	saldiri_collision.disabled = false
 	
+	# Wait for physics frame to ensure collision detection
 	await get_tree().physics_frame
 	await get_tree().physics_frame
 	
 	var dusmanlar = saldiri_alani.get_overlapping_bodies()
-	print("Kılıç alanındaki nesne sayısı: ", dusmanlar.size())
 	
 	for dusman in dusmanlar:
 		if dusman != self and dusman.has_method("hasar_al"):
-			print("Düşman Bulundu: ", dusman.name)
-			if combo_sayaci == 0:
-				dusman.hasar_al(20)
+			# Apply damage based on export variables
+			if combo_sayaci <= 1: # First hit or reset
+				dusman.hasar_al(damage_heavy)
 			else:
-				dusman.hasar_al(10)
+				dusman.hasar_al(damage_light)
 
 	await get_tree().create_timer(0.1).timeout
 	saldiri_collision.disabled = true
@@ -227,29 +259,36 @@ func hasar_al(miktar):
 	
 	if sfx_hasar: sfx_hasar.play()
 	
+	is_hurt = true # Lock movement
 	can_hasar_alabilir = false
 	anim.modulate = Color(1, 0, 0)
+	
+	# Optional: Add knockback logic here
 	
 	await get_tree().create_timer(0.5).timeout
 	
 	anim.modulate = Color(1, 1, 1)
 	can_hasar_alabilir = true
+	is_hurt = false
 	
 	if Global and Global.can <= 0:
 		olum_gerceklesti()
 
 func olum_gerceklesti():
+	if is_dead: return # Prevent double trigger
 	is_dead = true
 	velocity = Vector2.ZERO
 	anim.play("Death")
 	$CollisionShape2D.set_deferred("disabled", true)
+	
 	if sfx_yurume: sfx_yurume.stop()
-	if sfx_Death:sfx_Death.play()
+	if sfx_Death: sfx_Death.play()
+	
 	emit_signal("player_died") 
 	
 	await get_tree().create_timer(1.0).timeout
 	
-	Engine.time_scale = 0.3
+	Engine.time_scale = 0.3 # Slow motion effect on death
 	var ekran = game_over_sahnesi.instantiate()
 	get_tree().root.add_child(ekran)
 
@@ -259,7 +298,7 @@ func cutscene_moduna_gec():
 	
 func konus(cumle: String):
 	if not diyalog_kutusu or not diyalog_label:
-		print("!!! HATA: Bağlantı kopuk, konuşamıyorum!")
+		push_error("Dialogue System is NOT connected!")
 		return
 	
 	su_an_konusuyor = true
@@ -268,6 +307,7 @@ func konus(cumle: String):
 	diyalog_label.visible_characters = 0
 	diyalog_label.modulate = Color(0.4, 0.8, 1.0) 
 	
+	# Typewriter effect
 	for i in range(cumle.length()):
 		diyalog_label.visible_characters = i + 1
 		await get_tree().create_timer(0.04).timeout
