@@ -1,0 +1,42 @@
+[gd_scene load_steps=2 format=3 uid="uid://b01n51aikgu3q"]
+
+[ext_resource type="Script" uid="uid://bhfcfuipl8xly" path="res://Scripts/Levels/loading_screen.gd" id="1_qj53y"]
+
+[node name="LoadingScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qj53y")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -29.0
+offset_right = 73.0
+grow_vertical = 0
+text = "Loading..."
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+modulate = Color(0.37991965, 0.00071079494, 0.514502, 1)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -26.0
+grow_horizontal = 2
+grow_vertical = 0

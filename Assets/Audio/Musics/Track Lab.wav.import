@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bq07qf4pm3skn"
+path="res://.godot/imported/Track Lab.wav-0ac20d9d88c3a7ee0f28918c8a0689ad.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Musics/Track Lab.wav"
+dest_files=["res://.godot/imported/Track Lab.wav-0ac20d9d88c3a7ee0f28918c8a0689ad.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -1,0 +1,76 @@
+[gd_scene load_steps=6 format=3 uid="uid://dc3ai3l003t53"]
+
+[ext_resource type="Script" uid="uid://cdf0camwsvm16" path="res://Scripts/Levels/main_menu.gd" id="1_o14dv"]
+[ext_resource type="Texture2D" uid="uid://b3hdh3ijcrxu7" path="res://Assets/Sprites/Environments/MagaraAsama1.png" id="2_u7lva"]
+[ext_resource type="Texture2D" uid="uid://cdtvnp1itkbng" path="res://Assets/Sprites/Necroban_Reign_of_Bones_logo3.png" id="3_mrfpk"]
+[ext_resource type="FontFile" uid="uid://8yo86eiil1g5" path="res://Assets/Fonts/Cinzel_Decorative/CinzelDecorative-Black.ttf" id="3_u7lva"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_mrfpk"]
+blend_mode = 1
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_o14dv")
+
+[node name="Background" type="TextureRect" parent="."]
+modulate = Color(0.44429955, 0.0025453467, 0.8802678, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_u7lva")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -135.0
+offset_right = 200.0
+offset_bottom = 135.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="Logo" type="TextureRect" parent="VBoxContainer"]
+material = SubResource("CanvasItemMaterial_mrfpk")
+custom_minimum_size = Vector2(400, 200)
+layout_mode = 2
+texture = ExtResource("3_mrfpk")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="StartButton" type="Button" parent="VBoxContainer"]
+modulate = Color(0.8758596, 0.846396, 0.821635, 1)
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_hover_color = Color(0.29472524, 0.576195, 0.43835047, 1)
+theme_override_fonts/font = ExtResource("3_u7lva")
+text = "START"
+flat = true
+
+[node name="QuitButton" type="Button" parent="VBoxContainer"]
+modulate = Color(0.8758596, 0.846396, 0.821635, 1)
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_hover_color = Color(0.29472524, 0.576195, 0.43835047, 1)
+theme_override_fonts/font = ExtResource("3_u7lva")
+text = "QUİT"
+flat = true
+
+[connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

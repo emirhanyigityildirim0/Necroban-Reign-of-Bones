@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://b6o6gdgyk4j2s"]
+
+[ext_resource type="Script" uid="uid://de8ntfdcmb8j6" path="res://Scripts/Objects/toplanabilir.gd" id="1_0j2x7"]
+[ext_resource type="Texture2D" uid="uid://y4b6e82i3ubx" path="res://Assets/Sprites/1 Icons/Icons_01.png" id="2_0j2x7"]
+[ext_resource type="AudioStream" uid="uid://1j0vgn1l8b1s" path="res://Assets/Audio/SFX/Pickup.wav" id="3_ceg8n"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0j2x7"]
+radius = 19.026299
+
+[node name="Toplanabilir" type="Node2D"]
+script = ExtResource("1_0j2x7")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+texture_filter = 1
+position = Vector2(0.48323977, -3.9431176)
+rotation = 3.1471171
+scale = Vector2(-1.0051581, -1.0949455)
+texture = ExtResource("2_0j2x7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_0j2x7")
+
+[node name="SfxCoin" type="AudioStreamPlayer" parent="Area2D"]
+stream = ExtResource("3_ceg8n")
+volume_db = -14.58
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

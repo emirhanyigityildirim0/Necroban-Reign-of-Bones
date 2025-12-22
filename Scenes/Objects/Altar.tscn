@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://cyavx1qlslon0"]
+
+[ext_resource type="Texture2D" uid="uid://ddeqg4kk45m6d" path="res://Assets/Sprites/1 Icons/torches, columns, banner.png" id="1_6u6sf"]
+[ext_resource type="Script" uid="uid://b5rhj8dervel" path="res://Scripts/Objects/altar.gd" id="1_x4gke"]
+[ext_resource type="FontFile" uid="uid://8yo86eiil1g5" path="res://Assets/Fonts/Cinzel_Decorative/CinzelDecorative-Black.ttf" id="3_p32ed"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x4gke"]
+size = Vector2(239, 182)
+
+[sub_resource type="LabelSettings" id="LabelSettings_kml3l"]
+font_size = 12
+font_color = Color(0.45336628, 0.43963107, 3.85046e-07, 1)
+shadow_size = 10
+shadow_color = Color(0, 0, 0, 0.30900002)
+
+[node name="Altar" type="Area2D"]
+collision_layer = 15
+collision_mask = 15
+script = ExtResource("1_x4gke")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_6u6sf")
+region_enabled = true
+region_rect = Rect2(852.97534, 802.4307, 181.56201, 209.85742)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3.5, -17)
+shape = SubResource("RectangleShape2D_x4gke")
+
+[node name="Label" type="Label" parent="."]
+texture_filter = 1
+offset_left = -46.0
+offset_right = 82.0
+offset_bottom = 47.0
+theme_override_colors/font_color = Color(0.23617685, 0.2288127, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_p32ed")
+text = "
+Etkileşim: [E]"
+label_settings = SubResource("LabelSettings_kml3l")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

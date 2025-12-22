@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bkl47i4iskmon"
+path="res://.godot/imported/Track race.wav-8dfc8ba4cbc933b1973156db17577561.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Musics/Track race.wav"
+dest_files=["res://.godot/imported/Track race.wav-8dfc8ba4cbc933b1973156db17577561.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
