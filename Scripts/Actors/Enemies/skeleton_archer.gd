@@ -1,10 +1,10 @@
 extends CharacterBody2D
 
-# --- FSM (DURUM MAKİNESİ) ---
+# --- DURUM MAKİNESİ (FSM) ---
 enum STATE {IDLE, PATROL, CHASE, ATTACK, FLEE, HURT, DEAD}
 var current_state = STATE.PATROL
 
-# --- AYARLAR ---
+# --- DIŞARIDAN AYARLANABİLİR AYARLAR ---
 @export_category("Movement Settings")
 @export var patrol_speed: float = 50.0
 @export var chase_speed: float = 90.0
@@ -13,13 +13,13 @@ var current_state = STATE.PATROL
 
 @export_category("Combat Settings")
 @export var max_health: int = 30
-@export var attack_range: float = 300.0
-@export var flee_range: float = 120.0 
-@export var panic_range: float = 60.0 
+@export var attack_range: float = 300.0 # Ok atma menzili
+@export var flee_range: float = 120.0   # Kaçmaya başlama sınırı
+@export var panic_range: float = 60.0   # Kaçmayı bırakıp kılıç çekme sınırı
 @export var attack_cooldown: float = 2.0 
 
+# Ok sahnesinin dosya yolu (Sahnende bu dosyanın olduğundan emin ol)
 var arrow_scene = preload("res://Scenes/Objects/EnemyArrow.tscn") 
-
 var melee_anims = ["Attack1", "Attack2", "Attack3"]
 
 # --- DEĞİŞKENLER ---
@@ -39,6 +39,7 @@ var attack_timer: float = 0.0
 @onready var kilic_alani = $SaldiriPivotu/KilicAlani
 @onready var namlu_ucu = $SaldiriPivotu/NamluUcu 
 
+# Ses Referansları
 @onready var sfx_yurume = get_node_or_null("SfxYurume")
 @onready var sfx_saldiri = get_node_or_null("SfxSaldiri") 
 @onready var sfx_hasar = get_node_or_null("SfxHasar")
@@ -48,45 +49,38 @@ func _ready():
 	current_health = max_health
 	if kilic_collider: kilic_collider.disabled = true
 	
+	# Sinyalleri kodla bağlayarak kopuklukları engelliyoruz
 	if vision_area:
-		if not vision_area.body_entered.is_connected(_on_vision_body_entered):
-			vision_area.body_entered.connect(_on_vision_body_entered)
-		if not vision_area.body_exited.is_connected(_on_vision_body_exited):
-			vision_area.body_exited.connect(_on_vision_body_exited)
+		vision_area.body_entered.connect(_on_vision_body_entered)
+		vision_area.body_exited.connect(_on_vision_body_exited)
 	
-	if not anim.animation_finished.is_connected(_on_anim_finished):
-		anim.animation_finished.connect(_on_anim_finished)
+	anim.animation_finished.connect(_on_anim_finished)
 
 func _physics_process(delta):
-	# 1. ÖLÜYSE HİÇBİR ŞEY YAPMA
 	if is_dead:
 		velocity.x = move_toward(velocity.x, 0, 200 * delta)
 		move_and_slide()
 		return
 
-	# 2. SALDIRIYORSA KİLİTLEN (Mallaşmayı önleyen kilit kod)
-	# Saldırı bitene kadar hareket edemez, durum değiştiremez.
+	# Saldırı anında beyni dondur (Hareketi engeller)
 	if is_attacking:
-		velocity.x = 0 # Kaymayı engelle
+		velocity.x = 0
+		move_and_slide()
 		return 
 
-	# Yerçekimi
 	if not is_on_floor():
 		velocity.y += gravity * delta
 	
-	# Cooldown sayacı
 	if attack_timer > 0:
 		attack_timer -= delta
 
-	# --- DURUM GÜNCELLEMELERİ ---
-	
-	# Sadece boştayken veya yürürken yön değiştir.
-	# Saldırı beklemesindeyken (Cooldown) oyuncuya bakmaya devam et.
+	# Yön belirleme (Kaçarken de oyuncuya bakar)
 	if current_state != STATE.PATROL:
 		face_player()
 	else:
 		update_direction_visuals()
 
+	# Durumları çalıştır
 	match current_state:
 		STATE.IDLE: idle_state()
 		STATE.PATROL: patrol_state()
@@ -97,7 +91,7 @@ func _physics_process(delta):
 	
 	move_and_slide()
 
-# --- STATE MANTIĞI ---
+# --- DURUM FONKSİYONLARI ---
 
 func idle_state():
 	velocity.x = 0
@@ -111,7 +105,7 @@ func patrol_state():
 	anim.play("Walk")
 	if has_target: decide_combat_state()
 
-func chase_state(delta):
+func chase_state(_delta):
 	var player = get_player()
 	if not player: 
 		transition_to_state(STATE.PATROL)
@@ -119,7 +113,6 @@ func chase_state(delta):
 		
 	var distance = global_position.distance_to(player.global_position)
 	
-	# Durum değiştirmeye karar ver
 	if distance < panic_range:
 		transition_to_state(STATE.ATTACK)
 	elif distance <= flee_range:
@@ -127,47 +120,34 @@ func chase_state(delta):
 	elif distance <= attack_range:
 		transition_to_state(STATE.ATTACK)
 	else:
-		# Sadece koşuyorsak Walk oyna
 		var dir_to_player = sign(player.global_position.x - global_position.x)
 		velocity.x = dir_to_player * chase_speed
 		anim.play("Walk")
 
-func flee_state(delta):
+func flee_state(_delta):
 	var player = get_player()
 	if not player: return
 	
 	var distance = global_position.distance_to(player.global_position)
 	
-	# Sıkıştık mı veya çok mu yaklaştı? -> SALDIR
+	# Sıkışma veya çok yaklaşma kontrolü
 	if distance < panic_range or is_on_wall() or not ucurum_sensoru.is_colliding():
 		transition_to_state(STATE.ATTACK)
 		return
 
-	# Güvenli mesafeye çıktık mı?
 	if distance > flee_range * 1.5: 
 		decide_combat_state() 
 		return
 
-	# Kaçış (Moonwalk - Yüzü dönük geri gitme)
 	var dir_away = sign(global_position.x - player.global_position.x)
-	if dir_away == 0: dir_away = 1
-	
 	velocity.x = dir_away * flee_speed
-	
-	# Yüzümüzü oyuncuya çeviriyoruz (Ters mantık yok, direkt oyuncuya bak)
-	face_player()
-	
 	anim.play("Evasion") 
 
 func attack_state():
 	velocity.x = 0
-	
-	# Eğer cooldown bittiyse VE şu an animasyon oynamıyorsa -> SALDIR
 	if attack_timer <= 0 and not is_attacking:
 		start_attack_sequence()
 	else:
-		# DİKKAT: Cooldown'dayız. Olduğumuz yerde bekle.
-		# "Walk" çalmaması için buraya zorla "Idle" koyuyoruz.
 		anim.play("Idle")
 
 func hurt_state(delta):
@@ -176,7 +156,7 @@ func hurt_state(delta):
 # --- SALDIRI SİSTEMİ ---
 
 func start_attack_sequence():
-	is_attacking = true # KİLİDİ AKTİF ET
+	is_attacking = true 
 	velocity.x = 0
 	
 	var player = get_player()
@@ -185,52 +165,43 @@ func start_attack_sequence():
 	
 	face_player()
 	
-	# Panic Range (Çok yakın) veya Flee Range içindeysek -> MELEE
 	if mesafemiz <= flee_range: 
-		# --- MELEE ---
-		var secilen_saldiri = melee_anims.pick_random()
-		anim.play(secilen_saldiri) 
+		# MELEE
+		anim.play(melee_anims.pick_random()) 
+		await get_tree().create_timer(0.4).timeout 
+		if is_attacking and not is_dead: 
+			melee_hit_check()
+	else:
+		# SHOT
+		anim.play("Shot") 
 		
 		await get_tree().create_timer(0.4).timeout 
 		
-		if not is_dead: 
-			melee_hit_check()
-	else:
-		# --- SHOT ---
-		anim.play("Shot") 
-		await get_tree().create_timer(1.0).timeout 
-		
-		if not is_dead:
+		# Artık ok kesin çıkar
+		if is_attacking and not is_dead:
 			shoot_arrow()
 	
-	attack_timer = randf_range(0.8, 2.4)
+	# Rastgele cooldown
+	attack_timer = randf_range(1.5, 3.0)
 
 func shoot_arrow():
 	if not arrow_scene: return
-
 	if sfx_saldiri: sfx_saldiri.play()
 	
 	var arrow = arrow_scene.instantiate()
-	if namlu_ucu:
-		arrow.global_position = namlu_ucu.global_position
-	else:
-		arrow.global_position = global_position + Vector2(20 * direction, -10)
-		
+	arrow.global_position = namlu_ucu.global_position if namlu_ucu else global_position
 	arrow.direction = direction 
 	get_tree().root.add_child(arrow)
 
 func melee_hit_check():
 	if not kilic_alani: return
-
 	kilic_collider.disabled = false
 	await get_tree().create_timer(0.1).timeout 
-	
 	var bodies = kilic_alani.get_overlapping_bodies()
 	for body in bodies:
 		if body.is_in_group("oyuncu") and body.has_method("hasar_al"):
 			body.hasar_al(10) 
-			
-	if kilic_collider: kilic_collider.disabled = true
+	kilic_collider.disabled = true
 
 # --- YARDIMCI FONKSİYONLAR ---
 
@@ -256,30 +227,31 @@ func update_direction_visuals():
 func transition_to_state(new_state):
 	if current_state == STATE.DEAD: return
 	current_state = new_state
-	
 	match new_state:
 		STATE.IDLE: anim.play("Idle")
 		STATE.HURT: 
 			anim.play("Hurt")
-			is_attacking = false # Hasar alınca saldırıyı bozabiliriz
+			is_attacking = false # Saldırı kesilir
 			if kilic_collider: kilic_collider.set_deferred("disabled", true)
 		STATE.DEAD: die()
 
 func hasar_al(amount):
 	if is_dead: return
-	
 	current_health -= amount
 	if sfx_hasar: sfx_hasar.play()
+	
+	# Hasar yiyince saldırıyı anında durdur
+	is_attacking = false 
 	
 	# BEYAZ PARLAMA
 	var tween = create_tween()
 	anim.modulate = Color(10, 10, 10, 1) 
 	tween.tween_property(anim, "modulate", Color(1, 1, 1, 1), 0.1)
 
-	transition_to_state(STATE.HURT)
-	
 	if current_health <= 0: 
 		transition_to_state(STATE.DEAD)
+	else:
+		transition_to_state(STATE.HURT)
 
 func die():
 	is_dead = true
@@ -293,7 +265,7 @@ func die():
 func _on_vision_body_entered(body):
 	if body.is_in_group("oyuncu"):
 		has_target = true
-		if current_state == STATE.PATROL or current_state == STATE.IDLE:
+		if current_state in [STATE.PATROL, STATE.IDLE]:
 			decide_combat_state()
 
 func _on_vision_body_exited(body):
@@ -301,9 +273,9 @@ func _on_vision_body_exited(body):
 		has_target = false
 
 func _on_anim_finished():
-	# Saldırı bittiğinde
+	if is_dead: return
 	if anim.animation == "Shot" or anim.animation in melee_anims:
-		is_attacking = false # KİLİDİ AÇ
+		is_attacking = false 
 		decide_combat_state()
 	elif anim.animation == "Hurt":
 		decide_combat_state()
@@ -320,13 +292,11 @@ func decide_combat_state():
 		return
 	
 	var distance = global_position.distance_to(player.global_position)
-	
-	# KARAR MEKANİZMASI
 	if distance < panic_range:
-		transition_to_state(STATE.ATTACK) # Dibindeyse vur
+		transition_to_state(STATE.ATTACK)
 	elif distance <= flee_range:
-		transition_to_state(STATE.FLEE)   # Yakınsa kaç
+		transition_to_state(STATE.FLEE) 
 	elif distance <= attack_range:
-		transition_to_state(STATE.ATTACK) # Uzaksa ok at
+		transition_to_state(STATE.ATTACK)
 	else:
-		transition_to_state(STATE.CHASE)  # Çok uzaksa kovala
+		transition_to_state(STATE.CHASE)
