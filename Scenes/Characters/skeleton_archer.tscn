@@ -448,11 +448,11 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cs1qu"]
-radius = 27.0
-height = 106.0
+radius = 20.0
+height = 86.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bx1fg"]
-radius = 26.0
+radius = 20.0
 height = 96.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a3a81"]
@@ -469,23 +469,19 @@ script = ExtResource("1_52j1x")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(-15.000002, -42)
-scale = Vector2(1.0122768, 1.3593751)
+position = Vector2(17.99999, -42.000008)
+scale = Vector2(1.171875, 1.4531249)
 sprite_frames = SubResource("SpriteFrames_a3a81")
 animation = &"Death"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-21, -2)
 shape = SubResource("CapsuleShape2D_cs1qu")
 
 [node name="SaldiriPivotu" type="Marker2D" parent="."]
-position = Vector2(-15, -3)
 
 [node name="NamluUcu" type="Marker2D" parent="SaldiriPivotu"]
-position = Vector2(32, -20)
 
 [node name="UcurumSensoru" type="RayCast2D" parent="SaldiriPivotu"]
-position = Vector2(27, 11)
 target_position = Vector2(85, 50)
 
 [node name="Hitbox" type="Area2D" parent="SaldiriPivotu"]
@@ -493,12 +489,10 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SaldiriPivotu/Hitbox"]
-position = Vector2(-6, 0)
 shape = SubResource("CapsuleShape2D_bx1fg")
 debug_color = Color(0.824295, 0.96332425, 0.99999994, 0.41960785)
 
 [node name="SaldiriSensoru" type="RayCast2D" parent="SaldiriPivotu"]
-position = Vector2(5, -11)
 target_position = Vector2(69, 0)
 
 [node name="KilicAlani" type="Area2D" parent="SaldiriPivotu"]
@@ -515,7 +509,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SaldiriPivotu/VisionArea"]
-position = Vector2(89, -15.96875)
+position = Vector2(114, 1)
 shape = SubResource("RectangleShape2D_6uvca")
 debug_color = Color(0.7928107, 0.64139813, 0, 0.41960785)
 
@@ -535,7 +529,7 @@ volume_db = -12.0
 max_distance = 600.0
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
-position = Vector2(-30, 5)
+position = Vector2(8, -6)
 rect = Rect2(-1149, -488, 2371, 825)
 
 [connection signal="body_entered" from="SaldiriPivotu/Hitbox" to="." method="_on_hitbox_body_entered"]
