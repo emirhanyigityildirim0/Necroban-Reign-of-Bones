@@ -65585,6 +65585,22 @@ energy = 1.5
 texture = SubResource("GradientTexture2D_86qhk")
 script = ExtResource("11_rjh0p")
 
+[node name="PointLight2D14" type="PointLight2D" parent="TileMapLayer"]
+position = Vector2(2493.75, 1665.6251)
+scale = Vector2(5.081566, -10.136718)
+color = Color(0.1949254, 0.2765464, 0.7934247, 1)
+energy = 1.5
+texture = SubResource("GradientTexture2D_86qhk")
+script = ExtResource("11_rjh0p")
+
+[node name="PointLight2D15" type="PointLight2D" parent="TileMapLayer"]
+position = Vector2(222.5, 1609.375)
+scale = Vector2(5.081566, -12.871094)
+color = Color(0.1949254, 0.2765464, 0.7934247, 1)
+energy = 1.5
+texture = SubResource("GradientTexture2D_86qhk")
+script = ExtResource("11_rjh0p")
+
 [node name="PointLight2D10" type="PointLight2D" parent="TileMapLayer"]
 position = Vector2(2503.9998, -1.8750286)
 scale = Vector2(5.081566, -7.3632817)
