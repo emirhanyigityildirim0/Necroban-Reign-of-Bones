@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://030lihnik3ru"
-path="res://.godot/imported/sky.png-9869c59424b968543b60d4c6cc09aced.ctex"
+uid="uid://ceecdm88g31ne"
+path="res://.godot/imported/sky.png-cf1f3e36e8f8c6fd1bfc76ae643cba79.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Environments/War2/Bright/sky.png"
-dest_files=["res://.godot/imported/sky.png-9869c59424b968543b60d4c6cc09aced.ctex"]
+source_file="res://Assets/Sprites/Environments/sky.png"
+dest_files=["res://.godot/imported/sky.png-cf1f3e36e8f8c6fd1bfc76ae643cba79.ctex"]
 
 [params]
 
