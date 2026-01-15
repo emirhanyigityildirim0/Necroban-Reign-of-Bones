@@ -1,12 +1,20 @@
-[gd_scene load_steps=6 format=3 uid="uid://dc3ai3l003t53"]
+[gd_scene load_steps=9 format=3 uid="uid://dc3ai3l003t53"]
 
 [ext_resource type="Script" uid="uid://cdf0camwsvm16" path="res://Scripts/Levels/main_menu.gd" id="1_o14dv"]
 [ext_resource type="Texture2D" uid="uid://b3hdh3ijcrxu7" path="res://Assets/Sprites/Environments/MagaraAsama1.png" id="2_u7lva"]
 [ext_resource type="Texture2D" uid="uid://cdtvnp1itkbng" path="res://Assets/Sprites/Necroban_Reign_of_Bones_logo3.png" id="3_mrfpk"]
 [ext_resource type="FontFile" uid="uid://8yo86eiil1g5" path="res://Assets/Fonts/Cinzel_Decorative/CinzelDecorative-Black.ttf" id="3_u7lva"]
+[ext_resource type="Script" uid="uid://ccox1apnramb0" path="res://Scripts/UI/point_light_2d.gd" id="4_mrfpk"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_mrfpk"]
 blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_3sem8"]
+offsets = PackedFloat32Array(0.02739726, 0.5273973, 1)
+colors = PackedColorArray(0.059503496, 0.059503496, 0.059503496, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4pqbp"]
+gradient = SubResource("Gradient_3sem8")
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -41,6 +49,7 @@ offset_bottom = 135.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 20
+alignment = 1
 
 [node name="Logo" type="TextureRect" parent="VBoxContainer"]
 material = SubResource("CanvasItemMaterial_mrfpk")
@@ -49,6 +58,14 @@ layout_mode = 2
 texture = ExtResource("3_mrfpk")
 expand_mode = 1
 stretch_mode = 5
+
+[node name="PointLight2D14" type="PointLight2D" parent="VBoxContainer/Logo"]
+position = Vector2(205, 97.49997)
+scale = Vector2(5.081566, -13.546877)
+color = Color(0.1949254, 0.2765464, 0.7934247, 1)
+energy = 1.5
+texture = SubResource("GradientTexture2D_4pqbp")
+script = ExtResource("4_mrfpk")
 
 [node name="StartButton" type="Button" parent="VBoxContainer"]
 modulate = Color(0.8758596, 0.846396, 0.821635, 1)
