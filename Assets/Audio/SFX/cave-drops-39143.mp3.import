@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/cave-drops-39143.mp3-6e215f53678bfdc29670fc38
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0

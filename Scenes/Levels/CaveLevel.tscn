@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://dwrfvceks7wgu"]
+[gd_scene load_steps=31 format=4 uid="uid://dwrfvceks7wgu"]
 
 [ext_resource type="Script" uid="uid://dagmwn002lxof" path="res://Scripts/Levels/cave_level.gd" id="1_ngjra"]
 [ext_resource type="Texture2D" uid="uid://dm1bfrywkxq8h" path="res://Assets/Sprites/Environments/MagaraAssetiMiniFix.png" id="2_hye5j"]
@@ -6,8 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://8sf5qto0ex7k" path="res://Assets/Sprites/Environments/MagaraAsset2Mini.png" id="3_hye5j"]
 [ext_resource type="PackedScene" uid="uid://brvic5x5utlwv" path="res://Scenes/Characters/oyuncu.tscn" id="10_qf4jd"]
 [ext_resource type="PackedScene" uid="uid://bttegon0xprgv" path="res://Scenes/Characters/skeleton_archer.tscn" id="10_sdgch"]
+[ext_resource type="AudioStream" uid="uid://cate5lrdxpjo" path="res://Assets/Audio/SFX/cave-drops-39143.mp3" id="11_jnutr"]
 [ext_resource type="Script" uid="uid://ccox1apnramb0" path="res://Scripts/UI/point_light_2d.gd" id="11_rjh0p"]
 [ext_resource type="PackedScene" uid="uid://dv2xxt6wf52qt" path="res://Scenes/Characters/skeleton_warrior.tscn" id="12_3hrpf"]
+[ext_resource type="AudioStream" uid="uid://c1fiamyt124i1" path="res://Assets/Audio/SFX/ambient-wandering-wind-321158.mp3" id="12_5y8nr"]
 [ext_resource type="PackedScene" uid="uid://pwpbxbi2plqm" path="res://Scenes/UI/HealthBar.tscn" id="14_5wo02"]
 [ext_resource type="PackedScene" uid="uid://botdmxr24fpal" path="res://Scenes/UI/diyalog_katmani.tscn" id="17_bxqvl"]
 
@@ -65732,6 +65734,14 @@ position = Vector2(1846, -952)
 
 [node name="SkeletonArcher" parent="SkeletonArchers" instance=ExtResource("10_sdgch")]
 position = Vector2(1324, -1578)
+
+[node name="Ambiyans" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_5y8nr")
+volume_db = -32.356
+
+[node name="Ambiyans2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_jnutr")
+volume_db = -10.222
 
 [connection signal="body_entered" from="LevelCıkısTetigi" to="." method="_on_level_cıkıs_tetigi_body_entered"]
 

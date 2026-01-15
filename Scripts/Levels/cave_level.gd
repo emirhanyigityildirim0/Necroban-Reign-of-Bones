@@ -5,6 +5,10 @@ extends Node2D
 @export var diyalog_kutusu: CanvasLayer # Sahneye eklediğin Diyalog UI'ı buraya sürükle
 @export var diyalog_label: Label       # UI içindeki Label'ı buraya sürükle
 
+@onready var ambiyans = get_node_or_null("Ambiyans")
+@onready var ambiyans2 = get_node_or_null("Ambiyans2")
+@onready var muzik = get_node_or_null("Muzik")
+
 @export_group("Senaryo")
 @export_multiline var giris_diyaloglari: Array[String] = [
 	"Oyuncu: 'Öhhö... öhhö...'",
@@ -20,8 +24,12 @@ var gecis_yapiliyor = false
 func _ready():
 	# 1. Önce senin yazdığın BEYAZ EKRAN GEÇİŞİ çalışsın
 	beyaz_ekran_efekti_yap()
-	
-	
+	if ambiyans and not ambiyans.playing:
+		ambiyans.play()
+		
+	if ambiyans2 and not ambiyans2.playing:
+		ambiyans2.play()
+		
 	# 2. Efekt bitene kadar bekle (Tween bitişini bekler)
 	# Fonksiyonun içinde await kullandığımız için burası kodu duraklatmaz,
 	# o yüzden aşağıda özel bir sinyal bekleyeceğiz.
