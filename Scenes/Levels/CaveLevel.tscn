@@ -65737,11 +65737,11 @@ position = Vector2(1324, -1578)
 
 [node name="Ambiyans" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_5y8nr")
-volume_db = -32.356
+volume_db = -35.0
 
 [node name="Ambiyans2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_jnutr")
-volume_db = -10.222
+volume_db = -30.0
 
 [connection signal="body_entered" from="LevelCıkısTetigi" to="." method="_on_level_cıkıs_tetigi_body_entered"]
 
