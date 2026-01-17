@@ -622,7 +622,7 @@ zoom = Vector2(1.6, 1.6)
 position = Vector2(-60.72667, -121.04576)
 scale = Vector2(0.9397469, 1.142378)
 sprite_frames = SubResource("SpriteFrames_hyh5f")
-animation = &"Shot"
+animation = &"Attack3"
 centered = false
 
 [node name="NamluUcu" type="Marker2D" parent="."]
@@ -662,3 +662,6 @@ position = Vector2(45.00144, -3.982829)
 shape = SubResource("RectangleShape2D_3otbq")
 disabled = true
 debug_color = Color(0.9645098, 0.15270707, 0.31952178, 0.41960785)
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]

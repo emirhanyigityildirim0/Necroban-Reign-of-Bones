@@ -174,12 +174,6 @@ func start_attack_sequence():
 	else:
 		# SHOT
 		anim.play("Shot") 
-		
-		await get_tree().create_timer(0.4).timeout 
-		
-		# Artık ok kesin çıkar
-		if is_attacking and not is_dead:
-			shoot_arrow()
 	
 	# Rastgele cooldown
 	attack_timer = randf_range(1.5, 3.0)
@@ -300,3 +294,13 @@ func decide_combat_state():
 		transition_to_state(STATE.ATTACK)
 	else:
 		transition_to_state(STATE.CHASE)
+
+
+func _on_animated_sprite_2d_frame_changed() -> void:
+
+	if is_dead or not is_attacking: return
+
+	if anim.animation == "Shot":
+	
+		if anim.frame == 11: 
+			shoot_arrow()

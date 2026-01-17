@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://bttegon0xprgv"]
+[gd_scene load_steps=80 format=3 uid="uid://bttegon0xprgv"]
 
 [ext_resource type="Script" uid="uid://dp5dfa80sup7b" path="res://Scripts/Actors/Enemies/skeleton_archer.gd" id="1_52j1x"]
 [ext_resource type="Texture2D" uid="uid://c2c2t7djx4rop" path="res://Assets/Sprites/Enemys/Skeleton_Archer/Attack_1.png" id="2_52j1x"]
@@ -42,6 +42,10 @@ region = Rect2(0, 0, 128, 128)
 atlas = ExtResource("3_a2t4y")
 region = Rect2(128, 0, 128, 128)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_xs6ia"]
+atlas = ExtResource("3_a2t4y")
+region = Rect2(128, 0, 128, 128)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_bskfv"]
 atlas = ExtResource("3_a2t4y")
 region = Rect2(256, 0, 128, 128)
@@ -50,15 +54,35 @@ region = Rect2(256, 0, 128, 128)
 atlas = ExtResource("3_a2t4y")
 region = Rect2(384, 0, 128, 128)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_qs12i"]
+atlas = ExtResource("3_a2t4y")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e5bmo"]
+atlas = ExtResource("3_a2t4y")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yhcg8"]
+atlas = ExtResource("4_sxc0p")
+region = Rect2(0, 0, 128, 128)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_8cpwg"]
 atlas = ExtResource("4_sxc0p")
 region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yanaa"]
+atlas = ExtResource("4_sxc0p")
+region = Rect2(128, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fw0it"]
 atlas = ExtResource("4_sxc0p")
 region = Rect2(128, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qsx68"]
+atlas = ExtResource("4_sxc0p")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ddyj"]
 atlas = ExtResource("4_sxc0p")
 region = Rect2(256, 0, 128, 128)
 
@@ -264,10 +288,19 @@ animations = [{
 "texture": SubResource("AtlasTexture_hjglo")
 }, {
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_xs6ia")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_bskfv")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_bn6r2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qs12i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e5bmo")
 }],
 "loop": false,
 "name": &"Attack2",
@@ -275,13 +308,22 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_yhcg8")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_8cpwg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yanaa")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_fw0it")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_qsx68")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ddyj")
 }],
 "loop": false,
 "name": &"Attack3",
@@ -415,7 +457,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"Shot",
-"speed": 15.0
+"speed": 18.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -448,15 +490,15 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cs1qu"]
-radius = 20.0
+radius = 17.0
 height = 86.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bx1fg"]
-radius = 20.0
-height = 96.0
+radius = 16.0
+height = 92.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a3a81"]
-size = Vector2(54.125, 57)
+size = Vector2(43.125, 57)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6uvca"]
 size = Vector2(450, 100.0625)
@@ -469,10 +511,12 @@ script = ExtResource("1_52j1x")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(17.99999, -42.000008)
-scale = Vector2(1.171875, 1.4531249)
+position = Vector2(7.999999, -31.000008)
+scale = Vector2(0.96874994, 1.2812499)
 sprite_frames = SubResource("SpriteFrames_a3a81")
-animation = &"Death"
+animation = &"Shot"
+frame = 14
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_cs1qu")
@@ -480,6 +524,7 @@ shape = SubResource("CapsuleShape2D_cs1qu")
 [node name="SaldiriPivotu" type="Marker2D" parent="."]
 
 [node name="NamluUcu" type="Marker2D" parent="SaldiriPivotu"]
+position = Vector2(-1, -12)
 
 [node name="UcurumSensoru" type="RayCast2D" parent="SaldiriPivotu"]
 target_position = Vector2(85, 50)
@@ -493,14 +538,14 @@ shape = SubResource("CapsuleShape2D_bx1fg")
 debug_color = Color(0.824295, 0.96332425, 0.99999994, 0.41960785)
 
 [node name="SaldiriSensoru" type="RayCast2D" parent="SaldiriPivotu"]
-target_position = Vector2(69, 0)
+target_position = Vector2(48, -1)
 
 [node name="KilicAlani" type="Area2D" parent="SaldiriPivotu"]
 collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SaldiriPivotu/KilicAlani"]
-position = Vector2(34.9375, -5.5)
+position = Vector2(29.4375, -5.5)
 shape = SubResource("RectangleShape2D_a3a81")
 debug_color = Color(0.9504003, 0.21106213, 0.20314124, 0.41960785)
 
@@ -529,8 +574,9 @@ volume_db = -12.0
 max_distance = 600.0
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
-position = Vector2(8, -6)
-rect = Rect2(-1149, -488, 2371, 825)
+position = Vector2(-3, -155)
+rect = Rect2(-650, -359, 1310, 966)
 
+[connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
 [connection signal="body_entered" from="SaldiriPivotu/Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_entered" from="SaldiriPivotu/VisionArea" to="." method="_on_vision_area_body_entered"]
