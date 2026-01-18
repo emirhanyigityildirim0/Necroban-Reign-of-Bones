@@ -91,10 +91,33 @@ func baslat_giris_konusmasi():
 		print(">> Konuşma bitti, kontrol oyuncuda.")
 
 # --- YAZI EFEKTİ (HELPER) ---
+# --- YAZI EFEKTİ (GÜNCELLENDİ: ARTIK RENKLİ) ---
 func yazi_efekti(metin):
 	if diyalog_label:
+		# 1. ADIM: Kimin konuştuğunu bul ve rengi ayarla
+		var parcalar = metin.split(":", true, 1) # Metni ":" işaretinden ikiye böl
+		
+		# Varsayılan renk BEYAZ olsun (Her cümlede sıfırlansın diye)
+		diyalog_label.modulate = Color(1, 1, 1) 
+
+		if parcalar.size() > 1:
+			var isim = parcalar[0].strip_edges() # İsim kısmını al (boşlukları temizle)
+			
+			# İSME GÖRE RENK SEÇİMİ
+			match isim:
+				"Oyuncu":
+					diyalog_label.modulate = Color(0.2, 0.8, 1.0) # Mavi
+				"Necromancer":
+					diyalog_label.modulate = Color(0.9, 0.1, 0.1) # Kırmızı
+				"Köylü":
+					diyalog_label.modulate = Color(1, 1, 0.6)     # Sarı
+				_:
+					diyalog_label.modulate = Color(1, 1, 1)       # Bilinmeyen biri (Beyaz)
+		
+		# 2. ADIM: Yazıyı Ekrana Bas (Daktilo Efekti)
 		diyalog_label.text = metin
 		diyalog_label.visible_characters = 0
+		
 		for i in range(metin.length()):
 			diyalog_label.visible_characters = i + 1
 			await get_tree().create_timer(0.04).timeout
