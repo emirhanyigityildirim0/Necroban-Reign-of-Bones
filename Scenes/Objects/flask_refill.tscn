@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://tfg77p4ywxrk"]
+[gd_scene load_steps=5 format=3 uid="uid://tfg77p4ywxrk"]
 
 [ext_resource type="Script" uid="uid://et5v0rjtsbv0" path="res://Scripts/Objects/flask_refill.gd" id="1_har58"]
 [ext_resource type="Texture2D" uid="uid://demfslen71tm3" path="res://Assets/Sprites/1 Icons/Icons_26.png" id="2_8fo4o"]
+[ext_resource type="AudioStream" uid="uid://1j0vgn1l8b1s" path="res://Assets/Audio/SFX/Pickup.wav" id="3_u6p50"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sn73y"]
 radius = 12.0415945
@@ -16,5 +17,19 @@ position = Vector2(0.5, -1.1920929e-07)
 scale = Vector2(0.40625, 0.4375)
 texture = ExtResource("2_8fo4o")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="PotionLoot" type="Area2D" parent="."]
+light_mask = 3
+visibility_layer = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PotionLoot"]
 shape = SubResource("CircleShape2D_sn73y")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+light_mask = 2
+visibility_layer = 2
+shape = SubResource("CircleShape2D_sn73y")
+
+[node name="SfxPickup" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_u6p50")
+
+[connection signal="body_entered" from="PotionLoot" to="." method="_on_potion_loot_body_entered"]

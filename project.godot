@@ -89,7 +89,7 @@ interact={
 
 [layer_names]
 
-2d_render/layer_1="Oyuncı"
-2d_physics/layer_1="Oyuncu"
-2d_physics/layer_2="Dusman"
+2d_render/layer_1="Dusman"
+2d_physics/layer_1="Dusman"
+2d_physics/layer_2="Oyuncu"
 2d_physics/layer_3="Dunya"
