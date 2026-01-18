@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=4 uid="uid://dwrfvceks7wgu"]
+[gd_scene load_steps=32 format=4 uid="uid://dwrfvceks7wgu"]
 
 [ext_resource type="Script" uid="uid://dagmwn002lxof" path="res://Scripts/Levels/cave_level.gd" id="1_ngjra"]
 [ext_resource type="Texture2D" uid="uid://dm1bfrywkxq8h" path="res://Assets/Sprites/Environments/MagaraAssetiMiniFix.png" id="2_hye5j"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://ccox1apnramb0" path="res://Scripts/UI/point_light_2d.gd" id="11_rjh0p"]
 [ext_resource type="PackedScene" uid="uid://dv2xxt6wf52qt" path="res://Scenes/Characters/skeleton_warrior.tscn" id="12_3hrpf"]
 [ext_resource type="AudioStream" uid="uid://c1fiamyt124i1" path="res://Assets/Audio/SFX/ambient-wandering-wind-321158.mp3" id="12_5y8nr"]
+[ext_resource type="PackedScene" uid="uid://tfg77p4ywxrk" path="res://Scenes/Objects/flask_refill.tscn" id="13_5y8nr"]
 [ext_resource type="PackedScene" uid="uid://pwpbxbi2plqm" path="res://Scenes/UI/HealthBar.tscn" id="14_5wo02"]
 [ext_resource type="PackedScene" uid="uid://botdmxr24fpal" path="res://Scenes/UI/diyalog_katmani.tscn" id="17_bxqvl"]
 
@@ -65742,6 +65743,14 @@ volume_db = -35.0
 [node name="Ambiyans2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_jnutr")
 volume_db = -30.0
+
+[node name="Loots" type="Node" parent="."]
+
+[node name="FlaskRefill2" parent="Loots" instance=ExtResource("13_5y8nr")]
+position = Vector2(265, 1379)
+
+[node name="FlaskRefill" parent="Loots" instance=ExtResource("13_5y8nr")]
+position = Vector2(912, 1202)
 
 [connection signal="body_entered" from="LevelCıkısTetigi" to="." method="_on_level_cıkıs_tetigi_body_entered"]
 

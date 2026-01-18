@@ -264,7 +264,7 @@ func hasar_vur():
 		# Kendimizi vurmayalım
 		if dusman != self:
 			if dusman.has_method("hasar_al"):
-				print("💀 DÜŞMAN BULUNDU! Hasar veriliyor: ", dusman.name)
+				print("💀 Enemy detected /hitting Damage... ", dusman.name)
 				# Hasar hesaplama
 				var hasar = damage_heavy if combo_sayaci <= 1 else damage_light
 				dusman.hasar_al(hasar)
