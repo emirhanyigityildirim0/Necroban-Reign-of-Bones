@@ -65726,15 +65726,15 @@ position = Vector2(2378, -30)
 position = Vector2(1818, -536)
 
 [node name="SkeletonWarrior4" parent="SkeletonWarriors" instance=ExtResource("12_3hrpf")]
-position = Vector2(2169, -41)
+position = Vector2(2308, -602)
 
 [node name="SkeletonArchers" type="Node" parent="."]
 
 [node name="SkeletonArcher2" parent="SkeletonArchers" instance=ExtResource("10_sdgch")]
-position = Vector2(356, 870)
+position = Vector2(1690, 1411)
 
 [node name="SkeletonArcher" parent="SkeletonArchers" instance=ExtResource("10_sdgch")]
-position = Vector2(155, 955)
+position = Vector2(1338, 1395)
 
 [node name="Ambiyans" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_5y8nr")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=95 format=3 uid="uid://brvic5x5utlwv"]
+[gd_scene load_steps=96 format=3 uid="uid://brvic5x5utlwv"]
 
 [ext_resource type="Script" uid="uid://cm44jkbmclla3" path="res://Scripts/Actors/Player/oyuncu.gd" id="1_cu705"]
 [ext_resource type="Texture2D" uid="uid://ceak21jw3g6du" path="res://Assets/Sprites/Characters/Samurai_Archer/Attack_1.png" id="2_jxaet"]
@@ -15,6 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://e8thifdiuwbn" path="res://Assets/Audio/SFX/mixkit-walking-on-stones-loop-1269.wav" id="12_jxaet"]
 [ext_resource type="AudioStream" uid="uid://5mmd5oyo7f5m" path="res://Assets/Audio/SFX/swipe.wav" id="14_2smg0"]
 [ext_resource type="AudioStream" uid="uid://nipoqw65hutn" path="res://Assets/Audio/SFX/Jump2.wav" id="14_igdwe"]
+[ext_resource type="AudioStream" uid="uid://3p4ve2whk1mm" path="res://Assets/Audio/SFX/Pot1.wav" id="15_75voa"]
 [ext_resource type="AudioStream" uid="uid://lubta48xaeiv" path="res://Assets/Audio/SFX/Dead1.wav" id="16_p0yu1"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rvygp"]
@@ -642,6 +643,10 @@ volume_db = -10.0
 stream = ExtResource("14_igdwe")
 volume_db = -10.0
 
+[node name="SfxFlask" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_75voa")
+volume_db = -10.0
+
 [node name="SfxSaldiri" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("14_2smg0")
 volume_db = -10.692
@@ -655,7 +660,6 @@ position = Vector2(0.010733843, -15.000001)
 
 [node name="SaldiriAlani" type="Area2D" parent="SaldiriPivotu"]
 collision_layer = 0
-collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SaldiriPivotu/SaldiriAlani"]
 position = Vector2(45.00144, -3.982829)

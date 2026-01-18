@@ -505,7 +505,9 @@ size = Vector2(450, 100.0625)
 
 [node name="SkeletonArcher" type="CharacterBody2D" groups=["dusman"]]
 self_modulate = Color(0.8045722, 0, 0.13338664, 1)
-collision_layer = 4
+light_mask = 5
+visibility_layer = 3
+collision_layer = 5
 collision_mask = 3
 script = ExtResource("1_52j1x")
 

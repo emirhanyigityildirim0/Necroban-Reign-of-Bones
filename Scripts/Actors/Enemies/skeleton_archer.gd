@@ -62,15 +62,14 @@ func _physics_process(delta):
 		move_and_slide()
 		return
 
-	# Saldırı anında beyni dondur (Hareketi engeller)
+	if not is_on_floor():
+		velocity.y += gravity * delta
+		
+		# Saldırı anında beyni dondur (Hareketi engeller)
 	if is_attacking:
 		velocity.x = 0
 		move_and_slide()
 		return 
-
-	if not is_on_floor():
-		velocity.y += gravity * delta
-	
 	if attack_timer > 0:
 		attack_timer -= delta
 
@@ -230,21 +229,30 @@ func transition_to_state(new_state):
 		STATE.DEAD: die()
 
 func hasar_al(amount):
-	if is_dead: return
+	print("💀 İSKELET: Auuv! Hasar fonksiyonu tetiklendi!")
+	
+	if is_dead:
+		print("💀 İSKELET: Zaten ölüyüm, hasar işlemi iptal.")
+		return
+		
 	current_health -= amount
+	print("🩸 Kalan Can: ", current_health, " / ", max_health)
+	
 	if sfx_hasar: sfx_hasar.play()
 	
-	# Hasar yiyince saldırıyı anında durdur
+	# Saldırıyı kes
 	is_attacking = false 
 	
-	# BEYAZ PARLAMA
+	# Beyaz Parlama
 	var tween = create_tween()
 	anim.modulate = Color(10, 10, 10, 1) 
 	tween.tween_property(anim, "modulate", Color(1, 1, 1, 1), 0.1)
 
 	if current_health <= 0: 
+		print("💀 İSKELET: Ölüyorum...")
 		transition_to_state(STATE.DEAD)
 	else:
+		print("🤕 İSKELET: Acıdı! Hurt moduna geçiliyor.")
 		transition_to_state(STATE.HURT)
 
 func die():
