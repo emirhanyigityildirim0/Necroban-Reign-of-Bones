@@ -21,7 +21,7 @@ config/icon="uid://cdtvnp1itkbng"
 
 Global="*res://Scripts/Managers/Global.gd"
 GameFeel="*res://Scripts/Managers/GameFeel.gd"
-DialogueManager="*res://Scripts/Managers/DialogueManager.gd"
+Diyalog="*res://Scenes/UI/diyalog_katmani.tscn"
 
 [dotnet]
 
