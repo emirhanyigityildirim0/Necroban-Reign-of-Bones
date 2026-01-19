@@ -1,10 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://botdmxr24fpal"]
+[gd_scene load_steps=4 format=3 uid="uid://botdmxr24fpal"]
+
+[ext_resource type="Script" uid="uid://dktxg5qj3tkfv" path="res://Scripts/Managers/DialogueManager.gd" id="1_nwmcm"]
+[ext_resource type="AudioStream" uid="uid://bx866epjvyxwc" path="res://Assets/Audio/SFX/BossKonusma.wav" id="2_kk7wr"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_l6hdj"]
 font_size = 24
-font_color = Color(1, 0, 0, 1)
 
 [node name="DiyalogKatmani" type="CanvasLayer" groups=["boss_kutusu"]]
+script = ExtResource("1_nwmcm")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 12
@@ -32,3 +35,7 @@ grow_vertical = 2
 label_settings = SubResource("LabelSettings_l6hdj")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="SesEfekti" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_kk7wr")
+volume_db = -10.0

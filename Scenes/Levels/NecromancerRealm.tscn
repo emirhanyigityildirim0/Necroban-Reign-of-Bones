@@ -6829,12 +6829,10 @@ metadata/_edit_lock_ = true
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.19142571, 0.00046814376, 0.40638408, 1)
 
-[node name="Necromancer" parent="." node_paths=PackedStringArray("diyalog_kutusu", "diyalog_text") instance=ExtResource("6_d7x70")]
+[node name="Necromancer" parent="." instance=ExtResource("6_d7x70")]
 modulate = Color(1, 0.4166032, 0.34792536, 1)
 position = Vector2(0, -157)
 scale = Vector2(1.2, 1)
-diyalog_kutusu = NodePath("../DiyalogKatmani")
-diyalog_text = NodePath("../DiyalogKatmani/Label")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_f13kp")
