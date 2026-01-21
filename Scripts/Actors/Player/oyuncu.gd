@@ -78,7 +78,8 @@ func _ready():
 	
 	if sfx_yurume: sfx_yurume.volume_db = yurume_sesi_db
 	if saldiri_collision: saldiri_collision.disabled = true
-	
+
+	cutscene_active = false
 	ui_baglantisini_kur()
 
 func ui_baglantisini_kur():
@@ -134,7 +135,7 @@ func handle_cutscene_physics():
 	move_and_slide()
 	if anim: anim.play("Idle")
 	if sfx_yurume: sfx_yurume.stop()
-	hareket_kilit(true)
+
 
 func handle_jump():
 	if Input.is_action_just_pressed("ui_accept"):
@@ -345,14 +346,3 @@ func konus(cumle: String):
 	await get_tree().create_timer(2.0).timeout
 	diyalog_kutusu.visible = false
 	su_an_konusuyor = false
-func hareket_kilit(kilitli_mi: bool):
-	# Eğer kilitliyse physics (hareket) işlemleri dursun
-	set_physics_process(!kilitli_mi) 
-	
-	if kilitli_mi:
-		velocity = Vector2.ZERO # Kaymayı önle, olduğu yerde dursun
-		# Eğer animasyonun varsa "Idle" (Durma) moduna al ki yürüyormuş gibi görünmesin
-		if has_node("AnimatedSprite2D"):
-			$AnimatedSprite2D.play("Idle")
-func cutscene_moduna_gec():
-	hareket_kilit(true)

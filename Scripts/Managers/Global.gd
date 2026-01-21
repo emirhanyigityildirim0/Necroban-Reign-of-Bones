@@ -1,5 +1,5 @@
 extends Node
-
+var cave_intro_izlendi = false
 # --- OYUNCU İSTATİSTİKLERİ (PLAYER STATS) ---
 var skor = 0
 var can = 100

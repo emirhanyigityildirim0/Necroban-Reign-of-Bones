@@ -51,11 +51,7 @@ func baslat_giris_konusmasi():
 	print(">> Konuşma başlıyor (Senaryo Modu).")
 	
 	var player = get_tree().get_first_node_in_group("oyuncu")
-	if player: player.set_physics_process(false)
-	
-	# --- YENİ KULLANIM ---
-	# Artık döngü kurmuyoruz, listeyi direkt veriyoruz.
-	# Global script her şeyi halledip bitince geri dönecek.
+
 	await Diyalog.senaryo_oynat(giris_diyaloglari)
 	
 	if player: 
