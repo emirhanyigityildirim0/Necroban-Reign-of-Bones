@@ -604,6 +604,7 @@ animations = [{
 size = Vector2(94.004234, 78.03435)
 
 [node name="Player" type="CharacterBody2D" groups=["oyuncu"]]
+light_mask = 15
 z_index = 5
 rotation = -0.0007155672
 collision_layer = 2

@@ -272,11 +272,14 @@ size = Vector2(388, 100.0625)
 
 [node name="SkeletonWarrior" type="CharacterBody2D" groups=["dusman"]]
 self_modulate = Color(0.8045722, 0, 0.13338664, 1)
+light_mask = 31
 collision_layer = 5
 collision_mask = 3
 script = ExtResource("1_it2us")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+self_modulate = Color(0.4974739, 0.49747366, 0.49747354, 1)
+light_mask = 7
 texture_filter = 1
 position = Vector2(12.499995, -40.999996)
 scale = Vector2(1.0390625, 1.328125)
