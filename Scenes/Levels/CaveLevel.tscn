@@ -1,9 +1,10 @@
-[gd_scene load_steps=35 format=4 uid="uid://dwrfvceks7wgu"]
+[gd_scene load_steps=37 format=4 uid="uid://dwrfvceks7wgu"]
 
 [ext_resource type="Script" uid="uid://dagmwn002lxof" path="res://Scripts/Levels/cave_level.gd" id="1_ngjra"]
 [ext_resource type="Texture2D" uid="uid://bdmsl0pdugelm" path="res://Assets/Sprites/Environments/main_lev_build_2.png" id="5_uqkjh"]
 [ext_resource type="Texture2D" uid="uid://ci3qbosymuske" path="res://Assets/Sprites/Environments/main_lev_build_1.png" id="6_sueox"]
 [ext_resource type="Texture2D" uid="uid://gfuchofjodur" path="res://Assets/Sprites/Environments/rocks.png" id="7_ntp76"]
+[ext_resource type="PackedScene" uid="uid://cvpbmcbytk21j" path="res://Scenes/Characters/skeleton_spear.tscn" id="10_ntp76"]
 [ext_resource type="PackedScene" uid="uid://brvic5x5utlwv" path="res://Scenes/Characters/oyuncu.tscn" id="10_qf4jd"]
 [ext_resource type="PackedScene" uid="uid://bttegon0xprgv" path="res://Scenes/Characters/skeleton_archer.tscn" id="10_sdgch"]
 [ext_resource type="AudioStream" uid="uid://cate5lrdxpjo" path="res://Assets/Audio/SFX/cave-drops-39143.mp3" id="11_jnutr"]
@@ -12,6 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://c1fiamyt124i1" path="res://Assets/Audio/SFX/ambient-wandering-wind-321158.mp3" id="12_5y8nr"]
 [ext_resource type="PackedScene" uid="uid://tfg77p4ywxrk" path="res://Scenes/Objects/flask_refill.tscn" id="13_5y8nr"]
 [ext_resource type="PackedScene" uid="uid://pwpbxbi2plqm" path="res://Scenes/UI/HealthBar.tscn" id="14_5wo02"]
+[ext_resource type="PackedScene" uid="uid://bw5hpct7wpojp" path="res://Scenes/Objects/spike.tscn" id="14_uqkjh"]
 [ext_resource type="PackedScene" uid="uid://botdmxr24fpal" path="res://Scenes/UI/diyalog_katmani.tscn" id="17_bxqvl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5y8nr"]
@@ -9805,7 +9807,7 @@ script = ExtResource("1_ngjra")
 [node name="Oyuncu" parent="." instance=ExtResource("10_qf4jd")]
 modulate = Color(0.5211406, 0.5211406, 0.5211405, 1)
 z_index = 0
-position = Vector2(12877, 1351)
+position = Vector2(12339, 1388)
 rotation = 0.0
 
 [node name="On_Susleme" type="TileMapLayer" parent="."]
@@ -9973,7 +9975,7 @@ energy = 1.79
 texture = SubResource("GradientTexture2D_uqkjh")
 
 [node name="GemLight6" type="PointLight2D" parent="TileMapLayer"]
-position = Vector2(12822.501, 714.99994)
+position = Vector2(5532.4995, -1337.5)
 scale = Vector2(5.7812357, 4.0039067)
 color = Color(1, 0, 1, 1)
 energy = 1.79
@@ -10157,24 +10159,32 @@ metadata/_edit_use_anchors_ = true
 [node name="SkeletonWarriors" type="Node" parent="."]
 
 [node name="SkeletonWarrior" parent="SkeletonWarriors" instance=ExtResource("12_3hrpf")]
-position = Vector2(10347, 519)
+position = Vector2(4514.9985, -1123)
 
 [node name="SkeletonWarrior2" parent="SkeletonWarriors" instance=ExtResource("12_3hrpf")]
-position = Vector2(10293, 258)
+position = Vector2(4460.9985, -1384)
 
 [node name="SkeletonWarrior3" parent="SkeletonWarriors" instance=ExtResource("12_3hrpf")]
-position = Vector2(7201, 1269)
+position = Vector2(2946, 1287)
 
 [node name="SkeletonWarrior4" parent="SkeletonWarriors" instance=ExtResource("12_3hrpf")]
-position = Vector2(8879, 1210)
+position = Vector2(3121, 1121)
+
+[node name="SkeletonSpearmans" type="Node" parent="."]
+
+[node name="SkeletonSpear" parent="SkeletonSpearmans" instance=ExtResource("10_ntp76")]
+position = Vector2(13074, 1388)
+
+[node name="SkeletonSpear2" parent="SkeletonSpearmans" instance=ExtResource("10_ntp76")]
+position = Vector2(10387, 1427)
 
 [node name="SkeletonArchers" type="Node" parent="."]
 
 [node name="SkeletonArcher2" parent="SkeletonArchers" instance=ExtResource("10_sdgch")]
-position = Vector2(10134, 484)
+position = Vector2(4301.9985, -1158)
 
 [node name="SkeletonArcher" parent="SkeletonArchers" instance=ExtResource("10_sdgch")]
-position = Vector2(7011, 1292)
+position = Vector2(2630, 1020)
 
 [node name="Ambiyans" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_5y8nr")
@@ -10191,6 +10201,56 @@ position = Vector2(10160, 891)
 
 [node name="FlaskRefill" parent="Loots" instance=ExtResource("13_5y8nr")]
 position = Vector2(10332, 887)
+
+[node name="Spikes" type="Node" parent="."]
+
+[node name="Spike" parent="Spikes" instance=ExtResource("14_uqkjh")]
+position = Vector2(14858, 2005)
+
+[node name="Spike2" parent="Spikes" instance=ExtResource("14_uqkjh")]
+position = Vector2(15291, 2007)
+
+[node name="Spike3" parent="Spikes" instance=ExtResource("14_uqkjh")]
+position = Vector2(15351, 2006)
+
+[node name="Spike4" parent="Spikes" instance=ExtResource("14_uqkjh")]
+position = Vector2(15785, 2009)
+
+[node name="Spike5" parent="Spikes" instance=ExtResource("14_uqkjh")]
+position = Vector2(15887, 2009)
+
+[node name="Spike6" parent="Spikes" instance=ExtResource("14_uqkjh")]
+position = Vector2(16302, 2008)
+
+[node name="Spike7" parent="Spikes" instance=ExtResource("14_uqkjh")]
+position = Vector2(16368, 2008)
+
+[node name="Spike8" parent="Spikes" instance=ExtResource("14_uqkjh")]
+position = Vector2(16798, 2009)
+
+[node name="Spike9" parent="Spikes" instance=ExtResource("14_uqkjh")]
+position = Vector2(16945, 2009)
+
+[node name="Spike10" parent="Spikes" instance=ExtResource("14_uqkjh")]
+position = Vector2(17012, 2008)
+
+[node name="Spike11" parent="Spikes" instance=ExtResource("14_uqkjh")]
+position = Vector2(17446, 2008)
+
+[node name="Spike12" parent="Spikes" instance=ExtResource("14_uqkjh")]
+position = Vector2(17488, 2009)
+
+[node name="Spike13" parent="Spikes" instance=ExtResource("14_uqkjh")]
+position = Vector2(17915, 2007)
+
+[node name="Spike14" parent="Spikes" instance=ExtResource("14_uqkjh")]
+position = Vector2(17988, 2007)
+
+[node name="Spike15" parent="Spikes" instance=ExtResource("14_uqkjh")]
+position = Vector2(18406, 2006)
+
+[node name="Spike16" parent="Spikes" instance=ExtResource("14_uqkjh")]
+position = Vector2(18468, 2009)
 
 [connection signal="body_entered" from="LevelCıkısTetigi" to="." method="_on_level_cıkıs_tetigi_body_entered"]
 
