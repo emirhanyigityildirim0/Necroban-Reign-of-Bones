@@ -13,9 +13,9 @@
 [ext_resource type="Texture2D" uid="uid://ckgamyg3w2v4x" path="res://Assets/Sprites/Characters/Samurai_Archer/Shot.png" id="11_jxaet"]
 [ext_resource type="AudioStream" uid="uid://1h48tm5hawyr" path="res://Assets/Audio/SFX/Hit1.wav" id="12_csu3w"]
 [ext_resource type="AudioStream" uid="uid://e8thifdiuwbn" path="res://Assets/Audio/SFX/mixkit-walking-on-stones-loop-1269.wav" id="12_jxaet"]
-[ext_resource type="AudioStream" uid="uid://5mmd5oyo7f5m" path="res://Assets/Audio/SFX/swipe.wav" id="14_2smg0"]
 [ext_resource type="AudioStream" uid="uid://nipoqw65hutn" path="res://Assets/Audio/SFX/Jump2.wav" id="14_igdwe"]
 [ext_resource type="AudioStream" uid="uid://3p4ve2whk1mm" path="res://Assets/Audio/SFX/Pot1.wav" id="15_75voa"]
+[ext_resource type="AudioStream" uid="uid://s0v5n8sijc7g" path="res://Assets/Audio/SFX/sword-slash-05-266312.mp3" id="16_75voa"]
 [ext_resource type="AudioStream" uid="uid://lubta48xaeiv" path="res://Assets/Audio/SFX/Dead1.wav" id="16_p0yu1"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rvygp"]
@@ -649,7 +649,7 @@ stream = ExtResource("15_75voa")
 volume_db = -10.0
 
 [node name="SfxSaldiri" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("14_2smg0")
+stream = ExtResource("16_75voa")
 volume_db = -10.692
 
 [node name="SfxDeath" type="AudioStreamPlayer" parent="."]

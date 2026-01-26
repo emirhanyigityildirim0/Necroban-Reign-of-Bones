@@ -360,6 +360,11 @@ stream = ExtResource("7_uhbvs")
 volume_db = -15.0
 max_distance = 600.0
 
+[node name="SfxBlok" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_uhbvs")
+volume_db = -15.0
+max_distance = 600.0
+
 [node name="SfxYurume" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_ndtn2")
 volume_db = -12.0
