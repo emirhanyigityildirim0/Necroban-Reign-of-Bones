@@ -11,11 +11,11 @@
 [ext_resource type="Texture2D" uid="uid://c1jk7v5ccxou1" path="res://Assets/Sprites/Characters/Samurai_Archer/Jump.png" id="9_7lr61"]
 [ext_resource type="Texture2D" uid="uid://je1ynxfek2h3" path="res://Assets/Sprites/Characters/Samurai_Archer/Walk.png" id="10_2dce5"]
 [ext_resource type="Texture2D" uid="uid://ckgamyg3w2v4x" path="res://Assets/Sprites/Characters/Samurai_Archer/Shot.png" id="11_jxaet"]
-[ext_resource type="AudioStream" uid="uid://1h48tm5hawyr" path="res://Assets/Audio/SFX/Hit1.wav" id="12_csu3w"]
 [ext_resource type="AudioStream" uid="uid://e8thifdiuwbn" path="res://Assets/Audio/SFX/mixkit-walking-on-stones-loop-1269.wav" id="12_jxaet"]
+[ext_resource type="AudioStream" uid="uid://c7axe04m6dpir" path="res://Assets/Audio/SFX/flesh-impact-266316.mp3" id="13_75voa"]
 [ext_resource type="AudioStream" uid="uid://nipoqw65hutn" path="res://Assets/Audio/SFX/Jump2.wav" id="14_igdwe"]
 [ext_resource type="AudioStream" uid="uid://3p4ve2whk1mm" path="res://Assets/Audio/SFX/Pot1.wav" id="15_75voa"]
-[ext_resource type="AudioStream" uid="uid://s0v5n8sijc7g" path="res://Assets/Audio/SFX/sword-slash-05-266312.mp3" id="16_75voa"]
+[ext_resource type="AudioStream" uid="uid://cnpxxmpb7xwdq" path="res://Assets/Audio/SFX/sword-sound-2-36274.mp3" id="16_75voa"]
 [ext_resource type="AudioStream" uid="uid://lubta48xaeiv" path="res://Assets/Audio/SFX/Dead1.wav" id="16_p0yu1"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rvygp"]
@@ -637,7 +637,7 @@ pitch_scale = 1.5
 autoplay = true
 
 [node name="SfxHasar" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("12_csu3w")
+stream = ExtResource("13_75voa")
 volume_db = -10.0
 
 [node name="SfxZiplama" type="AudioStreamPlayer" parent="."]

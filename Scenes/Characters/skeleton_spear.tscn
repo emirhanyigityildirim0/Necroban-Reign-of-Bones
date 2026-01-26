@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://cvpbmcbytk21j"]
+[gd_scene load_steps=50 format=3 uid="uid://cvpbmcbytk21j"]
 
 [ext_resource type="Script" uid="uid://m44e4yl1wc4q" path="res://Scenes/Characters/skeleton_spear.gd" id="1_1hchn"]
 [ext_resource type="Texture2D" uid="uid://cic6tt0c17j08" path="res://Assets/Sprites/Enemys/Skeleton_Spearman/Attack_1.png" id="1_x25vl"]
@@ -8,9 +8,10 @@
 [ext_resource type="Texture2D" uid="uid://cbqsn4l6tx0gp" path="res://Assets/Sprites/Enemys/Skeleton_Spearman/Hurt.png" id="4_qlwpd"]
 [ext_resource type="Texture2D" uid="uid://1vvgdoxyffc5" path="res://Assets/Sprites/Enemys/Skeleton_Spearman/Idle.png" id="5_tpxs6"]
 [ext_resource type="Texture2D" uid="uid://d34htioug4xmp" path="res://Assets/Sprites/Enemys/Skeleton_Spearman/Walk.png" id="6_x25vl"]
-[ext_resource type="AudioStream" uid="uid://8bv3vng4bq7x" path="res://Assets/Audio/SFX/Hit4.wav" id="7_uhbvs"]
 [ext_resource type="AudioStream" uid="uid://c2h7kb6gr56nb" path="res://Assets/Audio/SFX/CimenYurume2.wav" id="8_ndtn2"]
-[ext_resource type="AudioStream" uid="uid://5mmd5oyo7f5m" path="res://Assets/Audio/SFX/swipe.wav" id="9_plf0p"]
+[ext_resource type="AudioStream" uid="uid://dr51wi51vh501" path="res://Assets/Audio/SFX/bone-crack-1-84755.mp3" id="9_qlwpd"]
+[ext_resource type="AudioStream" uid="uid://s7w8edkrmq04" path="res://Assets/Audio/SFX/sword-clashhit-393837.mp3" id="10_qlwpd"]
+[ext_resource type="AudioStream" uid="uid://doi3w3u6xaddn" path="res://Assets/Audio/SFX/spear_thrust-1-382402.mp3" id="12_qlwpd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gbca8"]
 atlas = ExtResource("2_fhp1k")
@@ -356,12 +357,12 @@ scale_amount_max = 4.0
 color = Color(0.76636136, 0.5356885, 0.0578662, 0.64100003)
 
 [node name="SfxHasar" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("7_uhbvs")
+stream = ExtResource("9_qlwpd")
 volume_db = -15.0
 max_distance = 600.0
 
 [node name="SfxBlok" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("7_uhbvs")
+stream = ExtResource("10_qlwpd")
 volume_db = -15.0
 max_distance = 600.0
 
@@ -371,7 +372,7 @@ volume_db = -12.0
 max_distance = 600.0
 
 [node name="SfxSaldiri" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("9_plf0p")
+stream = ExtResource("12_qlwpd")
 volume_db = -12.0
 max_distance = 600.0
 

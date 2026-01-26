@@ -146,7 +146,7 @@ func start_attack_sequence():
 
 func melee_hit_check():
 	if not kilic_alani: return
-	if sfx_saldiri: sfx_saldiri.play()
+	if sfx_saldiri:sfx_saldiri.pitch_scale = randf_range(0.8, 1.2); sfx_saldiri.play()
 
 	kilic_collider.disabled = false
 	await get_tree().create_timer(0.1).timeout 

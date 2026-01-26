@@ -7,9 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://bgrvu8trmmal4" path="res://Assets/Sprites/Enemys/Skeleton_Warrior/Hurt.png" id="5_7fxlf"]
 [ext_resource type="Texture2D" uid="uid://dhqxxrqd0xbxd" path="res://Assets/Sprites/Enemys/Skeleton_Warrior/Idle.png" id="6_tud44"]
 [ext_resource type="Texture2D" uid="uid://cutqgrmdv6pkm" path="res://Assets/Sprites/Enemys/Skeleton_Warrior/Walk.png" id="7_uw6pl"]
-[ext_resource type="AudioStream" uid="uid://8bv3vng4bq7x" path="res://Assets/Audio/SFX/Hit4.wav" id="8_jmafb"]
+[ext_resource type="AudioStream" uid="uid://dr51wi51vh501" path="res://Assets/Audio/SFX/bone-crack-1-84755.mp3" id="8_83bcu"]
 [ext_resource type="AudioStream" uid="uid://c2h7kb6gr56nb" path="res://Assets/Audio/SFX/CimenYurume2.wav" id="9_sqqi7"]
-[ext_resource type="AudioStream" uid="uid://5mmd5oyo7f5m" path="res://Assets/Audio/SFX/swipe.wav" id="10_8jrgq"]
+[ext_resource type="AudioStream" uid="uid://doaw5sbqpcjt5" path="res://Assets/Audio/SFX/sword_slashing-2-382396.mp3" id="10_83bcu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j0fj2"]
 atlas = ExtResource("2_j5kak")
@@ -323,7 +323,7 @@ shape = SubResource("RectangleShape2D_6uvca")
 debug_color = Color(0.7928107, 0.64139813, 0, 0.41960785)
 
 [node name="SfxHasar" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("8_jmafb")
+stream = ExtResource("8_83bcu")
 volume_db = -15.0
 max_distance = 600.0
 
@@ -333,7 +333,7 @@ volume_db = -12.0
 max_distance = 600.0
 
 [node name="SfxSaldiri" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("10_8jrgq")
+stream = ExtResource("10_83bcu")
 volume_db = -12.0
 max_distance = 600.0
 

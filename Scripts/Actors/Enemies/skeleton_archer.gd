@@ -42,6 +42,7 @@ var attack_timer: float = 0.0
 # Ses Referansları
 @onready var sfx_yurume = get_node_or_null("SfxYurume")
 @onready var sfx_saldiri = get_node_or_null("SfxSaldiri") 
+@onready var sfx_saldiri2 = get_node_or_null("SfxSaldiri2")
 @onready var sfx_hasar = get_node_or_null("SfxHasar")
 
 func _ready():
@@ -167,6 +168,7 @@ func start_attack_sequence():
 	if mesafemiz <= flee_range: 
 		# MELEE
 		anim.play(melee_anims.pick_random()) 
+		if sfx_saldiri2:sfx_saldiri2.pitch_scale = randf_range(0.8, 1.2); sfx_saldiri2.play()
 		await get_tree().create_timer(0.4).timeout 
 		if is_attacking and not is_dead: 
 			melee_hit_check()
@@ -179,7 +181,7 @@ func start_attack_sequence():
 
 func shoot_arrow():
 	if not arrow_scene: return
-	if sfx_saldiri: sfx_saldiri.play()
+	if sfx_saldiri:sfx_saldiri.pitch_scale = randf_range(0.8, 1.2); sfx_saldiri.play()
 	
 	var arrow = arrow_scene.instantiate()
 	arrow.global_position = namlu_ucu.global_position if namlu_ucu else global_position

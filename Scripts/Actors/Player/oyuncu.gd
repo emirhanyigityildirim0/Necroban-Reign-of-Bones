@@ -204,7 +204,7 @@ func saldiri_baslat():
 		combo_sayaci = 0 
 
 	if sfx_saldiri: 
-		sfx_saldiri.pitch_scale = randf_range(0.9, 1.1)
+		sfx_saldiri.pitch_scale = randf_range(0.8, 1.2)
 		sfx_saldiri.play()
 
 func _on_animated_sprite_2d_frame_changed():

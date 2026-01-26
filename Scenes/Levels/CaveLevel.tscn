@@ -9807,7 +9807,7 @@ script = ExtResource("1_ngjra")
 [node name="Oyuncu" parent="." instance=ExtResource("10_qf4jd")]
 modulate = Color(0.5211406, 0.5211406, 0.5211405, 1)
 z_index = 0
-position = Vector2(12339, 1388)
+position = Vector2(8409, 555)
 rotation = 0.0
 
 [node name="On_Susleme" type="TileMapLayer" parent="."]
@@ -10168,7 +10168,7 @@ position = Vector2(4460.9985, -1384)
 position = Vector2(2946, 1287)
 
 [node name="SkeletonWarrior4" parent="SkeletonWarriors" instance=ExtResource("12_3hrpf")]
-position = Vector2(3121, 1121)
+position = Vector2(8053, 536)
 
 [node name="SkeletonSpearmans" type="Node" parent="."]
 
@@ -10184,7 +10184,7 @@ position = Vector2(10387, 1427)
 position = Vector2(4301.9985, -1158)
 
 [node name="SkeletonArcher" parent="SkeletonArchers" instance=ExtResource("10_sdgch")]
-position = Vector2(2630, 1020)
+position = Vector2(9413, 538)
 
 [node name="Ambiyans" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_5y8nr")
