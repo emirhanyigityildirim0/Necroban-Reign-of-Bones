@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://bw5hpct7wpojp"]
+
+[ext_resource type="Texture2D" uid="uid://doy24cpj8bci4" path="res://Assets/Sprites/Environments/War3/Pale/fence.png" id="1_duktt"]
+[ext_resource type="Script" uid="uid://rui8nr8vsgue" path="res://Scenes/Objects/spike.gd" id="1_xxn00"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xxn00"]
+size = Vector2(166, 37)
+
+[node name="Spike" type="Area2D"]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_xxn00")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(0.7752952, 0.47972345, 0.5716662, 1)
+position = Vector2(1.0000029, -12.25)
+scale = Vector2(0.086458325, 0.04768519)
+texture = ExtResource("1_duktt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -4.5)
+shape = SubResource("RectangleShape2D_xxn00")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
