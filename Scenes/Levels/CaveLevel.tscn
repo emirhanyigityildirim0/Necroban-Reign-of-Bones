@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=4 uid="uid://dwrfvceks7wgu"]
+[gd_scene load_steps=41 format=4 uid="uid://dwrfvceks7wgu"]
 
 [ext_resource type="Script" uid="uid://dagmwn002lxof" path="res://Scripts/Levels/cave_level.gd" id="1_ngjra"]
 [ext_resource type="Texture2D" uid="uid://bdmsl0pdugelm" path="res://Assets/Sprites/Environments/main_lev_build_2.png" id="5_uqkjh"]
@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://botdmxr24fpal" path="res://Scenes/UI/diyalog_katmani.tscn" id="17_bxqvl"]
 [ext_resource type="PackedScene" uid="uid://tj7gtbky6uqx" path="res://Scenes/Objects/animatable_body_2d.tscn" id="17_k8d8q"]
 [ext_resource type="PackedScene" uid="uid://rw4ecvfo08kh" path="res://Scenes/Objects/FallingTrap_2d.tscn" id="18_c6wxl"]
+[ext_resource type="PackedScene" uid="uid://cfr3ihue2jmds" path="res://Scenes/Characters/night_borne.tscn" id="19_yduqt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5y8nr"]
 texture = ExtResource("6_sueox")
@@ -9810,7 +9811,7 @@ script = ExtResource("1_ngjra")
 [node name="Oyuncu" parent="." instance=ExtResource("10_qf4jd")]
 modulate = Color(0.5211406, 0.5211406, 0.5211405, 1)
 z_index = 0
-position = Vector2(19596, 1255)
+position = Vector2(461, 16)
 rotation = 0.0
 
 [node name="On_Susleme" type="TileMapLayer" parent="."]
@@ -10306,6 +10307,9 @@ position = Vector2(21719, 1109)
 
 [node name="RigitBody2D3" parent="." instance=ExtResource("18_c6wxl")]
 position = Vector2(21890, 1123)
+
+[node name="NightBorne" parent="." instance=ExtResource("19_yduqt")]
+position = Vector2(1111, 15)
 
 [connection signal="body_entered" from="LevelCıkısTetigi" to="." method="_on_level_cıkıs_tetigi_body_entered"]
 
