@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://tj7gtbky6uqx"]
+
+[ext_resource type="Script" uid="uid://cwerc326kkfvn" path="res://animatable_body_2d.gd" id="1_vlofc"]
+[ext_resource type="Texture2D" uid="uid://cuap57x16iayh" path="res://Assets/VFX/07.png" id="2_c0km1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c0km1"]
+size = Vector2(87, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fdj82"]
+atlas = ExtResource("2_c0km1")
+region = Rect2(0, 243.10864, 17.401367, 44.891357)
+
+[node name="AnimatableBody2D" type="AnimatableBody2D"]
+script = ExtResource("1_vlofc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2.5, 2)
+shape = SubResource("RectangleShape2D_c0km1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(0.66656864, 0.6665687, 0.66656864, 1)
+texture_filter = 1
+position = Vector2(-0.21167374, 0.2539806)
+rotation = 1.5699904
+scale = Vector2(1.329105, 2.7319436)
+texture = SubResource("AtlasTexture_fdj82")
