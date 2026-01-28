@@ -1,11 +1,21 @@
-[gd_scene load_steps=67 format=3 uid="uid://cfr3ihue2jmds"]
+[gd_scene load_steps=70 format=3 uid="uid://cfr3ihue2jmds"]
 
 [ext_resource type="AudioStream" uid="uid://dr51wi51vh501" path="res://Assets/Audio/SFX/bone-crack-1-84755.mp3" id="1_4kjco"]
 [ext_resource type="Texture2D" uid="uid://cip122cmpboow" path="res://Assets/Sprites/Enemys/NightBorne/NightBorne.png" id="1_oa324"]
 [ext_resource type="Script" uid="uid://ba65xykdlasjq" path="res://Scenes/Characters/night_borne.gd" id="1_pgaqm"]
-[ext_resource type="AudioStream" uid="uid://s7w8edkrmq04" path="res://Assets/Audio/SFX/sword-clashhit-393837.mp3" id="2_oa324"]
-[ext_resource type="AudioStream" uid="uid://c2h7kb6gr56nb" path="res://Assets/Audio/SFX/CimenYurume2.wav" id="3_pgaqm"]
-[ext_resource type="AudioStream" uid="uid://doi3w3u6xaddn" path="res://Assets/Audio/SFX/spear_thrust-1-382402.mp3" id="4_lvndi"]
+[ext_resource type="AudioStream" uid="uid://cik4yc2sx7qdp" path="res://Assets/Audio/SFX/Explosion.wav" id="4_pgaqm"]
+[ext_resource type="AudioStream" uid="uid://cyda8r70oqrix" path="res://Assets/Audio/SFX/TahtaYurume1.wav" id="5_pgaqm"]
+[ext_resource type="AudioStream" uid="uid://doaw5sbqpcjt5" path="res://Assets/Audio/SFX/sword_slashing-2-382396.mp3" id="6_lvndi"]
+
+[sub_resource type="Gradient" id="Gradient_5y8nr"]
+offsets = PackedFloat32Array(0, 0.9589041)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_pgaqm"]
+gradient = SubResource("Gradient_5y8nr")
+fill = 1
+fill_from = Vector2(0.4952381, 0.4952381)
+fill_to = Vector2(0, 0.3952381)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4e8ml"]
 atlas = ExtResource("1_oa324")
@@ -421,32 +431,43 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7gip2"]
-radius = 26.0
-height = 76.0
+radius = 6.656805
+height = 36.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8wp2j"]
-radius = 26.0
-height = 76.0
+radius = 25.0
+height = 90.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r1gkv"]
-size = Vector2(111, 82)
+size = Vector2(140, 117)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v5ycm"]
-size = Vector2(458, 100.0625)
+size = Vector2(508, 212.03125)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pgaqm"]
+size = Vector2(26, 25)
 
 [node name="NightBorne" type="CharacterBody2D"]
+collision_mask = 7
 script = ExtResource("1_pgaqm")
+
+[node name="GemLight" type="PointLight2D" parent="."]
+position = Vector2(1, -24.999998)
+scale = Vector2(5.7812357, 4.0039067)
+color = Color(1, 0, 1, 1)
+energy = 1.5
+texture = SubResource("GradientTexture2D_pgaqm")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(-7.9999976, -14.000003)
-scale = Vector2(2.2631578, 1.9749999)
+position = Vector2(-14.197376, -37)
+scale = Vector2(2.704, 3)
 sprite_frames = SubResource("SpriteFrames_7cs0d")
 animation = &"Attack"
-frame = 11
-frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -11)
+scale = Vector2(2.704, 3)
 shape = SubResource("CapsuleShape2D_7gip2")
 
 [node name="SaldiriPivotu" type="Marker2D" parent="."]
@@ -459,19 +480,22 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SaldiriPivotu/Hitbox"]
+position = Vector2(0, -12)
 shape = SubResource("CapsuleShape2D_8wp2j")
 debug_color = Color(0.824295, 0.96332425, 0.99999994, 0.41960785)
 
 [node name="SaldiriSensoru" type="RayCast2D" parent="SaldiriPivotu"]
-target_position = Vector2(88, 0)
+position = Vector2(0, -23)
+target_position = Vector2(89, 0)
 collision_mask = 2
 
 [node name="Saldiri_Alani" type="Area2D" parent="SaldiriPivotu"]
+position = Vector2(0, -16)
 collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SaldiriPivotu/Saldiri_Alani"]
-position = Vector2(33.5, -7)
+position = Vector2(23, -7.5)
 shape = SubResource("RectangleShape2D_r1gkv")
 debug_color = Color(0.9504003, 0.21106213, 0.20314124, 0.41960785)
 
@@ -480,7 +504,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SaldiriPivotu/VisionArea"]
-position = Vector2(145, -4)
+position = Vector2(153, -59.984375)
 shape = SubResource("RectangleShape2D_v5ycm")
 debug_color = Color(0.7928107, 0.64139813, 0, 0.41960785)
 
@@ -505,21 +529,29 @@ stream = ExtResource("1_4kjco")
 volume_db = -15.0
 max_distance = 600.0
 
-[node name="SfxBlok" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("2_oa324")
+[node name="SfxDeath" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_pgaqm")
 volume_db = -15.0
 max_distance = 600.0
 
 [node name="SfxYurume" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_pgaqm")
+stream = ExtResource("5_pgaqm")
 volume_db = -12.0
 max_distance = 600.0
 
 [node name="SfxSaldiri" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("4_lvndi")
+stream = ExtResource("6_lvndi")
 volume_db = -12.0
 max_distance = 600.0
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
-position = Vector2(-128, -77)
-rect = Rect2(-1149, -488, 2371, 825)
+position = Vector2(-135, -91)
+rect = Rect2(-1204, -199, 2680, 536)
+
+[node name="KafaKaydirak" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KafaKaydirak"]
+position = Vector2(1, -57.5)
+shape = SubResource("RectangleShape2D_pgaqm")
+debug_color = Color(0, 0, 0, 0.41960785)
