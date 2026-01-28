@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bi5sldd43x882"]
 
-[ext_resource type="Script" uid="uid://jcdljh8ojk10" path="res://Scenes/Objects/enemy_arrow.gd" id="1_mx5vn"]
+[ext_resource type="Script" uid="uid://jcdljh8ojk10" path="res://Scripts/Objects/enemy_arrow.gd" id="1_mx5vn"]
 [ext_resource type="Texture2D" uid="uid://ciqhgaexg1wsb" path="res://Assets/Sprites/Enemys/Skeleton_Archer/Arrow.png" id="2_mx5vn"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_8vpr2"]

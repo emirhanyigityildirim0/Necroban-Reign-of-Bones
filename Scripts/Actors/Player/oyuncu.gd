@@ -8,7 +8,7 @@ extends CharacterBody2D
 # ==============================================================================
 
 # --- CONFIGURATION & EXPORTS ---
-
+var respawn_position = Vector2.ZERO
 @export_category("Movement Settings")
 @export var speed: float = 250.0
 @export var jump_force: float = -450.0
@@ -81,6 +81,15 @@ func _ready():
 
 	cutscene_active = false
 	ui_baglantisini_kur()
+	if GameManager.last_checkpoint_pos != null:
+		print("🚩 Kayıtlı Checkpoint bulundu! Işınlanılıyor...")
+		global_position = GameManager.last_checkpoint_pos
+	else:
+		print("⚠️ Kayıt yok, başlangıç noktası kaydedildi.")
+		GameManager.last_checkpoint_pos = global_position
+	# -------------------------
+	Global.can = Global.max_can
+	
 
 func ui_baglantisini_kur():
 	var bulunan_ui = get_tree().current_scene.find_child("DiyalogKatmani", true, false)
@@ -219,12 +228,6 @@ func _on_animated_sprite_2d_frame_changed():
 func hasar_vur():
 	print("--- 🔍 VURUŞ ANALİZİ BAŞLADI ---")
 	
-	# 1. GLOBAL KONTROLÜ (Bozulan yer burası mı?)
-	if not Global:
-		print("🚨 KRİTİK HATA: Global script yüklenmemiş! Project Settings -> Autoload kısmına bak.")
-		return
-	else:
-		print("✅ Global Bağlı. Hasar Gücü: ", Global.damage_heavy)
 
 	# 2. KILIÇ AYARLARINI ZORLA DÜZELT (Editörü boşver, kod konuşsun)
 	# Mask 2 = Düşman Katmanı (Layer 2)
@@ -346,3 +349,14 @@ func konus(cumle: String):
 	await get_tree().create_timer(2.0).timeout
 	diyalog_kutusu.visible = false
 	su_an_konusuyor = false
+
+# Checkpoint'e değince bu çalışacak
+func checkpoint_kaydet(yeni_pozisyon):
+	respawn_position = yeni_pozisyon
+	print("🚩 Kayıt Noktası Güncellendi: ", respawn_position)
+
+# Dikenlere değince veya can bitince bu çalışacak
+func respawn_ol():
+	velocity = Vector2.ZERO # Hızı sıfırla (Uçarak doğmasın)
+	global_position = respawn_position # Işınla
+	Global.can = Global.max_can # Canı fulle

@@ -515,8 +515,8 @@ script = ExtResource("1_52j1x")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 self_modulate = Color(0.50140655, 0.5014065, 0.5014065, 1)
 texture_filter = 1
-position = Vector2(7.999999, -31.000008)
-scale = Vector2(0.96874994, 1.2812499)
+position = Vector2(7.999999, -38)
+scale = Vector2(0.96874994, 1.171875)
 sprite_frames = SubResource("SpriteFrames_a3a81")
 animation = &"Shot"
 frame = 14

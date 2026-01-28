@@ -281,8 +281,8 @@ script = ExtResource("1_it2us")
 self_modulate = Color(0.4974739, 0.49747366, 0.49747354, 1)
 light_mask = 7
 texture_filter = 1
-position = Vector2(12.499995, -40.999996)
-scale = Vector2(1.0390625, 1.328125)
+position = Vector2(12.499995, -42.5)
+scale = Vector2(1.0390625, 1.2109375)
 sprite_frames = SubResource("SpriteFrames_a3a81")
 animation = &"Attack"
 
