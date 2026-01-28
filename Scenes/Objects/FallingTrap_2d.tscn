@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://rw4ecvfo08kh"]
+
+[ext_resource type="Texture2D" uid="uid://bdv7r7emjhghq" path="res://Assets/Sprites/Environments/trap2.png" id="1_24qx7"]
+[ext_resource type="Script" uid="uid://b2xsxh6uluphb" path="res://Scripts/Objects/falling_trap_2d.gd" id="1_mr2e7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mr2e7"]
+size = Vector2(110, 432)
+
+[node name="RigidBody2D" type="RigidBody2D"]
+collision_mask = 3
+freeze = true
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_mr2e7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(0.0008856058, 0.2156434, 0.76145834, 1)
+light_mask = 7
+visibility_layer = 7
+texture_filter = 1
+position = Vector2(0.4999981, -0.5000057)
+scale = Vector2(1.2109375, 1.2734375)
+texture = ExtResource("1_24qx7")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(0, 0, 45, -1, 53, -20, 45, -32, -3, -38, -29, -38, -45, -20, -42, -7, -38, 15, -16, 36, -1, 40, 22, 36, 42, 12, 45, -1)
+
+[node name="Dedektor" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dedektor"]
+position = Vector2(1, 206)
+shape = SubResource("RectangleShape2D_mr2e7")
+debug_color = Color(0, 0, 0, 0.41960785)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="Dedektor" to="." method="_on_detektor_body_entered"]
