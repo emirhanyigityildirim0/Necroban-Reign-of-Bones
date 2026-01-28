@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://cvpbmcbytk21j"]
+[gd_scene load_steps=52 format=3 uid="uid://cvpbmcbytk21j"]
 
 [ext_resource type="Script" uid="uid://m44e4yl1wc4q" path="res://Scenes/Characters/skeleton_spear.gd" id="1_1hchn"]
 [ext_resource type="Texture2D" uid="uid://cic6tt0c17j08" path="res://Assets/Sprites/Enemys/Skeleton_Spearman/Attack_1.png" id="1_x25vl"]
@@ -12,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://dr51wi51vh501" path="res://Assets/Audio/SFX/bone-crack-1-84755.mp3" id="9_qlwpd"]
 [ext_resource type="AudioStream" uid="uid://s7w8edkrmq04" path="res://Assets/Audio/SFX/sword-clashhit-393837.mp3" id="10_qlwpd"]
 [ext_resource type="AudioStream" uid="uid://doi3w3u6xaddn" path="res://Assets/Audio/SFX/spear_thrust-1-382402.mp3" id="12_qlwpd"]
+[ext_resource type="Script" uid="uid://byi45sw4umtgw" path="res://Scripts/Managers/KafaKoruma.gd" id="13_tpxs6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gbca8"]
 atlas = ExtResource("2_fhp1k")
@@ -289,6 +290,9 @@ size = Vector2(101, 43)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2bwfm"]
 size = Vector2(458, 100.0625)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d6sfd"]
+size = Vector2(26, 25)
+
 [node name="SkeletonSpear" type="CharacterBody2D"]
 collision_mask = 7
 script = ExtResource("1_1hchn")
@@ -379,3 +383,14 @@ max_distance = 600.0
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
 position = Vector2(0, -1)
 rect = Rect2(-1149, -488, 2371, 825)
+
+[node name="KafaKaydirak" type="Area2D" parent="."]
+collision_mask = 2
+script = ExtResource("13_tpxs6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KafaKaydirak"]
+position = Vector2(0, -39)
+shape = SubResource("RectangleShape2D_d6sfd")
+debug_color = Color(0, 0, 0, 0.41960785)
+
+[connection signal="body_entered" from="KafaKaydirak" to="." method="_on_kafa_kaydirak_body_entered"]
