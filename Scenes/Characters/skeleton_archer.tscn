@@ -1,4 +1,4 @@
-[gd_scene load_steps=81 format=3 uid="uid://bttegon0xprgv"]
+[gd_scene load_steps=83 format=3 uid="uid://bttegon0xprgv"]
 
 [ext_resource type="Script" uid="uid://dp5dfa80sup7b" path="res://Scripts/Actors/Enemies/skeleton_archer.gd" id="1_52j1x"]
 [ext_resource type="Texture2D" uid="uid://c2c2t7djx4rop" path="res://Assets/Sprites/Enemys/Skeleton_Archer/Attack_1.png" id="2_52j1x"]
@@ -14,6 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://dr51wi51vh501" path="res://Assets/Audio/SFX/bone-crack-1-84755.mp3" id="11_djtw2"]
 [ext_resource type="AudioStream" uid="uid://84rih2glh7iq" path="res://Assets/Audio/SFX/whoosh-arrow-start-243483.mp3" id="13_djtw2"]
 [ext_resource type="AudioStream" uid="uid://doaw5sbqpcjt5" path="res://Assets/Audio/SFX/sword_slashing-2-382396.mp3" id="13_s37qn"]
+[ext_resource type="Script" uid="uid://byi45sw4umtgw" path="res://Scripts/Managers/KafaKoruma.gd" id="15_7o41m"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_djtw2"]
 atlas = ExtResource("2_52j1x")
@@ -504,6 +505,9 @@ size = Vector2(43.125, 57)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6uvca"]
 size = Vector2(450, 100.0625)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pa2fo"]
+size = Vector2(26, 25)
+
 [node name="SkeletonArcher" type="CharacterBody2D" groups=["dusman"]]
 self_modulate = Color(0.8045722, 0, 0.13338664, 1)
 light_mask = 31
@@ -585,6 +589,15 @@ max_distance = 600.0
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
 position = Vector2(-3, -155)
 rect = Rect2(-650, -359, 1310, 966)
+
+[node name="KafaKaydirak" type="Area2D" parent="."]
+collision_mask = 2
+script = ExtResource("15_7o41m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KafaKaydirak"]
+position = Vector2(0, -39)
+shape = SubResource("RectangleShape2D_pa2fo")
+debug_color = Color(0, 0, 0, 0.41960785)
 
 [connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
 [connection signal="body_entered" from="SaldiriPivotu/Hitbox" to="." method="_on_hitbox_body_entered"]
