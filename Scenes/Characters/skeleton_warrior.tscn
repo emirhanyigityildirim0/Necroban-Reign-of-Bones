@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://dv2xxt6wf52qt"]
+[gd_scene load_steps=49 format=3 uid="uid://dv2xxt6wf52qt"]
 
 [ext_resource type="Script" uid="uid://b6gee5b777qc1" path="res://Scripts/Actors/Enemies/skeleton_warrior.gd" id="1_it2us"]
 [ext_resource type="Texture2D" uid="uid://t0285g3s7w5c" path="res://Assets/Sprites/Enemys/Skeleton_Warrior/Attack_1.png" id="2_j5kak"]
@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://dr51wi51vh501" path="res://Assets/Audio/SFX/bone-crack-1-84755.mp3" id="8_83bcu"]
 [ext_resource type="AudioStream" uid="uid://c2h7kb6gr56nb" path="res://Assets/Audio/SFX/CimenYurume2.wav" id="9_sqqi7"]
 [ext_resource type="AudioStream" uid="uid://doaw5sbqpcjt5" path="res://Assets/Audio/SFX/sword_slashing-2-382396.mp3" id="10_83bcu"]
+[ext_resource type="Script" uid="uid://byi45sw4umtgw" path="res://Scripts/Managers/KafaKoruma.gd" id="11_syc0v"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j0fj2"]
 atlas = ExtResource("2_j5kak")
@@ -270,6 +271,9 @@ size = Vector2(95.125, 71.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6uvca"]
 size = Vector2(388, 100.0625)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f27a7"]
+size = Vector2(26, 25)
+
 [node name="SkeletonWarrior" type="CharacterBody2D" groups=["dusman"]]
 self_modulate = Color(0.8045722, 0, 0.13338664, 1)
 light_mask = 31
@@ -340,6 +344,15 @@ max_distance = 600.0
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
 position = Vector2(0, -1)
 rect = Rect2(-1149, -488, 2371, 825)
+
+[node name="KafaKaydirak" type="Area2D" parent="."]
+collision_mask = 2
+script = ExtResource("11_syc0v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KafaKaydirak"]
+position = Vector2(0, -39)
+shape = SubResource("RectangleShape2D_f27a7")
+debug_color = Color(0, 0, 0, 0.41960785)
 
 [connection signal="body_entered" from="SaldiriPivotu/Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_entered" from="SaldiriPivotu/VisionArea" to="." method="_on_vision_area_body_entered"]
