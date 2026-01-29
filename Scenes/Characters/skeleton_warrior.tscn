@@ -292,8 +292,10 @@ animation = &"Attack"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_cs1qu")
+debug_color = Color(1, 0, 0, 0.42000002)
 
 [node name="SaldiriPivotu" type="Marker2D" parent="."]
+visible = false
 
 [node name="UcurumSensoru" type="RayCast2D" parent="SaldiriPivotu"]
 target_position = Vector2(85, 50)
@@ -342,6 +344,7 @@ volume_db = -12.0
 max_distance = 600.0
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+visible = false
 position = Vector2(0, -1)
 rect = Rect2(-1149, -488, 2371, 825)
 
