@@ -528,8 +528,10 @@ frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_cs1qu")
+debug_color = Color(1, 0, 0, 0.42000002)
 
 [node name="SaldiriPivotu" type="Marker2D" parent="."]
+visible = false
 
 [node name="NamluUcu" type="Marker2D" parent="SaldiriPivotu"]
 position = Vector2(-1, -12)
@@ -587,6 +589,7 @@ volume_db = -12.0
 max_distance = 600.0
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+visible = false
 position = Vector2(-3, -155)
 rect = Rect2(-650, -359, 1310, 966)
 
