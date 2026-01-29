@@ -17,6 +17,7 @@ extends Node2D
 
 @onready var oyuncu = $Oyuncu # Oyuncunun yolu
 @onready var hedef_nokta = $YeniBolgeBaslangic # Işınlanacağı Marker2D
+@onready var hedef_nokta2 = $YeniBolgeBaslangic2 
 @onready var siyah_perde = $GecisKatmani/ColorRect # Siyah ekran
 
 var gecis_yapiliyor = false
@@ -57,33 +58,3 @@ func baslat_giris_konusmasi():
 	if player: 
 		player.set_physics_process(true)
 		print(">> Konuşma bitti.")
-
-func _on_level_cıkıs_tetigi_body_entered(body: Node2D) -> void:
-	if body.is_in_group("oyuncu") and not gecis_yapiliyor:
-		sinematik_gecis_yap()
-
-func sinematik_gecis_yap():
-	print("Bölüm bitti! Yeni bölgeye geçiliyor...")
-	gecis_yapiliyor = true
-	
-	if oyuncu.get("cutscene_active") != null:
-		oyuncu.cutscene_active = true
-	
-	# Kararma Efekti
-	var tween = create_tween()
-	tween.tween_property(siyah_perde, "modulate:a", 1.0, 1.0)
-	await tween.finished
-	
-	# Işınlanma
-	oyuncu.global_position = hedef_nokta.global_position
-	await get_tree().create_timer(0.5).timeout
-	
-	# Aydınlanma Efekti
-	var tween_out = create_tween()
-	tween_out.tween_property(siyah_perde, "modulate:a", 0.0, 1.0)
-	await tween_out.finished
-	
-	if oyuncu.get("cutscene_active") != null:
-		oyuncu.cutscene_active = false
-		
-	gecis_yapiliyor = false
