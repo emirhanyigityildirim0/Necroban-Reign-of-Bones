@@ -2,20 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c8k73fjn6mqdq"
-path="res://.godot/imported/road.png-f8836bad07ff460b9b3b7e5dd7ac6eaf.ctex"
+uid="uid://b3hdh3ijcrxu7"
+path.s3tc="res://.godot/imported/MagaraAsama1.png-8aa446a43719aa9d6a597da3b0783380.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Environments/road.png"
-dest_files=["res://.godot/imported/road.png-f8836bad07ff460b9b3b7e5dd7ac6eaf.ctex"]
+source_file="res://Assets/Sprites/Environments/Cave/MagaraAsama1.png"
+dest_files=["res://.godot/imported/MagaraAsama1.png-8aa446a43719aa9d6a597da3b0783380.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

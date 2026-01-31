@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c8k73fjn6mqdq"
-path="res://.godot/imported/road.png-f8836bad07ff460b9b3b7e5dd7ac6eaf.ctex"
+uid="uid://cbn8gvv1uh3yf"
+path="res://.godot/imported/Plan 1.png-8d95d0fb0a6547f7f3f72290ea1e25f8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Environments/road.png"
-dest_files=["res://.godot/imported/road.png-f8836bad07ff460b9b3b7e5dd7ac6eaf.ctex"]
+source_file="res://Assets/Sprites/Environments/Cave/Plan 1.png"
+dest_files=["res://.godot/imported/Plan 1.png-8d95d0fb0a6547f7f3f72290ea1e25f8.ctex"]
 
 [params]
 
