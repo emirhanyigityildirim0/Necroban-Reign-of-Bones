@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 # --- AYARLAR ---
-@export var max_health = 100
+@export var max_health = 150
 @export var speed = 160
 @export var damage = 25
 @export var gravity = 980
@@ -11,8 +11,8 @@ extends CharacterBody2D
 
 # PIVOT VE SENSÖRLER
 @onready var saldiri_pivotu = $SaldiriPivotu
-@onready var saldiri_sensoru = $SaldiriPivotu/SaldiriSensoru # Bunu sadece "Görmek" için kullanacağız
-@onready var saldiri_alani = $SaldiriPivotu/Saldiri_Alani     # <--- HASAR BURADAN VERİLECEK (Area2D)
+@onready var saldiri_sensoru = $SaldiriPivotu/SaldiriSensoru 
+@onready var saldiri_alani = $SaldiriPivotu/Saldiri_Alani   
 @onready var ucurum_sensoru = $SaldiriPivotu/UcurumSensoru
 @onready var kafa_kaydirak = $KafaKaydirak 
 
@@ -60,7 +60,7 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
 
-	# Saldırıyor veya Hasar alıyorsa hareket etmesin
+
 	if is_attacking or current_state == State.HURT:
 		velocity.x = move_toward(velocity.x, 0, speed) 
 		move_and_slide()
@@ -80,9 +80,7 @@ func _physics_process(delta):
 				
 				if abs(fark_x) > 10:
 					yonu_ayarla(fark_x)
-				
-				# 1. SALDIRI TETİKLEYİCİ (Gözüyle görünce saldırsın)
-				# Hasarı burası vermiyor, sadece "Attack" moduna sokuyor.
+
 				if saldiri_sensoru.is_colliding():
 					var carpan = saldiri_sensoru.get_collider()
 					if carpan.is_in_group("oyuncu"):
@@ -90,7 +88,7 @@ func _physics_process(delta):
 						velocity.x = 0 
 						sfx_yurume.stop()
 				
-				# 2. HAREKET KONTROLÜ
+
 				else:
 					if not ucurum_sensoru.is_colliding() and is_on_floor():
 						velocity.x = 0
@@ -104,22 +102,22 @@ func _physics_process(delta):
 
 	move_and_slide()
 
-# --- GÜNCELLENEN KAFA MANTIĞI: HASAR YOK, SADECE FIRLATMA ---
+
 func _on_kafa_kaydirak_body_entered(body):
 	if body.is_in_group("oyuncu"):
-		# 1. Boss sinirlensin, saldırı animasyonuna girsin
+
 		change_state(State.ATTACK)
 		
-		# 2. Oyuncuyu SADECE fırlat (Hasar yok, hasarı kılıç yiyince alacak)
+
 		if "velocity" in body:
 			var itme_yonu = 1
 			if body.global_position.x < global_position.x:
 				itme_yonu = -1
 			
-			# Kafadan insin diye uzağa ve hafif yukarı itiyoruz
+
 			body.velocity = Vector2(itme_yonu * 100, -150)
 			
-		# NOT: Buradaki body.hasar_al(damage) satırını sildik!
+
 
 # --- YÖN AYARLAMA ---
 func yonu_ayarla(dir_x):
@@ -216,7 +214,7 @@ func _on_animation_finished():
 # --- HASAR ALMA ---
 func hasar_al(miktar):
 	if current_state == State.DEATH: return
-	
+	if sfx_hasar: sfx_hasar.play()
 	current_health -= miktar
 	print("🩸 Boss Canı: ", current_health)
 	
@@ -224,9 +222,9 @@ func hasar_al(miktar):
 		change_state(State.DEATH)
 		return
 
-	# --- SÜPER ZIRH ---
+
 	if current_state == State.ATTACK:
-		# SENİN ÖZEL RENK KODLARIN
+	
 		anim.modulate = Color(0.814, 0.505, 1.0, 1.0)
 		await get_tree().create_timer(0.15).timeout
 		anim.modulate = Color(0.482, 0.001, 0.67, 1.0)

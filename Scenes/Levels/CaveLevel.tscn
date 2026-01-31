@@ -1,9 +1,6 @@
 [gd_scene load_steps=38 format=4 uid="uid://dwrfvceks7wgu"]
 
 [ext_resource type="Script" uid="uid://dagmwn002lxof" path="res://Scripts/Levels/cave_level.gd" id="1_ngjra"]
-[ext_resource type="Texture2D" uid="uid://bdmsl0pdugelm" path="res://Assets/Sprites/Environments/main_lev_build_2.png" id="5_uqkjh"]
-[ext_resource type="Texture2D" uid="uid://ci3qbosymuske" path="res://Assets/Sprites/Environments/main_lev_build_1.png" id="6_sueox"]
-[ext_resource type="Texture2D" uid="uid://gfuchofjodur" path="res://Assets/Sprites/Environments/rocks.png" id="7_ntp76"]
 [ext_resource type="Script" uid="uid://s5mj5kam46u2" path="res://Scenes/Levels/level_cıkıs_tetigi.gd" id="9_e73vr"]
 [ext_resource type="PackedScene" uid="uid://cvpbmcbytk21j" path="res://Scenes/Characters/skeleton_spear.tscn" id="10_ntp76"]
 [ext_resource type="PackedScene" uid="uid://brvic5x5utlwv" path="res://Scenes/Characters/oyuncu.tscn" id="10_qf4jd"]
@@ -21,8 +18,11 @@
 [ext_resource type="PackedScene" uid="uid://rw4ecvfo08kh" path="res://Scenes/Objects/FallingTrap_2d.tscn" id="18_c6wxl"]
 [ext_resource type="PackedScene" uid="uid://cfr3ihue2jmds" path="res://Scenes/Characters/night_borne.tscn" id="19_yduqt"]
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_k8d8q"]
+load_path = "res://.godot/imported/main_lev_build_1.png-5bcea4f5879aa1b1db5f7f86b9ba6e5d.ctex"
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5y8nr"]
-texture = ExtResource("6_sueox")
+texture = SubResource("CompressedTexture2D_k8d8q")
 4:1/0 = 0
 5:1/0 = 0
 41:1/0 = 0
@@ -645,8 +645,11 @@ texture = ExtResource("6_sueox")
 46:60/0 = 0
 47:60/0 = 0
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_c6wxl"]
+load_path = "res://.godot/imported/rocks.png-b30b5af6fed50dba06793fb722e33559.ctex"
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_e73vr"]
-texture = ExtResource("7_ntp76")
+texture = SubResource("CompressedTexture2D_c6wxl")
 10:1/0 = 0
 11:1/0 = 0
 12:1/0 = 0
@@ -2052,8 +2055,11 @@ texture = ExtResource("7_ntp76")
 61:44/0 = 0
 62:44/0 = 0
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_yduqt"]
+load_path = "res://.godot/imported/main_lev_build_2.png-ba64bcc5348f782196a265a2d9e84c20.ctex"
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ntp76"]
-texture = ExtResource("5_uqkjh")
+texture = SubResource("CompressedTexture2D_yduqt")
 9:1/0 = 0
 10:1/0 = 0
 12:1/0 = 0
@@ -3192,7 +3198,7 @@ sources/0 = SubResource("TileSetAtlasSource_5y8nr")
 sources/1 = SubResource("TileSetAtlasSource_e73vr")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c6wxl"]
-texture = ExtResource("6_sueox")
+texture = SubResource("CompressedTexture2D_k8d8q")
 4:1/0 = 0
 4:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 5:1/0 = 0
@@ -3883,7 +3889,7 @@ texture = ExtResource("6_sueox")
 47:60/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uqkjh"]
-texture = ExtResource("5_uqkjh")
+texture = SubResource("CompressedTexture2D_yduqt")
 9:1/0 = 0
 10:1/0 = 0
 12:1/0 = 0
@@ -5103,7 +5109,7 @@ texture = ExtResource("5_uqkjh")
 11:39/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yduqt"]
-texture = ExtResource("7_ntp76")
+texture = SubResource("CompressedTexture2D_c6wxl")
 10:1/0 = 0
 11:1/0 = 0
 12:1/0 = 0
@@ -6602,12 +6608,12 @@ sources/1 = SubResource("TileSetAtlasSource_uqkjh")
 sources/0 = SubResource("TileSetAtlasSource_c6wxl")
 sources/2 = SubResource("TileSetAtlasSource_yduqt")
 
-[sub_resource type="Gradient" id="Gradient_uqkjh"]
+[sub_resource type="Gradient" id="Gradient_e73vr"]
 offsets = PackedFloat32Array(0, 0.48630136, 1)
 colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_86qhk"]
-gradient = SubResource("Gradient_uqkjh")
+gradient = SubResource("Gradient_e73vr")
 fill_from = Vector2(1, 0.54285717)
 fill_to = Vector2(0, 0.6)
 
@@ -6622,7 +6628,7 @@ fill_from = Vector2(0.4952381, 0.4952381)
 fill_to = Vector2(0, 0.3952381)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wnuph"]
-texture = ExtResource("6_sueox")
+texture = SubResource("CompressedTexture2D_k8d8q")
 4:1/0 = 0
 5:1/0 = 0
 41:1/0 = 0
@@ -7246,7 +7252,7 @@ texture = ExtResource("6_sueox")
 47:60/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sueox"]
-texture = ExtResource("5_uqkjh")
+texture = SubResource("CompressedTexture2D_yduqt")
 9:1/0 = 0
 10:1/0 = 0
 12:1/0 = 0
@@ -8378,7 +8384,7 @@ texture = ExtResource("5_uqkjh")
 60:62/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k8d8q"]
-texture = ExtResource("7_ntp76")
+texture = SubResource("CompressedTexture2D_c6wxl")
 10:1/0 = 0
 11:1/0 = 0
 12:1/0 = 0
@@ -9799,7 +9805,7 @@ script = ExtResource("1_ngjra")
 [node name="Oyuncu" parent="." instance=ExtResource("10_qf4jd")]
 modulate = Color(0.5211406, 0.5211406, 0.5211405, 1)
 z_index = 0
-position = Vector2(23116, 1966)
+position = Vector2(20815, 1246)
 rotation = 0.0
 collision_mask = 13
 
@@ -10111,7 +10117,7 @@ metadata/_edit_use_anchors_ = true
 position = Vector2(5912, -439)
 
 [node name="YeniBolgeBaslangic2" type="Marker2D" parent="."]
-position = Vector2(79, 3919)
+position = Vector2(6632, 5091)
 
 [node name="LevelCıkısTetigi" type="Area2D" parent="." node_paths=PackedStringArray("hedef_marker")]
 position = Vector2(4235, 0)

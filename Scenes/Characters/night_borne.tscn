@@ -1,11 +1,11 @@
 [gd_scene load_steps=70 format=3 uid="uid://cfr3ihue2jmds"]
 
-[ext_resource type="AudioStream" uid="uid://dr51wi51vh501" path="res://Assets/Audio/SFX/bone-crack-1-84755.mp3" id="1_4kjco"]
 [ext_resource type="Texture2D" uid="uid://cip122cmpboow" path="res://Assets/Sprites/Enemys/NightBorne/NightBorne.png" id="1_oa324"]
 [ext_resource type="Script" uid="uid://ba65xykdlasjq" path="res://Scenes/Characters/night_borne.gd" id="1_pgaqm"]
+[ext_resource type="AudioStream" uid="uid://bg6s4ft2ct5qv" path="res://Assets/Audio/SFX/electric-shock-334777.mp3" id="3_pgaqm"]
 [ext_resource type="AudioStream" uid="uid://cik4yc2sx7qdp" path="res://Assets/Audio/SFX/Explosion.wav" id="4_pgaqm"]
 [ext_resource type="AudioStream" uid="uid://cyda8r70oqrix" path="res://Assets/Audio/SFX/TahtaYurume1.wav" id="5_pgaqm"]
-[ext_resource type="AudioStream" uid="uid://doaw5sbqpcjt5" path="res://Assets/Audio/SFX/sword_slashing-2-382396.mp3" id="6_lvndi"]
+[ext_resource type="AudioStream" uid="uid://duak2l5k1k5kb" path="res://Assets/Audio/SFX/electric-discharge-386160.mp3" id="6_pgaqm"]
 
 [sub_resource type="Gradient" id="Gradient_5y8nr"]
 offsets = PackedFloat32Array(0, 0.9589041)
@@ -472,7 +472,6 @@ shape = SubResource("CapsuleShape2D_7gip2")
 debug_color = Color(1, 0, 0, 0.42000002)
 
 [node name="SaldiriPivotu" type="Marker2D" parent="."]
-visible = false
 
 [node name="UcurumSensoru" type="RayCast2D" parent="SaldiriPivotu"]
 target_position = Vector2(85, 50)
@@ -527,8 +526,8 @@ scale_amount_max = 4.0
 color = Color(0.76636136, 0.5356885, 0.0578662, 0.64100003)
 
 [node name="SfxHasar" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("1_4kjco")
-volume_db = -15.0
+stream = ExtResource("3_pgaqm")
+volume_db = 5.0
 max_distance = 600.0
 
 [node name="SfxDeath" type="AudioStreamPlayer2D" parent="."]
@@ -542,12 +541,11 @@ volume_db = -12.0
 max_distance = 600.0
 
 [node name="SfxSaldiri" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("6_lvndi")
+stream = ExtResource("6_pgaqm")
 volume_db = -12.0
 max_distance = 600.0
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
-visible = false
 position = Vector2(-135, -91)
 rect = Rect2(-1204, -199, 2680, 536)
 

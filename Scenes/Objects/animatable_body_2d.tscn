@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://tj7gtbky6uqx"]
 
-[ext_resource type="Script" uid="uid://cwerc326kkfvn" path="res://animatable_body_2d.gd" id="1_vlofc"]
+[ext_resource type="Script" uid="uid://cwerc326kkfvn" path="res://Scripts/Objects/animatable_body_2d.gd" id="1_vlofc"]
 [ext_resource type="Texture2D" uid="uid://cuap57x16iayh" path="res://Assets/VFX/07.png" id="2_c0km1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c0km1"]

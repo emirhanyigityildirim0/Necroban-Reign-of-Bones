@@ -11,8 +11,8 @@ var current_state = STATE.PATROL
 @export var gravity: float = 980.0
 
 @export_category("Combat Settings")
-@export var max_health: int = 40
-@export var attack_range: float = 60.0
+@export var max_health: int = 50
+@export var attack_range: float = 70.0
 @export var attack_cooldown: float = 1.2
 var melee_anims = ["Attack"] # Savaşçının tek saldırı animasyonu varsa burası böyle kalır
 

@@ -1,0 +1,60 @@
+[gd_scene load_steps=11 format=3 uid="uid://bby75pqvs3bht"]
+
+[ext_resource type="Texture2D" uid="uid://cn34pic2r6saf" path="res://Assets/Sprites/Environments/torch_big_blue/torch_big_blue_1.png" id="1_h327c"]
+[ext_resource type="Texture2D" uid="uid://cqr8xcirlmwe" path="res://Assets/Sprites/Environments/torch_big_blue/torch_big_blue_2.png" id="2_1v0bp"]
+[ext_resource type="Texture2D" uid="uid://cof2xcq5pwbco" path="res://Assets/Sprites/Environments/torch_big_blue/torch_big_blue_3.png" id="3_7d0l6"]
+[ext_resource type="Texture2D" uid="uid://b151t1fwyhwdk" path="res://Assets/Sprites/Environments/torch_big_blue/torch_big_blue_4.png" id="4_h3fyc"]
+[ext_resource type="Texture2D" uid="uid://delypgea2st0" path="res://Assets/Sprites/Environments/torch_big_blue/torch_big_blue_5.png" id="5_8eydn"]
+[ext_resource type="Texture2D" uid="uid://cksl2s2m3chhb" path="res://Assets/Sprites/Environments/torch_big_blue/torch_big_blue_6.png" id="6_cadq3"]
+[ext_resource type="Script" uid="uid://ccox1apnramb0" path="res://Scripts/UI/point_light_2d.gd" id="7_1v0bp"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hnbmk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_h327c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_1v0bp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_7d0l6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_h3fyc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_8eydn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_cadq3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_1v0bp"]
+offsets = PackedFloat32Array(0, 0.48630136, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7d0l6"]
+gradient = SubResource("Gradient_1v0bp")
+fill_from = Vector2(1, 0.54285717)
+fill_to = Vector2(0, 0.6)
+
+[node name="TorchBlue" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_hnbmk")
+autoplay = "default"
+frame_progress = 0.021313932
+
+[node name="PointLight2D6" type="PointLight2D" parent="."]
+position = Vector2(0, 3.9999886)
+scale = Vector2(7.25, -7.875)
+color = Color(0.19267046, 4.235506e-06, 0.8430464, 1)
+energy = 1.5
+texture = SubResource("GradientTexture2D_7d0l6")
+script = ExtResource("7_1v0bp")

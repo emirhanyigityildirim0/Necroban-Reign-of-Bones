@@ -12,7 +12,7 @@ var current_state = STATE.PATROL
 @export var gravity: float = 980.0
 
 @export_category("Combat Settings")
-@export var max_health: int = 30
+@export var max_health: int = 40
 @export var attack_range: float = 300.0 # Ok atma menzili
 @export var flee_range: float = 120.0   # Kaçmaya başlama sınırı
 @export var panic_range: float = 60.0   # Kaçmayı bırakıp kılıç çekme sınırı

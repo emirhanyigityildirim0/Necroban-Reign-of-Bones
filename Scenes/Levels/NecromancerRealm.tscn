@@ -4388,7 +4388,8 @@ texture = ExtResource("5_3qift")
 115:66/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_7cwvl"]
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 3
+physics_layer_0/collision_mask = 3
 sources/0 = SubResource("TileSetAtlasSource_t044h")
 sources/1 = SubResource("TileSetAtlasSource_7cwvl")
 sources/2 = SubResource("TileSetAtlasSource_avp0b")
@@ -6811,7 +6812,7 @@ color = Color(0.56078434, 0.30980393, 1, 1)
 energy = 0.6
 
 [node name="Oyuncu" parent="." instance=ExtResource("2_n8trc")]
-position = Vector2(-1972.0001, -71)
+position = Vector2(-1972, -7.6293945e-06)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 modulate = Color(0.28000224, 0.0009784019, 0.5722265, 1)

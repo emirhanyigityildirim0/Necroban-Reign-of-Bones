@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ceecdm88g31ne"
-path="res://.godot/imported/sky.png-cf1f3e36e8f8c6fd1bfc76ae643cba79.ctex"
+uid="uid://co8hdmqnvp85"
+path="res://.godot/imported/torch_big_background.png-5d93cbb3c67e3f9a74ecf88477e35b2f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Environments/sky.png"
-dest_files=["res://.godot/imported/sky.png-cf1f3e36e8f8c6fd1bfc76ae643cba79.ctex"]
+source_file="res://Assets/Sprites/Environments/Castle/Decorations/torch_big/torch_big_background.png"
+dest_files=["res://.godot/imported/torch_big_background.png-5d93cbb3c67e3f9a74ecf88477e35b2f.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ci3qbosymuske"
-path="res://.godot/imported/main_lev_build_1.png-dc5e5ed5940c3804ab409632b09b5e50.ctex"
+uid="uid://dw7bne0c34chv"
+path="res://.godot/imported/torch_big_blue_3.png-eb5775e0d397ec5f56f47498da7b2124.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Environments/main_lev_build_1.png"
-dest_files=["res://.godot/imported/main_lev_build_1.png-dc5e5ed5940c3804ab409632b09b5e50.ctex"]
+source_file="res://Assets/Sprites/Environments/Castle/Decorations/torch_big_blue/torch_big_blue_3.png"
+dest_files=["res://.godot/imported/torch_big_blue_3.png-eb5775e0d397ec5f56f47498da7b2124.ctex"]
 
 [params]
 
