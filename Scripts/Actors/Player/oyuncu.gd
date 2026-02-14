@@ -1,30 +1,27 @@
 extends CharacterBody2D
 
 # ==============================================================================
-# PLAYER CONTROLLER SCRIPT
-# ==============================================================================
-# Description: Handles player movement, combat (combos & frame-perfect hits),
-# health system, and UI interactions.
+# PLAYER CONTROLLER SCRIPT (FULL VERSION)
 # ==============================================================================
 
 # --- CONFIGURATION & EXPORTS ---
 var respawn_position = Vector2.ZERO
 @export_category("Movement Settings")
-@export var speed: float = 250.0
+@export var speed: float = 300.0
 @export var jump_force: float = -450.0
 @export var gravity: float = 980.0
 @export var max_jumps: int = 2 
+@export var roll_speed: float = 500.0 # Takla hızı (Hafif artırıldı)
+var is_rolling: bool = false # Takla durum kontrolü
 
 @export_category("Combat Settings")
-# DİKKAT: Hasar değişkenlerini buradan sildik! Artık Global'den çekeceğiz.
 @export var knockback_force: float = 1.5
 @export var hitstop_duration: float = 0.1
 
-# Stores the specific frame index where the damage should be dealt.
+# 2'li Saldırı için Frame verileri
 var attack_data = {
-	"Attack1": 3, 
-	"Attack2": 3, 
-	"Attack3": 4  
+	"Attack1": 1, 
+	"Attack2": 2, 
 }
 
 @export_group("Dialogue Settings")
@@ -65,7 +62,6 @@ var yurume_sesi_db: float = -15.0
 @onready var sfx_flask = get_node_or_null("SfxFlask")
 @onready var sfx_Death = get_node_or_null("SfxDeath")
 
-# --- SIGNALS ---
 signal player_died
 
 # ==============================================================================
@@ -81,15 +77,13 @@ func _ready():
 
 	cutscene_active = false
 	ui_baglantisini_kur()
+	
 	if GameManager.last_checkpoint_pos != null:
-		print("🚩 Kayıtlı Checkpoint bulundu! Işınlanılıyor...")
 		global_position = GameManager.last_checkpoint_pos
 	else:
-		print("⚠️ Kayıt yok, başlangıç noktası kaydedildi.")
 		GameManager.last_checkpoint_pos = global_position
-	# -------------------------
+		
 	Global.can = Global.max_can
-	
 
 func ui_baglantisini_kur():
 	var bulunan_ui = get_tree().current_scene.find_child("DiyalogKatmani", true, false)
@@ -101,18 +95,25 @@ func ui_baglantisini_kur():
 
 func _physics_process(delta):
 	apply_gravity(delta)
-
+	
+	if is_dead: return
+	
 	if cutscene_active:
 		handle_cutscene_physics()
 		return 
-
-	if is_dead: return
 	
+	# --- TAKLA (ROLL) ÖNCELİĞİ ---
+	if is_rolling:
+		move_and_slide()
+		return # Takla atarken yön tuşlarını okuma
+	
+	# Saldırı veya Hasar anında durma
 	if is_hurt or is_attacking:
 		velocity.x = move_toward(velocity.x, 0, speed * delta * 2)
 		move_and_slide()
 		return
 	
+	# Kombo Zamanlayıcı
 	if combo_sayaci > 0:
 		combo_zamanlayicisi -= delta
 		if combo_zamanlayicisi <= 0:
@@ -129,14 +130,14 @@ func _unhandled_input(event):
 		use_flask()
 
 # ==============================================================================
-# PHYSICS & MOVEMENT LOGIC
+# MOVEMENT LOGIC
 # ==============================================================================
 
 func apply_gravity(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
 	else:
-		if not is_attacking: 
+		if not is_attacking and not is_rolling: 
 			jump_count = 0 
 
 func handle_cutscene_physics():
@@ -144,7 +145,6 @@ func handle_cutscene_physics():
 	move_and_slide()
 	if anim: anim.play("Idle")
 	if sfx_yurume: sfx_yurume.stop()
-
 
 func handle_jump():
 	if Input.is_action_just_pressed("ui_accept"):
@@ -155,18 +155,17 @@ func handle_jump():
 
 func cal_ziplama_sesi():
 	if sfx_ziplama:
-		var random_pitch = randf_range(0.9, 1.1)
-		if jump_count == 2:
-			sfx_ziplama.pitch_scale = random_pitch + 0.2
-		else:
-			sfx_ziplama.pitch_scale = random_pitch
 		sfx_ziplama.play()
 
 func handle_movement():
 	if Input.is_action_just_pressed("saldiri"):
 		saldiri_baslat()
 		return
-
+		
+	if Input.is_action_just_pressed("roll") and is_on_floor() and not is_rolling:
+		roll_baslat()
+		return
+		
 	var direction = Input.get_axis("ui_left", "ui_right")
 	if direction:
 		velocity.x = direction * speed
@@ -179,8 +178,22 @@ func handle_movement():
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 
+func roll_baslat():
+	is_rolling = true
+	can_hasar_alabilir = false
+	
+	# Bakılan yöne doğru hız ver
+	var roll_dir = -1 if anim.flip_h else 1
+	velocity.x = roll_dir * roll_speed
+	velocity.y = 0 # Yere yapışık kalsın
+	
+	if anim.sprite_frames.has_animation("Roll"):
+		anim.play("Roll")
+	else:
+		print("❌ HATA: 'Roll' animasyonu bulunamadı!")
+
 func update_animations():
-	if is_dead or is_hurt or is_attacking or cutscene_active:
+	if is_dead or is_hurt or is_attacking or is_rolling or cutscene_active:
 		if sfx_yurume: sfx_yurume.stop()
 		return
 			
@@ -196,88 +209,68 @@ func update_animations():
 		if sfx_yurume: sfx_yurume.stop()
 
 # ==============================================================================
-# COMBAT SYSTEM (FRAME PERFECT)
+# COMBAT SYSTEM
 # ==============================================================================
 
 func saldiri_baslat():
-	if is_attacking: return
+	if is_attacking or is_rolling: return
 	
 	is_attacking = true
 	combo_sayaci += 1
 	combo_zamanlayicisi = combo_sifirlama_suresi
 	
-	if combo_sayaci == 1: anim.play("Attack1")
-	elif combo_sayaci == 2: anim.play("Attack2")
-	elif combo_sayaci >= 3:
-		anim.play("Attack3")
-		combo_sayaci = 0 
+	if combo_sayaci == 1: 
+		anim.play("Attack1")
+	else:
+		anim.play("Attack2")
+		combo_sayaci = 0 # 2. vuruşta komboyu sıfırla
 
 	if sfx_saldiri: 
-		sfx_saldiri.pitch_scale = randf_range(0.8, 1.2)
 		sfx_saldiri.play()
 
 func _on_animated_sprite_2d_frame_changed():
 	if not is_attacking: return
-	
 	var current_anim = anim.animation
-	
 	if current_anim in attack_data:
 		if anim.frame == attack_data[current_anim]:
 			hasar_vur()
 
 func hasar_vur():
-	print("--- 🔍 VURUŞ ANALİZİ BAŞLADI ---")
-	
-
-	# 2. KILIÇ AYARLARINI ZORLA DÜZELT (Editörü boşver, kod konuşsun)
-	# Mask 2 = Düşman Katmanı (Layer 2)
-	saldiri_alani.collision_mask = 1  
 	saldiri_alani.monitoring = true
-	print("⚙️ Kılıç Maskesi kod ile Layer 1'ye ayarlandı.")
-
-	# 3. VURUŞ İŞLEMİ
 	saldiri_collision.disabled = false
 	
-	# Fizik motorunun uyanması için 2 kare bekleyelim (Garanti olsun)
 	await get_tree().physics_frame
 	await get_tree().physics_frame
 	
 	var dusmanlar = saldiri_alani.get_overlapping_bodies()
-	print("👀 Kılıcın içine giren sayısı: ", dusmanlar.size())
-	
 	for dusman in dusmanlar:
-		print("👉 Bulunan Nesne: ", dusman.name)
-		
-		# Kendimizi vurmayalım
 		if dusman == self: continue
-
 		if dusman.has_method("hasar_al"):
-			# Global hasarı uygula
-			var hasar = Global.damage_heavy if combo_sayaci <= 1 else Global.damage_light
+			var hasar = Global.damage_heavy if combo_sayaci == 0 else Global.damage_light
 			dusman.hasar_al(hasar)
-			print("⚔️ BAŞARILI! Düşmana ", hasar, " hasar gönderildi.")
-		else:
-			print("⚠️ Nesne bulundu ama 'hasar_al' fonksiyonu yok! Nesne: ", dusman.name)
 
-	# Kapat
 	await get_tree().create_timer(0.1).timeout
 	saldiri_collision.disabled = true
-	print("----------------------------------")
 
 func _on_animated_sprite_2d_animation_finished():
-	if anim.animation in attack_data:
+	var finished_anim = anim.animation
+	
+	if finished_anim in attack_data:
 		is_attacking = false
 		saldiri_collision.set_deferred("disabled", true)
+		
+	if finished_anim == "Roll":
+		is_rolling = false
+		can_hasar_alabilir = true
+		velocity.x = 0
 
 # ==============================================================================
-# HEALTH & DEATH LOGIC
+# HEALTH, DIALOGUE & UTILS
 # ==============================================================================
 
 func hasar_al(miktar):
 	if is_dead or not can_hasar_alabilir: return
-	
 	if Global: Global.can -= miktar
-	
 	if sfx_hasar: sfx_hasar.play()
 	
 	is_hurt = true 
@@ -302,61 +295,39 @@ func olum_gerceklesti():
 	velocity = Vector2.ZERO
 	anim.play("Death")
 	$CollisionShape2D.set_deferred("disabled", true)
-	
 	if sfx_yurume: sfx_yurume.stop()
 	if sfx_Death: sfx_Death.play()
-	
 	emit_signal("player_died") 
-	
 	await get_tree().create_timer(1.0).timeout
-	
 	Engine.time_scale = 0.3 
 	var ekran = game_over_sahnesi.instantiate()
 	get_tree().root.add_child(ekran)
 
 func use_flask():
 	if is_dead or is_attacking: return
-	if not Global: return 
-
 	if Global.current_flasks > 0 and Global.can < Global.max_can:
 		Global.current_flasks -= 1
-		Global.can += Global.flask_heal_amount
-		if Global.can > Global.max_can:
-			Global.can = Global.max_can
-		
-		if sfx_flask:
-			sfx_flask.stop()
-			sfx_flask.play()
-	
+		Global.can = min(Global.can + Global.flask_heal_amount, Global.max_can)
+		if sfx_flask: sfx_flask.play()
 		get_tree().call_group("hud_group", "update_hud")
-
-# ==============================================================================
-# DIALOGUE HELPERS
-# ==============================================================================
 
 func konus(cumle: String):
 	if not diyalog_kutusu or not diyalog_label: return
-	
 	su_an_konusuyor = true
 	diyalog_kutusu.visible = true
 	diyalog_label.text = cumle
 	diyalog_label.visible_characters = 0
-	
 	for i in range(cumle.length()):
 		diyalog_label.visible_characters = i + 1
 		await get_tree().create_timer(0.04).timeout
-	
 	await get_tree().create_timer(2.0).timeout
 	diyalog_kutusu.visible = false
 	su_an_konusuyor = false
 
-# Checkpoint'e değince bu çalışacak
 func checkpoint_kaydet(yeni_pozisyon):
 	respawn_position = yeni_pozisyon
-	print("🚩 Kayıt Noktası Güncellendi: ", respawn_position)
 
-# Dikenlere değince veya can bitince bu çalışacak
 func respawn_ol():
-	velocity = Vector2.ZERO # Hızı sıfırla (Uçarak doğmasın)
-	global_position = respawn_position # Işınla
-	Global.can = Global.max_can # Canı fulle
+	velocity = Vector2.ZERO
+	global_position = respawn_position
+	Global.can = Global.max_can
