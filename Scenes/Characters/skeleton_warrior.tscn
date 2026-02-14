@@ -1,8 +1,7 @@
-[gd_scene load_steps=49 format=3 uid="uid://dv2xxt6wf52qt"]
+[gd_scene load_steps=42 format=3 uid="uid://dv2xxt6wf52qt"]
 
 [ext_resource type="Script" uid="uid://b6gee5b777qc1" path="res://Scripts/Actors/Enemies/skeleton_warrior.gd" id="1_it2us"]
 [ext_resource type="Texture2D" uid="uid://t0285g3s7w5c" path="res://Assets/Sprites/Enemys/Skeleton_Warrior/Attack_1.png" id="2_j5kak"]
-[ext_resource type="Texture2D" uid="uid://bcr6j8y6wnj70" path="res://Assets/Sprites/Enemys/Skeleton_Warrior/Attack_2.png" id="3_fh53j"]
 [ext_resource type="Texture2D" uid="uid://c8x0oylicu1mw" path="res://Assets/Sprites/Enemys/Skeleton_Warrior/Dead.png" id="4_3kn7p"]
 [ext_resource type="Texture2D" uid="uid://bgrvu8trmmal4" path="res://Assets/Sprites/Enemys/Skeleton_Warrior/Hurt.png" id="5_7fxlf"]
 [ext_resource type="Texture2D" uid="uid://dhqxxrqd0xbxd" path="res://Assets/Sprites/Enemys/Skeleton_Warrior/Idle.png" id="6_tud44"]
@@ -28,33 +27,9 @@ region = Rect2(256, 0, 128, 128)
 atlas = ExtResource("2_j5kak")
 region = Rect2(384, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_pt8rg"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_83bcu"]
 atlas = ExtResource("2_j5kak")
 region = Rect2(512, 0, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_m7v7a"]
-atlas = ExtResource("3_fh53j")
-region = Rect2(0, 0, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0h02m"]
-atlas = ExtResource("3_fh53j")
-region = Rect2(128, 0, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_31oik"]
-atlas = ExtResource("3_fh53j")
-region = Rect2(256, 0, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8dey7"]
-atlas = ExtResource("3_fh53j")
-region = Rect2(384, 0, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_nfby0"]
-atlas = ExtResource("3_fh53j")
-region = Rect2(512, 0, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_u86cr"]
-atlas = ExtResource("3_fh53j")
-region = Rect2(640, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3ie3k"]
 atlas = ExtResource("4_3kn7p")
@@ -152,29 +127,11 @@ animations = [{
 "texture": SubResource("AtlasTexture_6uvca")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_pt8rg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_m7v7a")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0h02m")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_31oik")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8dey7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_nfby0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_u86cr")
+"texture": SubResource("AtlasTexture_83bcu")
 }],
 "loop": false,
 "name": &"Attack",
-"speed": 14.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -259,14 +216,14 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cs1qu"]
 radius = 13.0
-height = 84.0
+height = 72.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bx1fg"]
 radius = 17.0
 height = 86.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a3a81"]
-size = Vector2(95.125, 71.5)
+size = Vector2(78, 71.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6uvca"]
 size = Vector2(388, 100.0625)
@@ -277,8 +234,7 @@ size = Vector2(26, 25)
 [node name="SkeletonWarrior" type="CharacterBody2D" groups=["dusman"]]
 self_modulate = Color(0.8045722, 0, 0.13338664, 1)
 light_mask = 31
-collision_layer = 5
-collision_mask = 3
+collision_mask = 7
 script = ExtResource("1_it2us")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -289,16 +245,18 @@ position = Vector2(12.499995, -42.5)
 scale = Vector2(1.0390625, 1.2109375)
 sprite_frames = SubResource("SpriteFrames_a3a81")
 animation = &"Attack"
+frame = 4
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_cs1qu")
 debug_color = Color(1, 0, 0, 0.42000002)
 
 [node name="SaldiriPivotu" type="Marker2D" parent="."]
-visible = false
 
 [node name="UcurumSensoru" type="RayCast2D" parent="SaldiriPivotu"]
 target_position = Vector2(85, 50)
+collision_mask = 4
 
 [node name="Hitbox" type="Area2D" parent="SaldiriPivotu"]
 collision_layer = 0
@@ -310,12 +268,14 @@ debug_color = Color(0.824295, 0.96332425, 0.99999994, 0.41960785)
 
 [node name="SaldiriSensoru" type="RayCast2D" parent="SaldiriPivotu"]
 target_position = Vector2(106, 0)
+collision_mask = 3
 
 [node name="KilicAlani" type="Area2D" parent="SaldiriPivotu"]
 collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SaldiriPivotu/KilicAlani"]
+position = Vector2(20, 0)
 shape = SubResource("RectangleShape2D_a3a81")
 debug_color = Color(0.9504003, 0.21106213, 0.20314124, 0.41960785)
 
@@ -344,7 +304,6 @@ volume_db = -12.0
 max_distance = 600.0
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
-visible = false
 position = Vector2(0, -1)
 rect = Rect2(-1149, -488, 2371, 825)
 
@@ -357,5 +316,6 @@ position = Vector2(0, -39)
 shape = SubResource("RectangleShape2D_f27a7")
 debug_color = Color(0, 0, 0, 0.41960785)
 
+[connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
 [connection signal="body_entered" from="SaldiriPivotu/Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_entered" from="SaldiriPivotu/VisionArea" to="." method="_on_vision_area_body_entered"]
