@@ -148,6 +148,8 @@ func _process(delta):
 			for hedef in vurulanlar:
 				# Sadece oyuncuya vur
 				if hedef.is_in_group("oyuncu") and hedef.has_method("hasar_al"):
+					if hedef.get("can_hasar_alabilir") == false:
+						continue
 					print("⚔️ Boss Kutuyla (Area2D) Vurdu!")
 					hedef.hasar_al(damage)
 					has_dealt_damage = true # Tek vuruş kilidi
