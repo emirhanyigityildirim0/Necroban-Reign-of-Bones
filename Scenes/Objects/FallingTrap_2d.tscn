@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://b2xsxh6uluphb" path="res://Scripts/Objects/falling_trap_2d.gd" id="1_mr2e7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mr2e7"]
-size = Vector2(110, 432)
+size = Vector2(296, 432)
 
 [node name="RigidBody2D" type="RigidBody2D"]
 collision_mask = 3
