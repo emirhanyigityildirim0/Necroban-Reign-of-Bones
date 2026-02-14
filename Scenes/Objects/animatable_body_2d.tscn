@@ -11,6 +11,8 @@ atlas = ExtResource("2_c0km1")
 region = Rect2(0, 243.10864, 17.401367, 44.891357)
 
 [node name="AnimatableBody2D" type="AnimatableBody2D"]
+collision_layer = 5
+collision_mask = 3
 script = ExtResource("1_vlofc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
