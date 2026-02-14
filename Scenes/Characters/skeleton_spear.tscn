@@ -278,7 +278,7 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qrb4b"]
 radius = 13.0
-height = 84.0
+height = 78.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oucdu"]
 radius = 17.0
@@ -311,10 +311,10 @@ shape = SubResource("CapsuleShape2D_qrb4b")
 debug_color = Color(0.9969166, 0, 0, 0.42000002)
 
 [node name="SaldiriPivotu" type="Marker2D" parent="."]
-visible = false
 
 [node name="UcurumSensoru" type="RayCast2D" parent="SaldiriPivotu"]
 target_position = Vector2(85, 50)
+collision_mask = 4
 
 [node name="Hitbox" type="Area2D" parent="SaldiriPivotu"]
 collision_layer = 0
@@ -383,7 +383,6 @@ volume_db = -12.0
 max_distance = 600.0
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
-visible = false
 position = Vector2(0, -1)
 rect = Rect2(-1149, -488, 2371, 825)
 
