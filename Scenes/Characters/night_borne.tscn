@@ -475,6 +475,7 @@ debug_color = Color(1, 0, 0, 0.42000002)
 
 [node name="UcurumSensoru" type="RayCast2D" parent="SaldiriPivotu"]
 target_position = Vector2(85, 50)
+collision_mask = 4
 
 [node name="Hitbox" type="Area2D" parent="SaldiriPivotu"]
 collision_layer = 0
