@@ -493,7 +493,7 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cs1qu"]
 radius = 17.0
-height = 86.0
+height = 70.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bx1fg"]
 radius = 16.0
@@ -503,7 +503,7 @@ height = 92.0
 size = Vector2(43.125, 57)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6uvca"]
-size = Vector2(450, 100.0625)
+size = Vector2(681, 25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pa2fo"]
 size = Vector2(26, 25)
@@ -512,8 +512,7 @@ size = Vector2(26, 25)
 self_modulate = Color(0.8045722, 0, 0.13338664, 1)
 light_mask = 31
 visibility_layer = 3
-collision_layer = 5
-collision_mask = 3
+collision_mask = 7
 script = ExtResource("1_52j1x")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -531,13 +530,13 @@ shape = SubResource("CapsuleShape2D_cs1qu")
 debug_color = Color(1, 0, 0, 0.42000002)
 
 [node name="SaldiriPivotu" type="Marker2D" parent="."]
-visible = false
 
 [node name="NamluUcu" type="Marker2D" parent="SaldiriPivotu"]
 position = Vector2(-1, -12)
 
 [node name="UcurumSensoru" type="RayCast2D" parent="SaldiriPivotu"]
 target_position = Vector2(85, 50)
+collision_mask = 4
 
 [node name="Hitbox" type="Area2D" parent="SaldiriPivotu"]
 collision_layer = 0
@@ -564,7 +563,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SaldiriPivotu/VisionArea"]
-position = Vector2(114, 1)
+position = Vector2(-1.5, -12.5)
 shape = SubResource("RectangleShape2D_6uvca")
 debug_color = Color(0.7928107, 0.64139813, 0, 0.41960785)
 
@@ -589,7 +588,6 @@ volume_db = -12.0
 max_distance = 600.0
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
-visible = false
 position = Vector2(-3, -155)
 rect = Rect2(-650, -359, 1310, 966)
 
