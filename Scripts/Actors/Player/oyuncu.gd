@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 # ==============================================================================
-# PLAYER CONTROLLER SCRIPT (FULL VERSION)
+# PLAYER CONTROLLER SCRIPT (FULL VERSION - WITH FALL ANIMATION)
 # ==============================================================================
 
 # --- CONFIGURATION & EXPORTS ---
@@ -11,12 +11,13 @@ var respawn_position = Vector2.ZERO
 @export var jump_force: float = -450.0
 @export var gravity: float = 980.0
 @export var max_jumps: int = 2 
-@export var roll_speed: float = 500.0 # Takla hızı (Hafif artırıldı)
-var is_rolling: bool = false # Takla durum kontrolü
+@export var roll_speed: float = 500.0 
+var is_rolling: bool = false 
 
 @export_category("Combat Settings")
 @export var knockback_force: float = 1.5
 @export var hitstop_duration: float = 0.1
+var state_lock_timer: float = 0.0
 
 # 2'li Saldırı için Frame verileri
 var attack_data = {
@@ -94,26 +95,34 @@ func ui_baglantisini_kur():
 			diyalog_label = bulunan_label
 
 func _physics_process(delta):
+	
 	apply_gravity(delta)
 	
 	if is_dead: return
+	
+	if is_attacking or is_rolling or is_hurt:
+		state_lock_timer += delta
+		# Eğer 1.2 saniyeden uzun sürdüyse (Animasyonlar bu kadar sürmez)
+		if state_lock_timer > 1.2:
+			print("⚠️ DİKKAT: Karakter kilitlendi! Zorla düzeltiliyor...")
+			force_reset_states()
+		else:
+			state_lock_timer = 0.0 # Her şey normalse süreyi sıfırla
+	# -----------------------
 	
 	if cutscene_active:
 		handle_cutscene_physics()
 		return 
 	
-	# --- TAKLA (ROLL) ÖNCELİĞİ ---
 	if is_rolling:
 		move_and_slide()
-		return # Takla atarken yön tuşlarını okuma
+		return 
 	
-	# Saldırı veya Hasar anında durma
 	if is_hurt or is_attacking:
 		velocity.x = move_toward(velocity.x, 0, speed * delta * 2)
 		move_and_slide()
 		return
 	
-	# Kombo Zamanlayıcı
 	if combo_sayaci > 0:
 		combo_zamanlayicisi -= delta
 		if combo_zamanlayicisi <= 0:
@@ -151,11 +160,7 @@ func handle_jump():
 		if jump_count < max_jumps:
 			velocity.y = jump_force
 			jump_count += 1
-			cal_ziplama_sesi()
-
-func cal_ziplama_sesi():
-	if sfx_ziplama:
-		sfx_ziplama.play()
+			if sfx_ziplama: sfx_ziplama.play()
 
 func handle_movement():
 	if Input.is_action_just_pressed("saldiri"):
@@ -179,26 +184,39 @@ func handle_movement():
 		velocity.x = move_toward(velocity.x, 0, speed)
 
 func roll_baslat():
+	if is_rolling: return
+	
 	is_rolling = true
-	can_hasar_alabilir = false
+	can_hasar_alabilir = false # 🛡️ Hasar ve knockback almanı engeller
+	set_collision_mask_value(1, false)
+	set_collision_layer_value(2, false)
+	$CollisionShape2D.scale.y = 0.5 
+	$CollisionShape2D.position.y = 5
 	
 	# Bakılan yöne doğru hız ver
 	var roll_dir = -1 if anim.flip_h else 1
 	velocity.x = roll_dir * roll_speed
-	velocity.y = 0 # Yere yapışık kalsın
+	velocity.y = 0 
 	
 	if anim.sprite_frames.has_animation("Roll"):
 		anim.play("Roll")
 	else:
 		print("❌ HATA: 'Roll' animasyonu bulunamadı!")
 
+# --- BURASI GÜNCELLENDİ (JUMP & FALL KONTROLÜ) ---
 func update_animations():
 	if is_dead or is_hurt or is_attacking or is_rolling or cutscene_active:
 		if sfx_yurume: sfx_yurume.stop()
 		return
 			
 	if not is_on_floor():
-		anim.play("Jump")
+		# Eğer dikey hız sıfırdan küçükse yukarı çıkıyordur (Jump)
+		if velocity.y < 0:
+			anim.play("Jump")
+		# Eğer dikey hız sıfırdan büyükse aşağı düşüyordur (Fall)
+		else:
+			anim.play("Fall")
+			
 		if sfx_yurume: sfx_yurume.stop()
 	elif velocity.x != 0:
 		anim.play("Run")
@@ -223,7 +241,7 @@ func saldiri_baslat():
 		anim.play("Attack1")
 	else:
 		anim.play("Attack2")
-		combo_sayaci = 0 # 2. vuruşta komboyu sıfırla
+		combo_sayaci = 0 
 
 	if sfx_saldiri: 
 		sfx_saldiri.play()
@@ -238,54 +256,59 @@ func _on_animated_sprite_2d_frame_changed():
 func hasar_vur():
 	saldiri_alani.monitoring = true
 	saldiri_collision.disabled = false
-	
 	await get_tree().physics_frame
 	await get_tree().physics_frame
-	
 	var dusmanlar = saldiri_alani.get_overlapping_bodies()
 	for dusman in dusmanlar:
 		if dusman == self: continue
 		if dusman.has_method("hasar_al"):
 			var hasar = Global.damage_heavy if combo_sayaci == 0 else Global.damage_light
 			dusman.hasar_al(hasar)
-
 	await get_tree().create_timer(0.1).timeout
 	saldiri_collision.disabled = true
 
 func _on_animated_sprite_2d_animation_finished():
 	var finished_anim = anim.animation
-	
 	if finished_anim in attack_data:
 		is_attacking = false
 		saldiri_collision.set_deferred("disabled", true)
 		
 	if finished_anim == "Roll":
 		is_rolling = false
-		can_hasar_alabilir = true
+		can_hasar_alabilir = true # Dokunulmazlık bitti
+		set_collision_mask_value(1, true)
+		set_collision_layer_value(2, true)
+		# --- HITBOX'I ESKİ HALİNE GETİR ---
+		$CollisionShape2D.scale.y = 1.0
+		$CollisionShape2D.position.y = 0 # Pozisyonu sıfırla
+		
 		velocity.x = 0
+		print("✅ Takla ve dokunulmazlık bitti, hitbox düzeldi.")
 
 # ==============================================================================
-# HEALTH, DIALOGUE & UTILS
+# HEALTH & UTILS
 # ==============================================================================
 
 func hasar_al(miktar):
 	if is_dead or not can_hasar_alabilir: return
+	
+	is_attacking = false
+	is_rolling = false
+	combo_sayaci = 0
+	saldiri_collision.set_deferred("disabled", true) # Kılıcı kapat
+	
 	if Global: Global.can -= miktar
 	if sfx_hasar: sfx_hasar.play()
-	
 	is_hurt = true 
+	anim.play("Hurt")
 	can_hasar_alabilir = false
 	anim.modulate = Color(1, 0, 0) 
-	
-	velocity.x = -pivot.scale.x * 200 
+	velocity.x = -pivot.scale.x * 100 
 	velocity.y = -150 
-	
 	await get_tree().create_timer(0.4).timeout
-	
 	anim.modulate = Color(1, 1, 1)
 	can_hasar_alabilir = true
 	is_hurt = false
-	
 	if Global and Global.can <= 0:
 		olum_gerceklesti()
 
@@ -331,3 +354,16 @@ func respawn_ol():
 	velocity = Vector2.ZERO
 	global_position = respawn_position
 	Global.can = Global.max_can
+func force_reset_states():
+	is_attacking = false
+	is_rolling = false
+	is_hurt = false
+	can_hasar_alabilir = true
+	saldiri_collision.set_deferred("disabled", true)
+
+	# Fiziksel takılmaları çöz
+	$CollisionShape2D.scale.y = 1.0 
+	$CollisionShape2D.position.y = 0
+	set_collision_mask_value(1, true) 
+	anim.play("Idle")
+	state_lock_timer = 0.0
