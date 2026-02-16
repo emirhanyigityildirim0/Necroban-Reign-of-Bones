@@ -79,11 +79,14 @@ func _ready():
 	cutscene_active = false
 	ui_baglantisini_kur()
 	
-	if GameManager.last_checkpoint_pos != null:
+	if GameManager.last_checkpoint_pos != null and GameManager.last_checkpoint_pos != Vector2.ZERO:
+		print("🚩 Checkpoint'e gidiliyor: ", GameManager.last_checkpoint_pos)
 		global_position = GameManager.last_checkpoint_pos
 	else:
+		print("📍 Kayıt yok, Editör pozisyonunda başlandı.")
+		# Olduğum yeri yeni başlangıç noktası yap
 		GameManager.last_checkpoint_pos = global_position
-		
+		respawn_position = global_position
 	Global.can = Global.max_can
 
 func ui_baglantisini_kur():
