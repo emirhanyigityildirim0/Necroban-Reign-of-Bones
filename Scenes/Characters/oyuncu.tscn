@@ -19,8 +19,8 @@
 [ext_resource type="AudioStream" uid="uid://lubta48xaeiv" path="res://Assets/Audio/SFX/Dead1.wav" id="16_p0yu1"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rvygp"]
-radius = 21.010729
-height = 69.998566
+radius = 16.999996
+height = 47.998558
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3xavb"]
 atlas = ExtResource("2_igdwe")
@@ -510,11 +510,12 @@ safe_margin = 5.0
 script = ExtResource("1_cu705")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.0078712385, 10.999997)
 shape = SubResource("CapsuleShape2D_rvygp")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-3.9592113, -57.002846)
-zoom = Vector2(1.6, 1.6)
+zoom = Vector2(2.8, 2.8)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
