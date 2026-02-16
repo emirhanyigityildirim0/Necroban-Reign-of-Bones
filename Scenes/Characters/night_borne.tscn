@@ -1,7 +1,7 @@
 [gd_scene load_steps=70 format=3 uid="uid://cfr3ihue2jmds"]
 
 [ext_resource type="Texture2D" uid="uid://cip122cmpboow" path="res://Assets/Sprites/Enemys/NightBorne/NightBorne.png" id="1_oa324"]
-[ext_resource type="Script" uid="uid://ba65xykdlasjq" path="res://Scenes/Characters/night_borne.gd" id="1_pgaqm"]
+[ext_resource type="Script" uid="uid://ba65xykdlasjq" path="res://Scripts/Actors/Enemies/night_borne.gd" id="1_pgaqm"]
 [ext_resource type="AudioStream" uid="uid://bg6s4ft2ct5qv" path="res://Assets/Audio/SFX/electric-shock-334777.mp3" id="3_pgaqm"]
 [ext_resource type="AudioStream" uid="uid://cik4yc2sx7qdp" path="res://Assets/Audio/SFX/Explosion.wav" id="4_pgaqm"]
 [ext_resource type="AudioStream" uid="uid://cyda8r70oqrix" path="res://Assets/Audio/SFX/TahtaYurume1.wav" id="5_pgaqm"]
