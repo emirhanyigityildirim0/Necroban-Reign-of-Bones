@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/brain-damage-148577.mp3-95b0dfad4921b1a6a7ec5
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0
