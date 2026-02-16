@@ -15,7 +15,7 @@ config/description="Necroban-Reign-of-Bones
 A dark fantasy action-platformer where the Last Mortal battles against the Necromancer's eternal dominion. Developed with Godot 4.\""
 run/main_scene="uid://dc3ai3l003t53"
 config/features=PackedStringArray("4.5", "Forward Plus")
-config/icon="uid://cdtvnp1itkbng"
+config/icon="uid://y0u0lrqtfegp"
 
 [autoload]
 
@@ -23,6 +23,12 @@ Global="*res://Scripts/Managers/Global.gd"
 GameFeel="*res://Scripts/Managers/GameFeel.gd"
 Diyalog="*res://Scenes/UI/diyalog_katmani.tscn"
 GameManager="*res://Scripts/Managers/GameManager.gd"
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/stretch/mode="canvas_items"
 
 [dotnet]
 
