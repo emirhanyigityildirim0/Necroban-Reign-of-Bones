@@ -1,6 +1,6 @@
 [gd_scene load_steps=52 format=3 uid="uid://cvpbmcbytk21j"]
 
-[ext_resource type="Script" uid="uid://m44e4yl1wc4q" path="res://Scenes/Characters/skeleton_spear.gd" id="1_1hchn"]
+[ext_resource type="Script" uid="uid://m44e4yl1wc4q" path="res://Scripts/Actors/Enemies/skeleton_spear.gd" id="1_1hchn"]
 [ext_resource type="Texture2D" uid="uid://cic6tt0c17j08" path="res://Assets/Sprites/Enemys/Skeleton_Spearman/Attack_1.png" id="1_x25vl"]
 [ext_resource type="Texture2D" uid="uid://dgtp2ugrw3t12" path="res://Assets/Sprites/Enemys/Skeleton_Spearman/Attack_2.png" id="2_fhp1k"]
 [ext_resource type="Texture2D" uid="uid://lgjv3wyxrf4i" path="res://Assets/Sprites/Enemys/Skeleton_Spearman/Dead.png" id="3_1hchn"]
