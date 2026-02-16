@@ -65882,7 +65882,7 @@ position = Vector2(3024, -335)
 rotation = 0.0
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color(0.50108165, 0.99999994, 0.89285815, 1)
+color = Color(0, 0.89419967, 0.7706219, 1)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 scale = Vector2(0.2, 0.2)
@@ -65910,14 +65910,14 @@ motion_scale = Vector2(0.1, 0)
 motion_mirroring = Vector2(2400, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Gokyuzu"]
-self_modulate = Color(0.5002141, 0.99999994, 0.8940114, 1)
+self_modulate = Color(5.583167e-06, 0.99073845, 0.9944406, 1)
 texture_filter = 1
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("11_ajxrg")
 centered = false
 
 [node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground/Gokyuzu"]
-self_modulate = Color(0.5002141, 0.99999994, 0.8940114, 1)
+self_modulate = Color(5.583167e-06, 0.99073845, 0.9944406, 1)
 texture_filter = 1
 position = Vector2(1200, 0)
 scale = Vector2(2.5, 2.5)
@@ -65925,7 +65925,7 @@ texture = ExtResource("11_ajxrg")
 centered = false
 
 [node name="Sprite2D3" type="Sprite2D" parent="ParallaxBackground/Gokyuzu"]
-self_modulate = Color(0.5002141, 0.99999994, 0.8940114, 1)
+self_modulate = Color(5.583167e-06, 0.99073845, 0.9944406, 1)
 texture_filter = 1
 position = Vector2(2400, 0)
 scale = Vector2(2.5, 2.5)
