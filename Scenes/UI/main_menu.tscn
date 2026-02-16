@@ -1,13 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://dc3ai3l003t53"]
+[gd_scene load_steps=26 format=3 uid="uid://dc3ai3l003t53"]
 
 [ext_resource type="Script" uid="uid://cdf0camwsvm16" path="res://Scripts/Levels/main_menu.gd" id="1_o14dv"]
-[ext_resource type="Texture2D" uid="uid://b3hdh3ijcrxu7" path="res://Assets/Sprites/Environments/Cave/MagaraAsama1.png" id="2_u7lva"]
-[ext_resource type="Texture2D" uid="uid://cdtvnp1itkbng" path="res://Assets/Sprites/Necroban_Reign_of_Bones_logo3.png" id="3_mrfpk"]
+[ext_resource type="Texture2D" uid="uid://chvyd8yxyvllc" path="res://Assets/Sprites/Environments/War3/layer_1.png" id="2_gih0s"]
+[ext_resource type="Texture2D" uid="uid://y0u0lrqtfegp" path="res://Assets/Sprites/Environments/f29f79e9-b287-40ab-98d3-2cdebb410d23.png" id="2_u7lva"]
+[ext_resource type="Texture2D" uid="uid://o8wotfpx2skw" path="res://Assets/Sprites/Environments/m2/7.png" id="3_k33u3"]
+[ext_resource type="Texture2D" uid="uid://boxo0kx8yah8w" path="res://Assets/Sprites/Environments/War3/layer_2.png" id="3_lrjdf"]
 [ext_resource type="FontFile" uid="uid://8yo86eiil1g5" path="res://Assets/Fonts/Cinzel_Decorative/CinzelDecorative-Black.ttf" id="3_u7lva"]
+[ext_resource type="Texture2D" uid="uid://clj6jckmn3nup" path="res://Assets/Sprites/Environments/2/2.png" id="4_lrjdf"]
 [ext_resource type="Script" uid="uid://ccox1apnramb0" path="res://Scripts/UI/point_light_2d.gd" id="4_mrfpk"]
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_mrfpk"]
-blend_mode = 1
+[ext_resource type="Texture2D" uid="uid://d3sqd5uilboep" path="res://Assets/Sprites/Enemys/Necromancer_creativekind-Sheet.png" id="7_lrjdf"]
+[ext_resource type="AudioStream" uid="uid://bdalhmi060poa" path="res://Assets/Audio/Musics/brain-damage-148577.mp3" id="10_wqme5"]
 
 [sub_resource type="Gradient" id="Gradient_3sem8"]
 offsets = PackedFloat32Array(0.02739726, 0.5273973, 1)
@@ -16,36 +18,272 @@ colors = PackedColorArray(0.059503496, 0.059503496, 0.059503496, 1, 1, 1, 1, 1, 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_4pqbp"]
 gradient = SubResource("Gradient_3sem8")
 
+[sub_resource type="Gradient" id="Gradient_lrjdf"]
+offsets = PackedFloat32Array(0.07534247, 0.51369864, 0.9041096)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wqme5"]
+gradient = SubResource("Gradient_lrjdf")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wqme5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wqme5"]
+atlas = ExtResource("7_lrjdf")
+region = Rect2(0, 0, 160, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jewm6"]
+atlas = ExtResource("7_lrjdf")
+region = Rect2(160, 0, 160, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cejvf"]
+atlas = ExtResource("7_lrjdf")
+region = Rect2(320, 0, 160, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ru8vt"]
+atlas = ExtResource("7_lrjdf")
+region = Rect2(480, 0, 160, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ypsd1"]
+atlas = ExtResource("7_lrjdf")
+region = Rect2(640, 0, 160, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xp0kt"]
+atlas = ExtResource("7_lrjdf")
+region = Rect2(800, 0, 160, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1yfdm"]
+atlas = ExtResource("7_lrjdf")
+region = Rect2(960, 0, 160, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3h8o7"]
+atlas = ExtResource("7_lrjdf")
+region = Rect2(1120, 0, 160, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tr32r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wqme5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jewm6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cejvf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ru8vt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ypsd1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xp0kt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1yfdm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3h8o7")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 8.0
+}]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_mrfpk"]
+blend_mode = 1
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
 [node name="MainMenu" type="Control"]
+texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
 script = ExtResource("1_o14dv")
 
 [node name="Background" type="TextureRect" parent="."]
-modulate = Color(0.44429955, 0.0025453467, 0.8802678, 1)
+modulate = Color(0.32915837, 0.3291584, 0.3291584, 1)
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_u7lva")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Background"]
+layer = -5
+
+[node name="CanvasModulate" type="CanvasModulate" parent="Background/ParallaxBackground"]
+color = Color(0.78972155, 0.24593392, 0.99999994, 1)
+
+[node name="PointLight2D14" type="PointLight2D" parent="Background/ParallaxBackground"]
+position = Vector2(789.75, 685.125)
+scale = Vector2(0.19921768, -0.7539066)
+color = Color(0.9079314, 0.2804112, 0, 1)
+energy = 5.0
+range_layer_min = -10
+range_item_cull_mask = 7
+texture = SubResource("GradientTexture2D_4pqbp")
+script = ExtResource("4_mrfpk")
+
+[node name="PointLight2D16" type="PointLight2D" parent="Background/ParallaxBackground"]
+position = Vector2(777.37494, 685.125)
+scale = Vector2(0.19921768, -0.7539066)
+color = Color(0.9079314, 0.2804112, 0, 1)
+energy = 5.0
+range_layer_min = -10
+range_item_cull_mask = 6
+texture = SubResource("GradientTexture2D_4pqbp")
+script = ExtResource("4_mrfpk")
+
+[node name="PointLight2D17" type="PointLight2D" parent="Background/ParallaxBackground"]
+position = Vector2(758.375, 637.125)
+scale = Vector2(0.19921768, -0.7539066)
+color = Color(0.9079314, 0.2804112, 0, 1)
+energy = 5.0
+range_layer_min = -10
+range_item_cull_mask = 6
+texture = SubResource("GradientTexture2D_4pqbp")
+script = ExtResource("4_mrfpk")
+
+[node name="PointLight2D18" type="PointLight2D" parent="Background/ParallaxBackground"]
+position = Vector2(806.375, 716.125)
+scale = Vector2(0.19921768, -0.7539066)
+color = Color(0.9079314, 0.2804112, 0, 1)
+energy = 5.0
+range_layer_min = -10
+range_item_cull_mask = 6
+texture = SubResource("GradientTexture2D_4pqbp")
+script = ExtResource("4_mrfpk")
+
+[node name="PointLight2D19" type="PointLight2D" parent="Background/ParallaxBackground"]
+position = Vector2(653, 614)
+scale = Vector2(0.19921768, -0.7539066)
+color = Color(0.9079314, 0.2804112, 0, 1)
+energy = 5.0
+range_layer_min = -10
+range_item_cull_mask = 6
+texture = SubResource("GradientTexture2D_4pqbp")
+script = ExtResource("4_mrfpk")
+
+[node name="PointLight2D20" type="PointLight2D" parent="Background/ParallaxBackground"]
+position = Vector2(759.375, 596.125)
+scale = Vector2(0.19921768, -0.7539066)
+color = Color(0.9079314, 0.2804112, 0, 1)
+energy = 5.0
+range_layer_min = -10
+range_item_cull_mask = 6
+texture = SubResource("GradientTexture2D_4pqbp")
+script = ExtResource("4_mrfpk")
+
+[node name="PointLight2D15" type="PointLight2D" parent="Background/ParallaxBackground"]
+light_mask = 31
+visibility_layer = 31
+position = Vector2(911.73254, 498.6977)
+rotation = -0.8865118
+scale = Vector2(7.611633, -32.210102)
+color = Color(0.1949254, 0.2765464, 0.7934247, 1)
+energy = 2.0
+range_layer_min = -10
+texture = SubResource("GradientTexture2D_4pqbp")
+script = ExtResource("4_mrfpk")
+
+[node name="Gokyuzu" type="ParallaxLayer" parent="Background/ParallaxBackground"]
+light_mask = 31
+visibility_layer = 31
+texture_filter = 1
+position = Vector2(-8, 33)
+motion_scale = Vector2(0.1, 0)
+motion_mirroring = Vector2(1920, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/ParallaxBackground/Gokyuzu"]
+texture_filter = 1
+position = Vector2(7, -45)
+scale = Vector2(6, 6.066667)
+texture = ExtResource("2_gih0s")
+centered = false
+
+[node name="Sprite2D3" type="Sprite2D" parent="Background/ParallaxBackground/Gokyuzu"]
+modulate = Color(0.23908916, 0.19692007, 0.3690158, 1)
+light_mask = 31
+visibility_layer = 31
+texture_filter = 1
+position = Vector2(379.00003, 501)
+scale = Vector2(1.853125, 1.7480916)
+texture = ExtResource("3_lrjdf")
+centered = false
+
+[node name="Daglar" type="ParallaxLayer" parent="Background/ParallaxBackground"]
+position = Vector2(-8, 33)
+motion_scale = Vector2(0.5, 0)
+motion_mirroring = Vector2(1152, 0)
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/ParallaxBackground/Daglar"]
+modulate = Color(0.21960784, 0.22352941, 0.39215687, 1)
+position = Vector2(9, 160)
+scale = Vector2(1.0868056, 1.756173)
+texture = ExtResource("3_k33u3")
+centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="Background/ParallaxBackground/Daglar"]
+modulate = Color(0.2199867, 0.22392428, 0.39246866, 1)
+position = Vector2(635, 137)
+scale = Vector2(0.8715278, 1.8333331)
+texture = ExtResource("3_k33u3")
+centered = false
+
+[node name="Agaclar-evler" type="ParallaxLayer" parent="Background/ParallaxBackground"]
+position = Vector2(378, 133)
+motion_scale = Vector2(0.8, 0)
+motion_mirroring = Vector2(1152, 0)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Background/ParallaxBackground/Agaclar-evler"]
+modulate = Color(0.5907145, 0.6582222, 0.87343466, 1)
+texture_filter = 1
+position = Vector2(-379.00006, -229)
+scale = Vector2(2.0052085, 3.6265433)
+texture = ExtResource("4_lrjdf")
+centered = false
+
+[node name="PointLight2D" type="PointLight2D" parent="Background/ParallaxBackground"]
+position = Vector2(760, 539.00006)
+scale = Vector2(1.859375, 6.5234385)
+color = Color(0.7806846, 7.3255e-05, 4.0718616e-05, 1)
+energy = 2.0
+range_layer_min = -10
+texture = SubResource("GradientTexture2D_wqme5")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="Background"]
+position = Vector2(745, 695)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/CharacterBody2D"]
+visible = false
+shape = SubResource("CircleShape2D_wqme5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Background/CharacterBody2D"]
+self_modulate = Color(0.13319641, 0.13319641, 0.13319638, 1)
+position = Vector2(16, -150)
+scale = Vector2(0.38125, 0.34375)
+sprite_frames = SubResource("SpriteFrames_tr32r")
+animation = &"Idle"
+autoplay = "Idle"
+frame_progress = 0.3889438
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -200.0
-offset_top = -135.0
-offset_right = 200.0
-offset_bottom = 135.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 20
@@ -55,17 +293,9 @@ alignment = 1
 material = SubResource("CanvasItemMaterial_mrfpk")
 custom_minimum_size = Vector2(400, 200)
 layout_mode = 2
-texture = ExtResource("3_mrfpk")
+texture = ExtResource("2_u7lva")
 expand_mode = 1
 stretch_mode = 5
-
-[node name="PointLight2D14" type="PointLight2D" parent="VBoxContainer/Logo"]
-position = Vector2(205, 97.49997)
-scale = Vector2(5.081566, -13.546877)
-color = Color(0.1949254, 0.2765464, 0.7934247, 1)
-energy = 1.5
-texture = SubResource("GradientTexture2D_4pqbp")
-script = ExtResource("4_mrfpk")
 
 [node name="StartButton" type="Button" parent="VBoxContainer"]
 modulate = Color(0.8758596, 0.846396, 0.821635, 1)
@@ -76,6 +306,18 @@ size_flags_vertical = 4
 theme_override_colors/font_hover_color = Color(0.29472524, 0.576195, 0.43835047, 1)
 theme_override_fonts/font = ExtResource("3_u7lva")
 text = "START"
+flat = true
+
+[node name="CreditsButton" type="Button" parent="VBoxContainer"]
+modulate = Color(0.8758596, 0.846396, 0.821635, 1)
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_hover_color = Color(0.29472524, 0.576195, 0.43835047, 1)
+theme_override_fonts/font = ExtResource("3_u7lva")
+text = "Credits
+"
 flat = true
 
 [node name="QuitButton" type="Button" parent="VBoxContainer"]
@@ -89,5 +331,10 @@ theme_override_fonts/font = ExtResource("3_u7lva")
 text = "QUİT"
 flat = true
 
+[node name="MenuSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_wqme5")
+volume_db = -12.0
+
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
