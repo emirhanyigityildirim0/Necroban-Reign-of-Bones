@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cbnrdr3v34plf"]
 
-[ext_resource type="Script" uid="uid://dtrbbxcp65rbu" path="res://Scenes/UI/checkpoint.gd" id="1_xl2ud"]
+[ext_resource type="Script" uid="uid://dtrbbxcp65rbu" path="res://Scripts/UI/checkpoint.gd" id="1_xl2ud"]
 
 [sub_resource type="SeparationRayShape2D" id="SeparationRayShape2D_qk248"]
 length = 45.0
