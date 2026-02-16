@@ -2,21 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b3hdh3ijcrxu7"
-path.s3tc="res://.godot/imported/MagaraAsama1.png-8aa446a43719aa9d6a597da3b0783380.s3tc.ctex"
+uid="uid://27yxsuvwaqma"
+path="res://.godot/imported/SlimeOrange_00004.png-cd1f3c72de9bd0211ca8f3a42c4c6344.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Environments/Cave/MagaraAsama1.png"
-dest_files=["res://.godot/imported/MagaraAsama1.png-8aa446a43719aa9d6a597da3b0783380.s3tc.ctex"]
+source_file="res://Assets/Sprites/Enemys/Slimes/SlimeOrange/SlimeOrange_00004.png"
+dest_files=["res://.godot/imported/SlimeOrange_00004.png-cd1f3c72de9bd0211ca8f3a42c4c6344.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
