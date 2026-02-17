@@ -208,7 +208,7 @@ motion_mirroring = Vector2(1920, 0)
 [node name="Sprite2D" type="Sprite2D" parent="Background/ParallaxBackground/Gokyuzu"]
 texture_filter = 1
 position = Vector2(7, -45)
-scale = Vector2(6, 6.066667)
+scale = Vector2(6, 6.0611115)
 texture = ExtResource("2_gih0s")
 centered = false
 
@@ -256,15 +256,15 @@ texture = ExtResource("4_lrjdf")
 centered = false
 
 [node name="PointLight2D" type="PointLight2D" parent="Background/ParallaxBackground"]
-position = Vector2(760, 539.00006)
-scale = Vector2(1.859375, 6.5234385)
+position = Vector2(760, 511.12503)
+scale = Vector2(1.859375, 5.6523433)
 color = Color(0.7806846, 7.3255e-05, 4.0718616e-05, 1)
 energy = 2.0
 range_layer_min = -10
 texture = SubResource("GradientTexture2D_wqme5")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="Background"]
-position = Vector2(745, 695)
+position = Vector2(743, 696)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Background/CharacterBody2D"]
 visible = false
