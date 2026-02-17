@@ -384,7 +384,7 @@ max_distance = 600.0
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
 position = Vector2(0, -1)
-rect = Rect2(-1149, -488, 2371, 825)
+rect = Rect2(-91, -61, 478, 114)
 
 [node name="KafaKaydirak" type="Area2D" parent="."]
 collision_mask = 2
