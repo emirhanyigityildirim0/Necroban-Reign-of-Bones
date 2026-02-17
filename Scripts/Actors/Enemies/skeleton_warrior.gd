@@ -65,7 +65,7 @@ func _ready():
 	if not anim.animation_finished.is_connected(_on_anim_finished):
 		anim.animation_finished.connect(_on_anim_finished)
 
-	# 🔥 Kılıç Alanı Sinyali (EN ÖNEMLİSİ BU)
+
 	if kilic_alani:
 		if not kilic_alani.body_entered.is_connected(_on_kilic_alani_body_entered):
 			kilic_alani.body_entered.connect(_on_kilic_alani_body_entered)
