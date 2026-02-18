@@ -18,6 +18,8 @@ region = Rect2(112.00746, 35.891186, 13.146202, 6.3468018)
 font_size = 32
 
 [node name="CanvasLayer" type="CanvasLayer" groups=["hud_group"]]
+scale = Vector2(2, 2)
+transform = Transform2D(2, 0, 0, 2, 0, 0)
 script = ExtResource("1_v4r8y")
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="."]
