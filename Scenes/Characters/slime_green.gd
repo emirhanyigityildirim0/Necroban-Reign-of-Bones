@@ -21,7 +21,7 @@ var was_on_floor: bool = true # Yere inişi anlamak için hafıza değişkeni
 @onready var ucurum_sensoru = $UcurumSensoru  # RayCast2D
 @onready var detection_area = $DetectionArea  # Bizi gören alan
 @onready var hitbox = $Hitbox                 # Bize vuran alan
-
+@onready var kan_efekti = $KanEfekti
 # --- DEĞİŞKENLER ---
 var direction = 1 # 1: Sağ, -1: Sol
 var player = null
@@ -144,6 +144,8 @@ func ezil_buzul_efekti(x_hedef, y_hedef):
 
 func hasar_al(miktar):
 	current_health -= miktar
+	kan_efekti.restart() 
+	kan_efekti.emitting = true
 	current_state = STATES.HURT
 	
 	# Geri tepme (Knockback)
