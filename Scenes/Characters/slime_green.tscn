@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://ds2g6ayis2i07"]
+[gd_scene load_steps=37 format=3 uid="uid://ds2g6ayis2i07"]
 
 [ext_resource type="Texture2D" uid="uid://by7l5qlfuavpy" path="res://Assets/Sprites/Enemys/Slimes/SlimeGreen/SlimeBasic_00000.png" id="1_4nduq"]
 [ext_resource type="Script" uid="uid://cvrimu8f6iqqy" path="res://Scenes/Characters/slime_green.gd" id="1_d1jtp"]
@@ -139,6 +139,10 @@ radius = 373.3872
 [sub_resource type="CircleShape2D" id="CircleShape2D_nq1xm"]
 radius = 27.0
 
+[sub_resource type="Gradient" id="Gradient_d1jtp"]
+offsets = PackedFloat32Array(0, 0.42957747, 1)
+colors = PackedColorArray(2.2140146e-06, 0.71550846, 3.85046e-07, 1, 0.42957872, 0.8377196, 0.4295777, 1, 1, 1, 1, 1)
+
 [node name="SlimeGreen" type="CharacterBody2D"]
 collision_mask = 6
 script = ExtResource("1_d1jtp")
@@ -164,7 +168,7 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
 shape = SubResource("CircleShape2D_d1jtp")
-debug_color = Color(0.9798152, 0, 0.38881758, 0.41960785)
+debug_color = Color(1, 0, 0, 0.42000002)
 
 [node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 0
@@ -179,6 +183,22 @@ rect = Rect2(-326, -138, 655, 271)
 enable_node_path = NodePath("../DetectionArea/CollisionShape2D")
 
 [node name="Sfx_Ziplama" type="AudioStreamPlayer2D" parent="."]
+
+[node name="KanEfekti" type="CPUParticles2D" parent="."]
+z_index = 1
+texture_filter = 1
+emitting = false
+amount = 16
+lifetime = 0.4
+one_shot = true
+direction = Vector2(0, -1)
+spread = 120.0
+initial_velocity_min = 150.0
+initial_velocity_max = 250.0
+scale_amount_min = 2.0
+scale_amount_max = 4.0
+color = Color(0.47058824, 0.6313726, 0.39215687, 1)
+color_ramp = SubResource("Gradient_d1jtp")
 
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
