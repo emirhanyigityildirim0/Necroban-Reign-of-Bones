@@ -1,0 +1,198 @@
+[gd_scene load_steps=28 format=3 uid="uid://drixnvyxswc7"]
+
+[ext_resource type="Texture2D" uid="uid://bncc3kbcrt7qu" path="res://Assets/Sprites/Enemys/Necro_Skeleton/TombStone.png" id="1_p86jy"]
+[ext_resource type="Script" uid="uid://bblr4tgs2r64c" path="res://Scenes/Objects/thomb_stone_attack.gd" id="2_h5toi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lxqtp"]
+size = Vector2(143, 182)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h5toi"]
+atlas = ExtResource("1_p86jy")
+region = Rect2(0, 0, 128, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hnrsh"]
+atlas = ExtResource("1_p86jy")
+region = Rect2(128, 0, 128, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0o6dj"]
+atlas = ExtResource("1_p86jy")
+region = Rect2(256, 0, 128, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3uuos"]
+atlas = ExtResource("1_p86jy")
+region = Rect2(384, 0, 128, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_13tl8"]
+atlas = ExtResource("1_p86jy")
+region = Rect2(512, 0, 128, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2me0c"]
+atlas = ExtResource("1_p86jy")
+region = Rect2(640, 0, 128, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d1w3x"]
+atlas = ExtResource("1_p86jy")
+region = Rect2(768, 0, 128, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k0g5v"]
+atlas = ExtResource("1_p86jy")
+region = Rect2(896, 0, 128, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ap2yl"]
+atlas = ExtResource("1_p86jy")
+region = Rect2(1024, 0, 128, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l00aq"]
+atlas = ExtResource("1_p86jy")
+region = Rect2(1152, 0, 128, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w724h"]
+atlas = ExtResource("1_p86jy")
+region = Rect2(1280, 0, 128, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0uv5b"]
+atlas = ExtResource("1_p86jy")
+region = Rect2(1408, 0, 128, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xp4xj"]
+atlas = ExtResource("1_p86jy")
+region = Rect2(1536, 0, 128, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bpfx7"]
+atlas = ExtResource("1_p86jy")
+region = Rect2(1664, 0, 128, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h2g28"]
+atlas = ExtResource("1_p86jy")
+region = Rect2(1792, 0, 128, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ixpnb"]
+atlas = ExtResource("1_p86jy")
+region = Rect2(1920, 0, 128, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1igdu"]
+atlas = ExtResource("1_p86jy")
+region = Rect2(2048, 0, 128, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ro1jy"]
+atlas = ExtResource("1_p86jy")
+region = Rect2(2176, 0, 128, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5nd74"]
+atlas = ExtResource("1_p86jy")
+region = Rect2(2304, 0, 128, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h87du"]
+atlas = ExtResource("1_p86jy")
+region = Rect2(2432, 0, 128, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_euypy"]
+atlas = ExtResource("1_p86jy")
+region = Rect2(2560, 0, 128, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_in2uq"]
+atlas = ExtResource("1_p86jy")
+region = Rect2(2688, 0, 128, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xiud3"]
+atlas = ExtResource("1_p86jy")
+region = Rect2(2816, 0, 128, 58)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p86jy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h5toi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hnrsh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0o6dj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3uuos")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_13tl8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2me0c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d1w3x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k0g5v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ap2yl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l00aq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w724h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0uv5b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xp4xj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bpfx7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h2g28")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ixpnb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1igdu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ro1jy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5nd74")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h87du")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_euypy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_in2uq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xiud3")
+}],
+"loop": false,
+"name": &"TombStone",
+"speed": 20.0
+}]
+
+[node name="MezarTasi" type="Area2D"]
+collision_mask = 6
+script = ExtResource("2_h5toi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_lxqtp")
+
+[node name="ThombStoneAttack" type="AnimatedSprite2D" parent="."]
+z_index = -3
+texture_filter = 1
+position = Vector2(-3.8146973e-06, -1.0000038)
+scale = Vector2(2.03125, 3.8275862)
+sprite_frames = SubResource("SpriteFrames_p86jy")
+animation = &"TombStone"
+frame = 22
+frame_progress = 1.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="ThombStoneAttack" to="." method="_on_thomb_stone_attack_animation_finished"]
+[connection signal="frame_changed" from="ThombStoneAttack" to="." method="_on_thomb_stone_attack_frame_changed"]
