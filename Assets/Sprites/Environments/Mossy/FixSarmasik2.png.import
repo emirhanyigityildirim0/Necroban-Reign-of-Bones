@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cs2cnhdvatio7"
-path="res://.godot/imported/MossyTileset5.png-aa7ac73c7118b9c3c353c2a4bb6a27e7.ctex"
+uid="uid://boxf3s5r5sgvp"
+path="res://.godot/imported/FixSarmasik2.png-3abd6b0b933600e6e184726e751e242c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Environments/Mossy/MossyTileset5.png"
-dest_files=["res://.godot/imported/MossyTileset5.png-aa7ac73c7118b9c3c353c2a4bb6a27e7.ctex"]
+source_file="res://Assets/Sprites/Environments/Mossy/FixSarmasik2.png"
+dest_files=["res://.godot/imported/FixSarmasik2.png-3abd6b0b933600e6e184726e751e242c.ctex"]
 
 [params]
 

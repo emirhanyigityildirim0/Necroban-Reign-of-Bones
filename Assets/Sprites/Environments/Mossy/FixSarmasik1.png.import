@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://8ht6mbx7tfde"
-path="res://.godot/imported/SarmasiklarSprite-0012.png-e40341f50fe4c7658ca2646621fd0490.ctex"
+uid="uid://b3u5ugg5rvywa"
+path="res://.godot/imported/FixSarmasik1.png-950a124e82548c06637c1b1b09a978aa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Environments/Mossy/SarmasiklarSprite-0012.png"
-dest_files=["res://.godot/imported/SarmasiklarSprite-0012.png-e40341f50fe4c7658ca2646621fd0490.ctex"]
+source_file="res://Assets/Sprites/Environments/Mossy/FixSarmasik1.png"
+dest_files=["res://.godot/imported/FixSarmasik1.png-950a124e82548c06637c1b1b09a978aa.ctex"]
 
 [params]
 

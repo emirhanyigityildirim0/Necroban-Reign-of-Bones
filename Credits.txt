@@ -1,0 +1,61 @@
+[center]
+[color="a101d6"][font_size=64][b]NECROBAN REİGN
+ OF
+ BONES[/b][/font_size][/color]
+[font_size=24][color=#aaaaaa]A Soulslike Adventure[/color][/font_size]
+
+
+
+[color=#d4af37][font_size=28]CREATED & DEVELOPED BY[/font_size][/color]
+
+[font_size=36][b]Emirhan Yiğit[/b][/font_size]
+[color=#cccccc](Emolotti)[/color]
+
+
+[font_size=24] [/font_size]
+
+
+[color=#d4af37][font_size=22]PROGRAMMING & LEVEL DESIGN[/font_size][/color]
+
+[b]Emirhan Yiğit[/b]
+
+
+[font_size=24] [/font_size]
+
+
+[color=#d4af37][font_size=28]MUSIC & SOUND EFFECTS[/font_size][/color]
+
+[b]Pixabay.com[/b] Community
+
+
+[font_size=40] [/font_size]
+
+
+[color=#d4af37][font_size=28]THIRD-PARTY ASSETS[/font_size][/color]
+
+[i]Character Art[/i]
+"NightBorne" Character by [b]CreativeKind[/b] (Itch.io)
+"Skeleton Enemies Pack" by [b]CraftPix.net[/b]
+"Knight" by [b]Aamatniekss[/b] (Itch.io)
+
+[i]Environment & Tilesets[/i]
+"Cave & Environment" by [b]Aamatniekss[/b] & [b]Szadiart[/b]
+"Fantasy Platformer Kit" by [b]CraftPix.net[/b]
+"Medieval UI Kit" by [b]CraftPix.net[/b]
+
+
+[font_size=40] [/font_size]
+
+
+[color=#d4af37][font_size=28]SPECIAL THANKS[/font_size][/color]
+
+Godot Engine Community
+
+
+
+[font_size=80] [/font_size]
+
+
+[font_size=48][b]THANKS FOR PLAYING![/b][/font_size]
+[font_size=16][color=#888888]© 2026 Emolotti Games[/color][/font_size]
+[/center]

@@ -75,7 +75,7 @@ func _physics_process(delta):
 # 🧠 DURUM FONKSİYONLARI
 # ==============================================================================
 
-func patrol_state(delta):
+func patrol_state(_delta):
 	velocity.x = speed * direction
 	anim.play("Walk")
 	yon_guncelle()
@@ -92,7 +92,7 @@ func patrol_state(delta):
 			player = b
 			current_state = STATES.CHASE
 
-func chase_state(delta):
+func chase_state(_delta):
 	if player:
 		if saldiri_sensoru.is_colliding():
 			var collider = saldiri_sensoru.get_collider()
@@ -199,7 +199,7 @@ func olum():
 	queue_free()
 
 # ==============================================================================
-# 📡 SİNYALLER (BUG ÇÖZÜMLERİ BURADA)
+# 📡 SİNYALLER (BUG ÇÖZÜMLERİ)
 # ==============================================================================
 
 func _on_gorus_alani_girdi(body):

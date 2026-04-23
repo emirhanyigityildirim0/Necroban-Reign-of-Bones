@@ -105,3 +105,8 @@ roll={
 2d_physics/layer_1="Dusman"
 2d_physics/layer_2="Oyuncu"
 2d_physics/layer_3="Dunya"
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
